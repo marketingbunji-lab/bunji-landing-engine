@@ -41,8 +41,8 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
       }
 
       router.push(data.redirectTo);
-    } catch (error: any) {
-      setMessage(error.message || "Ocurrió un error");
+    } catch (error: unknown) {
+      setMessage(error instanceof Error ? error.message : "Ocurrió un error");
     } finally {
       setSaving(false);
     }

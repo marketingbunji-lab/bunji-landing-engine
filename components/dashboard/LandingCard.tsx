@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Landing } from "@/lib/data";
+import ExportHtmlButton from "@/components/export/ExportHtmlButton";
 
 type Props = {
   landing: Landing;
@@ -39,9 +40,12 @@ export default function LandingCard({ landing }: Props) {
           Ver detalle
         </Link>
 
-        <button className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700">
+        <ExportHtmlButton
+          endpoint={`/api/export/${landing.brand}/${landing.slug}`}
+          filename={`${landing.brand}-${landing.slug}.html`}
+        >
           Exportar
-        </button>
+        </ExportHtmlButton>
       </div>
     </div>
   );

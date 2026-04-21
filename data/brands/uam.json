@@ -4,5 +4,27 @@
   "logo": "https://bunjigrowth.io/wp-content/uploads/2026/04/logo-uam-acreditacion-2025-scaled.png",
   "primaryColor": "#0069A3",
   "secondaryColor": "#F8D74A",
-  "description": "Universidad Autónoma de Manizales"
+  "description": "Universidad Autónoma de Manizales",
+  "legalLinks": [
+    {
+      "label": "Política de Tratamiento de Datos Personales",
+      "url": "https://www.autonoma.edu.co/sites/default/files/2022-08/Politica-tratamiento-de-datos-personales.pdf"
+    },
+    {
+      "label": "Términos y condiciones de uso",
+      "url": "https://www.autonoma.edu.co/sites/default/files/2022-01/terminos-y-condiciones.pdf"
+    },
+    {
+      "label": "Derechos Pecuniarios",
+      "url": "https://www.autonoma.edu.co/sites/default/files/2025-11/derechos-pecuniarios-2026-firma1.pdf"
+    },
+    {
+      "label": "Protocolos de bioseguridad",
+      "url": "https://www.autonoma.edu.co/blog/articulos/protocolos-de-bioseguridad-uam"
+    },
+    {
+      "label": "Transparencia de la Información",
+      "url": "https://www.autonoma.edu.co/conoce-la-uam/transparencia-de-la-informacion"
+    }
+  ]
 }

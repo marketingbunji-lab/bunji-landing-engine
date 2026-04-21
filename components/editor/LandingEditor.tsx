@@ -1,30 +1,70 @@
 "use client";
 
 import { useState } from "react";
+import type { AccordionItem, Brand, IconTextItem, Landing } from "@/lib/data";
 import UamProgramLanding from "../templates/UamProgramLanding";
 
 type Props = {
-  brand: any;
-  initialLanding: any;
+  brand: Brand;
+  initialLanding: Landing;
 };
 
+type EditableLanding = Landing & Record<string, unknown>;
+type EditableRecord = Record<string, unknown>;
+type EditableArrayItem = Record<string, string>;
+
+function isRecord(value: unknown): value is EditableRecord {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function getRecordAtPath(target: EditableRecord, keys: string[]) {
+  let current = target;
+
+  for (const key of keys) {
+    if (!isRecord(current[key])) {
+      current[key] = {};
+    }
+
+    current = current[key] as EditableRecord;
+  }
+
+  return current;
+}
+
+function getArrayAtPath(target: EditableRecord, path: string) {
+  const keys = path.split(".");
+  const arrayKey = keys.at(-1);
+
+  if (!arrayKey) return [];
+
+  const parent = getRecordAtPath(target, keys.slice(0, -1));
+
+  if (!Array.isArray(parent[arrayKey])) {
+    parent[arrayKey] = [];
+  }
+
+  return parent[arrayKey] as EditableArrayItem[];
+}
+
 export default function LandingEditor({ brand, initialLanding }: Props) {
-  const [landing, setLanding] = useState(initialLanding);
+  const [landing, setLanding] = useState<Landing>(initialLanding);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [previewWidth, setPreviewWidth] = useState(1200);
+  const [previewHeight, setPreviewHeight] = useState(820);
 
   const updateField = (path: string, value: string) => {
-    setLanding((prev: any) => {
-      const next = structuredClone(prev);
+    setLanding((prev) => {
+      const next = structuredClone(prev) as EditableLanding;
       const keys = path.split(".");
-      let current = next;
+      const fieldKey = keys.at(-1);
 
-      for (let i = 0; i < keys.length - 1; i++) {
-        if (current[keys[i]] === undefined) current[keys[i]] = {};
-        current = current[keys[i]];
+      if (!fieldKey) {
+        return next;
       }
 
-      current[keys[keys.length - 1]] = value;
+      const current = getRecordAtPath(next, keys.slice(0, -1));
+      current[fieldKey] = value;
       return next;
     });
   };
@@ -35,15 +75,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
     field: string,
     value: string
   ) => {
-    setLanding((prev: any) => {
-      const next = structuredClone(prev);
-      const keys = arrayPath.split(".");
-      let current = next;
-
-      for (let i = 0; i < keys.length; i++) {
-        if (current[keys[i]] === undefined) current[keys[i]] = [];
-        current = current[keys[i]];
-      }
+    setLanding((prev) => {
+      const next = structuredClone(prev) as EditableLanding;
+      const current = getArrayAtPath(next, arrayPath);
 
       if (!current[index]) current[index] = {};
       current[index][field] = value;
@@ -52,16 +86,10 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
     });
   };
 
-  const addArrayItem = (arrayPath: string, newItem: any) => {
-    setLanding((prev: any) => {
-      const next = structuredClone(prev);
-      const keys = arrayPath.split(".");
-      let current = next;
-
-      for (let i = 0; i < keys.length; i++) {
-        if (current[keys[i]] === undefined) current[keys[i]] = [];
-        current = current[keys[i]];
-      }
+  const addArrayItem = (arrayPath: string, newItem: EditableArrayItem) => {
+    setLanding((prev) => {
+      const next = structuredClone(prev) as EditableLanding;
+      const current = getArrayAtPath(next, arrayPath);
 
       current.push(newItem);
       return next;
@@ -69,15 +97,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
   };
 
   const removeArrayItem = (arrayPath: string, index: number) => {
-    setLanding((prev: any) => {
-      const next = structuredClone(prev);
-      const keys = arrayPath.split(".");
-      let current = next;
-
-      for (let i = 0; i < keys.length; i++) {
-        if (current[keys[i]] === undefined) current[keys[i]] = [];
-        current = current[keys[i]];
-      }
+    setLanding((prev) => {
+      const next = structuredClone(prev) as EditableLanding;
+      const current = getArrayAtPath(next, arrayPath);
 
       current.splice(index, 1);
       return next;
@@ -204,6 +226,12 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                 onChange={(value) => updateField("whyStudy.description", value)}
               />
 
+              <Field
+                label="URL imagen de apoyo"
+                value={landing.whyStudy?.image || ""}
+                onChange={(value) => updateField("whyStudy.image", value)}
+              />
+
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h4 className="text-sm font-semibold text-gray-900">
@@ -224,7 +252,7 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                   </button>
                 </div>
 
-                {(landing.whyStudy?.items || []).map((item: any, index: number) => (
+                {(landing.whyStudy?.items || []).map((item: AccordionItem, index) => (
                   <div
                     key={index}
                     className="rounded-xl border border-gray-200 bg-gray-50 p-4"
@@ -301,7 +329,7 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
         </button>
       </div>
 
-      {(landing.supportSection?.items || []).map((item: any, index: number) => (
+      {(landing.supportSection?.items || []).map((item: IconTextItem, index) => (
         <div
                     key={index}
                     className="rounded-xl border border-gray-200 bg-gray-50 p-4"
@@ -380,7 +408,7 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
         </button>
       </div>
 
-      {(landing.benefits?.items || []).map((item: any, index: number) => (
+      {(landing.benefits?.items || []).map((item: IconTextItem, index) => (
                     <div
                     key={index}
                     className="rounded-xl border border-gray-200 bg-gray-50 p-4"
@@ -476,12 +504,108 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        {landing.template === "UamProgramLanding" && (
-          <UamProgramLanding brand={brand} landing={landing} />
-        )}
+      <div className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <div className="flex flex-wrap items-end gap-4 border-b border-gray-200 bg-gray-50 p-4">
+          <PreviewControl
+            label="Ancho"
+            min={360}
+            max={1440}
+            value={previewWidth}
+            onChange={setPreviewWidth}
+          />
+          <PreviewControl
+            label="Alto"
+            min={480}
+            max={1200}
+            value={previewHeight}
+            onChange={setPreviewHeight}
+          />
+          <button
+            type="button"
+            onClick={() => {
+              setPreviewWidth(390);
+              setPreviewHeight(844);
+            }}
+            className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+          >
+            Mobile
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setPreviewWidth(768);
+              setPreviewHeight(900);
+            }}
+            className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+          >
+            Tablet
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setPreviewWidth(1200);
+              setPreviewHeight(820);
+            }}
+            className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+          >
+            Desktop
+          </button>
+        </div>
+
+        <div className="max-h-[calc(100vh-180px)] overflow-auto bg-gray-100 p-4">
+          <div
+            className="mx-auto overflow-auto bg-white shadow-sm"
+            style={{
+              width: previewWidth,
+              height: previewHeight,
+              maxWidth: "100%",
+            }}
+          >
+            {landing.template === "UamProgramLanding" && (
+              <UamProgramLanding brand={brand} landing={landing} />
+            )}
+          </div>
+        </div>
       </div>
     </div>
+  );
+}
+
+function PreviewControl({
+  label,
+  min,
+  max,
+  value,
+  onChange,
+}: {
+  label: string;
+  min: number;
+  max: number;
+  value: number;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <label className="grid gap-1">
+      <span className="text-xs font-semibold text-gray-700">{label}</span>
+      <div className="flex items-center gap-2">
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={value}
+          onChange={(event) => onChange(Number(event.target.value))}
+          className="w-28"
+        />
+        <input
+          type="number"
+          min={min}
+          max={max}
+          value={value}
+          onChange={(event) => onChange(Number(event.target.value))}
+          className="w-20 rounded-lg border border-gray-300 px-2 py-1 text-xs text-gray-900"
+        />
+      </div>
+    </label>
   );
 }
 

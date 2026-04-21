@@ -1,6 +1,17 @@
 type Props = {
-  brand: any;
-  data: any;
+  brand: {
+    fontBody?: string;
+    fontHeading?: string;
+    primaryColor: string;
+    secondaryColor: string;
+    textColor?: string;
+  };
+  data: {
+    title: string;
+    subtitle?: string;
+    cta?: string;
+    benefits?: string[];
+  };
 };
 
 export default function LandingBasic({ brand, data }: Props) {
@@ -28,13 +39,13 @@ export default function LandingBasic({ brand, data }: Props) {
             cursor: "pointer",
           }}
         >
-          {data.cta}
+          {data.cta ?? "Conoce más"}
         </button>
       </section>
 
       <section style={{ padding: "40px 20px" }}>
         <ul>
-          {data.benefits.map((item: string, i: number) => (
+          {(data.benefits ?? []).map((item, i) => (
             <li key={i}>{item}</li>
           ))}
         </ul>

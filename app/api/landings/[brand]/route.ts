@@ -76,6 +76,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
       whyStudy: {
         title: "",
         description: "",
+        image: "",
         items: []
       },
       supportSection: {
@@ -104,7 +105,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
       slug,
       redirectTo: `/brands/${brand}/${slug}`
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { ok: false, error: "No se pudo crear la landing" },
       { status: 500 }

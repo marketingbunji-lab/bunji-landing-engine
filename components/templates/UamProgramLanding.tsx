@@ -1,13 +1,63 @@
+/* eslint-disable @next/next/no-img-element, @next/next/no-sync-scripts */
 import Script from "next/script";
+import type { Brand, IconTextItem, Landing, LegalLink } from "@/lib/data";
 import ClientifyProgramSelector from "../forms/ClientifyProgramSelector";
 import Accordion from "../ui/Accordion";
+import BootstrapAccordion from "../ui/BootstrapAccordion";
 
 type Props = {
-  brand: any;
-  landing: any;
+  brand: Brand;
+  landing: Landing;
+  mode?: "preview" | "export";
 };
 
-export default function UamProgramLanding({ brand, landing }: Props) {
+function getClientifySelectorScript(programName: string) {
+  return `
+    const TARGET_TEXT = ${JSON.stringify(programName)};
+
+    setTimeout(() => {
+      function findSelectByOptionText(doc, text) {
+        for (const sel of doc.querySelectorAll('select')) {
+          const match = [...sel.options].find((o) => o.text.trim() === text);
+          if (match) return { select: sel, option: match };
+        }
+        return null;
+      }
+
+      const docs = [document];
+      for (const iframe of document.querySelectorAll('iframe')) {
+        try {
+          const idoc = iframe.contentDocument || iframe.contentWindow?.document;
+          if (idoc) docs.push(idoc);
+        } catch (e) {}
+      }
+
+      let chosen = null;
+      for (const d of docs) {
+        chosen = findSelectByOptionText(d, TARGET_TEXT);
+        if (chosen) break;
+      }
+
+      if (!chosen) return;
+
+      const { select, option } = chosen;
+      select.value = option.value;
+      option.selected = true;
+
+      select.dispatchEvent(new Event('input', { bubbles: true }));
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+
+      select.style.display = "none";
+      select.setAttribute("aria-hidden", "true");
+    }, 4000);
+  `;
+}
+
+export default function UamProgramLanding({
+  brand,
+  landing,
+  mode = "preview",
+}: Props) {
   const hero = landing?.hero ?? {};
   const whyStudy = landing?.whyStudy ?? {};
   const supportSection = landing?.supportSection ?? {};
@@ -30,7 +80,228 @@ export default function UamProgramLanding({ brand, landing }: Props) {
   const fullTitle = landing?.fullTitle ?? title;
 
   return (
-    <div style={{ fontFamily: "Inter, Arial, sans-serif", color: "#111827" }}>
+    <div className="uam-landing" style={{ fontFamily: "Inter, Arial, sans-serif", color: "#111827" }}>
+      <style>{`
+        .uam-landing img,
+        .uam-landing iframe {
+          max-width: 100%;
+        }
+
+        .uam-landing {
+          container-type: inline-size;
+        }
+
+        .uam-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+
+        .uam-hero-shell {
+          position: relative;
+          padding-top: 48px;
+          padding-bottom: 48px;
+        }
+
+        .uam-hero-grid {
+          position: relative;
+          z-index: 2;
+          display: grid;
+          grid-template-columns: minmax(0, 1.02fr) minmax(120px, 0.34fr) minmax(320px, 420px);
+          gap: 32px;
+          align-items: center;
+        }
+
+        .uam-hero-content {
+          color: #fff;
+          position: relative;
+          z-index: 2;
+        }
+
+        .uam-hero-title {
+          margin: 0;
+          font-size: clamp(2.3rem, 5vw, 4rem);
+          line-height: 1.05;
+          font-weight: 800;
+        }
+
+        .uam-hero-logo {
+          width: 280px;
+          max-width: 100%;
+          height: auto;
+          margin-bottom: 24px;
+        }
+
+        .uam-hero-info-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+          margin-top: 24px;
+          max-width: 720px;
+        }
+
+        .uam-hero-person {
+          position: absolute;
+          bottom: 0;
+          right: 32%;
+          z-index: 1;
+          width: min(38vw, 540px);
+          height: auto;
+          pointer-events: none;
+        }
+
+        .uam-form-column {
+          position: relative;
+          z-index: 3;
+        }
+
+        .uam-form-card {
+          background: #fff;
+          border-radius: 20px;
+          padding: 24px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+        }
+
+        .uam-two-column-section {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+          gap: 32px;
+          align-items: end;
+        }
+
+        .uam-support-grid {
+          margin-top: 32px;
+          display: grid;
+          grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+          gap: 24px;
+          align-items: start;
+        }
+
+        .uam-benefits-grid {
+          margin-top: 32px;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 24px;
+        }
+
+        @media (max-width: 1199.98px) {
+          .uam-hero-person {
+            right: 38%;
+            width: min(34vw, 420px);
+          }
+        }
+
+        @media (max-width: 991.98px) {
+          .uam-hero-grid,
+          .uam-two-column-section,
+          .uam-support-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .uam-hero-grid {
+            gap: 24px;
+          }
+
+          .uam-hero-spacer {
+            display: none;
+          }
+
+          .uam-hero-title {
+            font-size: clamp(2.35rem, 9vw, 4rem);
+          }
+
+          .uam-hero-person {
+            display: none;
+          }
+
+          .uam-form-column {
+            grid-row: 2;
+          }
+        }
+
+        @container (max-width: 991.98px) {
+          .uam-hero-grid,
+          .uam-two-column-section,
+          .uam-support-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .uam-hero-grid {
+            gap: 24px;
+          }
+
+          .uam-hero-spacer {
+            display: none;
+          }
+
+          .uam-hero-title {
+            font-size: clamp(2.35rem, 9cqw, 4rem);
+          }
+
+          .uam-hero-person {
+            display: none;
+          }
+
+          .uam-form-column {
+            grid-row: 2;
+          }
+        }
+
+        @container (max-width: 767.98px) {
+          .uam-benefits-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @container (max-width: 575.98px) {
+          .uam-container {
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+
+          .uam-hero-shell {
+            padding-top: 36px;
+            padding-bottom: 40px;
+          }
+
+          .uam-hero-logo {
+            width: 230px;
+          }
+
+          .uam-hero-info-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 767.98px) {
+          .uam-benefits-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 575.98px) {
+          .uam-container {
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+
+          .uam-hero-shell {
+            padding-top: 36px;
+            padding-bottom: 40px;
+          }
+
+          .uam-hero-logo {
+            width: 230px;
+          }
+
+          .uam-hero-info-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
       <section
         style={{
           backgroundImage: hero?.backgroundImage
@@ -42,27 +313,17 @@ export default function UamProgramLanding({ brand, landing }: Props) {
         }}
       >
         <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "48px 24px",
-            position: "relative",
-          }}
+          className="uam-container uam-hero-shell"
         >
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 1.4fr) minmax(320px, 420px)",
-              gap: 32,
-              alignItems: "center",
-            }}
+            className="uam-hero-grid"
           >
-            <div style={{ color: "#fff", position: "relative", zIndex: 2 }}>
+            <div className="uam-hero-content">
               {logo ? (
                 <img
                   src={logo}
                   alt={brandName}
-                  style={{ width: 280, maxWidth: "100%", height: "auto", marginBottom: 24 }}
+                  className="uam-hero-logo"
                 />
               ) : null}
 
@@ -71,12 +332,7 @@ export default function UamProgramLanding({ brand, landing }: Props) {
               </p>
 
               <h1
-                style={{
-                  margin: 0,
-                  fontSize: "clamp(2.3rem, 5vw, 4rem)",
-                  lineHeight: 1.05,
-                  fontWeight: 800,
-                }}
+                className="uam-hero-title"
               >
                 {hero?.highlight ? (
                   <>
@@ -117,13 +373,7 @@ export default function UamProgramLanding({ brand, landing }: Props) {
 
               {(hero?.semesterPrice || programInfo.length > 0) && (
                 <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                    gap: 16,
-                    marginTop: 24,
-                    maxWidth: 720,
-                  }}
+                  className="uam-hero-info-grid"
                 >
                   <div>
                     {hero?.semesterPrice ? (
@@ -157,47 +407,45 @@ export default function UamProgramLanding({ brand, landing }: Props) {
                       </p>
                     </div>
                   ) : null}
-
-                              {hero?.personImage ? (
-                <img
-                  src={hero.personImage}
-                  alt={fullTitle}
-                  style={{
-                    width: 280,
-                    maxWidth: "100%",
-                    height: "auto",
-                    marginTop: 24,
-                    borderRadius: 16,
-                  }}
-                />
-              ) : null}
                 </div>
               )}
             </div>
 
-            <div style={{ position: "relative", zIndex: 3 }}>
+            {hero?.personImage ? (
+              <img
+                src={hero.personImage}
+                alt={fullTitle}
+                className="uam-hero-person"
+              />
+            ) : null}
+
+            <div className="uam-hero-spacer" />
+
+            <div className="uam-form-column">
               <div
                 id="anclaForm"
-                style={{
-                  background: "#fff",
-                  borderRadius: 20,
-                  padding: 24,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.16)",
-                }}
+                className="uam-form-card"
               >
-                <p style={{ margin: 0, fontSize: 22, fontWeight: 800, color: primaryColor }}>
-                  Solicita información
-                </p>
-
-                <p style={{ margin: "8px 0 20px 0", color: "#4B5563" }}>{fullTitle}</p>
-
                 {form?.scriptUrl ? (
-                  <>
-                    <Script src={form.scriptUrl} strategy="afterInteractive" />
-                    {form?.programName ? (
-                      <ClientifyProgramSelector programName={form.programName} />
-                    ) : null}
-                  </>
+                  mode === "export" ? (
+                    <>
+                      <script type="text/javascript" src={form.scriptUrl} />
+                      {form?.programName ? (
+                        <script
+                          dangerouslySetInnerHTML={{
+                            __html: getClientifySelectorScript(form.programName),
+                          }}
+                        />
+                      ) : null}
+                    </>
+                  ) : (
+                    <>
+                      <Script src={form.scriptUrl} strategy="afterInteractive" />
+                      {form?.programName ? (
+                        <ClientifyProgramSelector programName={form.programName} />
+                      ) : null}
+                    </>
+                  )
                 ) : (
                   <div
                     style={{
@@ -222,14 +470,7 @@ export default function UamProgramLanding({ brand, landing }: Props) {
       {(whyStudy?.title || whyStudy?.description || whyStudyItems.length > 0) && (
         <section style={{ padding: "64px 24px" }}>
           <div
-            style={{
-              maxWidth: 1200,
-              margin: "0 auto",
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 1.1fr) minmax(280px, 0.9fr)",
-              gap: 32,
-              alignItems: "end",
-            }}
+            className="uam-two-column-section"
           >
             <div>
               {whyStudy?.title ? (
@@ -254,7 +495,11 @@ export default function UamProgramLanding({ brand, landing }: Props) {
 
               {whyStudyItems.length > 0 ? (
                 <div style={{ display: "grid", gap: 12 }}>
-                  <Accordion items={whyStudyItems} />
+                  {mode === "export" ? (
+                    <BootstrapAccordion items={whyStudyItems} id="whyStudyAccordion" />
+                  ) : (
+                    <Accordion items={whyStudyItems} />
+                  )}
                 </div>
               ) : (
                 <div
@@ -272,21 +517,34 @@ export default function UamProgramLanding({ brand, landing }: Props) {
             </div>
 
             <div style={{ textAlign: "center" }}>
-              <div
-                style={{
-                  width: "100%",
-                  minHeight: 520,
-                  borderRadius: 24,
-                  background:
-                    "linear-gradient(180deg, rgba(0,105,163,0.08), rgba(248,215,74,0.18))",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 24,
-                }}
-              >
-                <p style={{ margin: 0, color: "#6B7280" }}>Imagen de apoyo del programa</p>
-              </div>
+              {whyStudy?.image ? (
+                <img
+                  src={whyStudy.image}
+                  alt={whyStudy?.title ?? fullTitle}
+                  style={{
+                    width: "100%",
+                    minHeight: 520,
+                    objectFit: "contain",
+                    objectPosition: "center bottom",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    minHeight: 520,
+                    borderRadius: 24,
+                    background:
+                      "linear-gradient(180deg, rgba(0,105,163,0.08), rgba(248,215,74,0.18))",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: 24,
+                  }}
+                >
+                  <p style={{ margin: 0, color: "#6B7280" }}>Imagen de apoyo del programa</p>
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -315,13 +573,7 @@ export default function UamProgramLanding({ brand, landing }: Props) {
             ) : null}
 
             <div
-              style={{
-                marginTop: 32,
-                display: "grid",
-                gridTemplateColumns: "minmax(0, 1.1fr) minmax(0, 1fr)",
-                gap: 24,
-                alignItems: "start",
-              }}
+              className="uam-support-grid"
             >
               <div
                 style={{
@@ -364,7 +616,7 @@ export default function UamProgramLanding({ brand, landing }: Props) {
 
               <div style={{ display: "grid", gap: 16 }}>
                 {supportItems.length > 0 ? (
-                  supportItems.map((item: any, i: number) => (
+                  supportItems.map((item: IconTextItem, i) => (
                     <div
                       key={i}
                       style={{
@@ -461,14 +713,9 @@ export default function UamProgramLanding({ brand, landing }: Props) {
 
             {benefitItems.length > 0 ? (
               <div
-                style={{
-                  marginTop: 32,
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-                  gap: 24,
-                }}
+                className="uam-benefits-grid"
               >
-                {benefitItems.map((item: any, i: number) => (
+                {benefitItems.map((item: IconTextItem, i) => (
                   <div
                     key={i}
                     style={{
@@ -583,7 +830,7 @@ export default function UamProgramLanding({ brand, landing }: Props) {
 
           {legalLinks.length > 0 ? (
             <div style={{ marginTop: 20, fontSize: 14, lineHeight: 1.8 }}>
-              {legalLinks.map((link: any, i: number) => (
+              {legalLinks.map((link: LegalLink, i) => (
                 <span key={i}>
                   <a
                     href={link?.url ?? "#"}

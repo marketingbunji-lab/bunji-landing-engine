@@ -23,7 +23,7 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
     fs.writeFileSync(filePath, JSON.stringify(body, null, 2), "utf8");
 
     return NextResponse.json({ ok: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { ok: false, error: "No se pudo guardar la landing" },
       { status: 500 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBrandBySlug, getLandingBySlug } from "../../../../lib/data";
 import LandingEditor from "../../../../components/editor/LandingEditor";
+import ExportHtmlButton from "../../../../components/export/ExportHtmlButton";
 
 type Props = {
   params: Promise<{
@@ -22,7 +23,7 @@ export default async function LandingDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-gray-50 px-6 py-8">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-auto">
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
             <p className="text-sm text-gray-500">{brand.name}</p>
@@ -31,12 +32,22 @@ export default async function LandingDetailPage({ params }: Props) {
             </h1>
           </div>
 
-          <Link
-            href={`/brands/${brandSlug}`}
-            className="rounded-lg border border-gray-300 px-4 py-2 text-sm"
-          >
-            ← Volver
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href={`/brands/${brandSlug}`}
+              className="rounded-lg border border-gray-300 px-4 py-2 text-sm"
+            >
+              ← Volver
+            </Link>
+
+            <ExportHtmlButton
+              endpoint={`/api/export/${brandSlug}/${landingSlug}`}
+              filename={`${brandSlug}-${landingSlug}.html`}
+              className="rounded-lg bg-black px-4 py-2 text-sm text-white"
+            >
+              Exportar HTML
+            </ExportHtmlButton>
+          </div>
         </div>
 
         <LandingEditor brand={brand} initialLanding={landing} />
