@@ -1,0 +1,43 @@
+{
+  "slug": "diseno-grafico",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-21",
+  "title": "Diseño Gráfico",
+  "fullTitle": "Pregrado en Diseño Gráfico",
+  "hero": {
+    "eyebrow": "Estudia en UAM",
+    "highlight": "",
+    "title": "Pregrado en Diseño Gráfico",
+    "description": "",
+    "supportText": "",
+    "modality": "",
+    "semesterPrice": "",
+    "backgroundImage": "",
+    "personImage": ""
+  },
+  "programInfo": [],
+  "whyStudy": {
+    "title": "",
+    "description": "",
+    "items": []
+  },
+  "supportSection": {
+    "title": "",
+    "videoUrl": "",
+    "items": []
+  },
+  "benefits": {
+    "title": "",
+    "items": []
+  },
+  "cta": {
+    "title": "",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Pregrado en Diseño Gráfico"
+  }
+}

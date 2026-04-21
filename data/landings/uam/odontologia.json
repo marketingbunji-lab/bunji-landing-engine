@@ -1,0 +1,43 @@
+{
+  "slug": "odontologia",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-21",
+  "title": "Odontologia",
+  "fullTitle": "Odontologia",
+  "hero": {
+    "eyebrow": "Estudia en UAM",
+    "highlight": "",
+    "title": "Odontologia",
+    "description": "",
+    "supportText": "",
+    "modality": "",
+    "semesterPrice": "",
+    "backgroundImage": "",
+    "personImage": ""
+  },
+  "programInfo": [],
+  "whyStudy": {
+    "title": "",
+    "description": "",
+    "items": []
+  },
+  "supportSection": {
+    "title": "",
+    "videoUrl": "",
+    "items": []
+  },
+  "benefits": {
+    "title": "",
+    "items": []
+  },
+  "cta": {
+    "title": "",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Odontologia"
+  }
+}
