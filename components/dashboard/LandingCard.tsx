@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import { Landing } from "@/lib/data";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import type { Landing } from "@/lib/data";
 import ExportHtmlButton from "@/components/export/ExportHtmlButton";
 
 type Props = {
@@ -7,8 +11,61 @@ type Props = {
 };
 
 export default function LandingCard({ landing }: Props) {
+  const router = useRouter();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [duplicating, setDuplicating] = useState(false);
+  const [error, setError] = useState("");
+
+  const duplicateLanding = async () => {
+    try {
+      setDuplicating(true);
+      setError("");
+
+      const response = await fetch(
+        `/api/landings/${landing.brand}/${landing.slug}/duplicate`,
+        { method: "POST" }
+      );
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "No se pudo duplicar la landing");
+      }
+
+      router.push(data.redirectTo);
+      router.refresh();
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "No se pudo duplicar");
+    } finally {
+      setDuplicating(false);
+    }
+  };
+
+  const deleteLanding = async () => {
+    try {
+      setDeleting(true);
+      setError("");
+
+      const response = await fetch(`/api/landings/${landing.brand}/${landing.slug}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "No se pudo eliminar la landing");
+      }
+
+      setShowDeleteModal(false);
+      router.refresh();
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "No se pudo eliminar");
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+    <div className="relative rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold">{landing.title}</h3>
@@ -43,10 +100,76 @@ export default function LandingCard({ landing }: Props) {
         <ExportHtmlButton
           endpoint={`/api/export/${landing.brand}/${landing.slug}`}
           filename={`${landing.brand}-${landing.slug}.html`}
+          clientifyEndpoint={`/api/export-clientify/${landing.brand}/${landing.slug}`}
+          clientifyFilename={`${landing.brand}-${landing.slug}-clientify.html`}
         >
           Exportar
         </ExportHtmlButton>
+
+        <button
+          type="button"
+          onClick={duplicateLanding}
+          disabled={duplicating || deleting}
+          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {duplicating ? "Duplicando..." : "Duplicar"}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            setError("");
+            setShowDeleteModal(true);
+          }}
+          disabled={duplicating || deleting}
+          className="rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          Eliminar
+        </button>
       </div>
+
+      {error ? <p className="mt-3 text-sm text-red-600">{error}</p> : null}
+
+      {showDeleteModal ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`delete-${landing.slug}-title`}
+            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl"
+          >
+            <h2
+              id={`delete-${landing.slug}-title`}
+              className="text-lg font-semibold text-gray-900"
+            >
+              Eliminar landing
+            </h2>
+            <p className="mt-2 text-sm text-gray-600">
+              Vas a eliminar <strong>{landing.fullTitle}</strong>. Esta acción no se
+              puede deshacer.
+            </p>
+
+            <div className="mt-6 flex justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setShowDeleteModal(false)}
+                disabled={deleting}
+                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 disabled:opacity-60"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={deleteLanding}
+                disabled={deleting}
+                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+              >
+                {deleting ? "Eliminando..." : "Sí, eliminar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

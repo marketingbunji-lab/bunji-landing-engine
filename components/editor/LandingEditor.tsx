@@ -12,6 +12,7 @@ type Props = {
 type EditableLanding = Landing & Record<string, unknown>;
 type EditableRecord = Record<string, unknown>;
 type EditableArrayItem = Record<string, string>;
+type EditableTextArray = string[];
 
 function isRecord(value: unknown): value is EditableRecord {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -96,6 +97,26 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
     });
   };
 
+  const updateTextArrayItem = (arrayPath: string, index: number, value: string) => {
+    setLanding((prev) => {
+      const next = structuredClone(prev) as EditableLanding;
+      const current = getArrayAtPath(next, arrayPath) as unknown as EditableTextArray;
+
+      current[index] = value;
+      return next;
+    });
+  };
+
+  const addTextArrayItem = (arrayPath: string, value = "") => {
+    setLanding((prev) => {
+      const next = structuredClone(prev) as EditableLanding;
+      const current = getArrayAtPath(next, arrayPath) as unknown as EditableTextArray;
+
+      current.push(value);
+      return next;
+    });
+  };
+
   const removeArrayItem = (arrayPath: string, index: number) => {
     setLanding((prev) => {
       const next = structuredClone(prev) as EditableLanding;
@@ -133,17 +154,46 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
 
   return (
     <div className="grid gap-6 xl:grid-cols-[380px_minmax(0,1fr)]">
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <div className="mb-6">
+      <div className="flex h-[calc(100vh-4rem)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm xl:sticky xl:top-6">
+        <div className="border-b border-gray-200 p-6">
           <h2 className="text-xl font-semibold text-gray-900">Editar landing</h2>
           <p className="mt-1 text-sm text-gray-500">
             Edita solo los contenidos visibles en la landing.
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="min-h-0 flex-1 overflow-y-auto p-4">
+          <div className="space-y-3">
+          <EditorSection title="Logo" defaultOpen>
+            <div>
+              <span className="mb-2 block text-sm font-semibold text-gray-900">
+                Versión del logo
+              </span>
+              <div className="inline-flex rounded-xl border border-gray-300 bg-gray-100 p-1">
+                {(["light", "dark"] as const).map((mode) => {
+                  const isSelected = (landing.logoMode || "dark") === mode;
+
+                  return (
+                    <button
+                      key={mode}
+                      type="button"
+                      onClick={() => updateField("logoMode", mode)}
+                      className={`rounded-lg px-4 py-2 text-sm font-medium ${
+                        isSelected
+                          ? "bg-white text-gray-950 shadow-sm"
+                          : "text-gray-600 hover:text-gray-950"
+                      }`}
+                    >
+                      {mode === "light" ? "Light" : "Dark"}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </EditorSection>
+
           {(landing.hero || landing.title || landing.fullTitle) && (
-            <EditorSection title="Hero">
+            <EditorSection title="Hero" defaultOpen>
               <Field
                 label="Título corto"
                 value={landing.title || ""}
@@ -198,6 +248,51 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                 onChange={(value) => updateField("hero.semesterPrice", value)}
               />
 
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    Información general
+                  </h4>
+
+                  <button
+                    type="button"
+                    onClick={() => addTextArrayItem("programInfo", "Nuevo dato")}
+                    className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                  >
+                    + Agregar dato
+                  </button>
+                </div>
+
+                {(landing.programInfo || []).map((item: string, index) => (
+                  <div
+                    key={index}
+                    className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                  >
+                    <div className="mb-3 flex items-center justify-between">
+                      <p className="text-sm font-semibold text-gray-900">
+                        Dato {index + 1}
+                      </p>
+
+                      <button
+                        type="button"
+                        onClick={() => removeArrayItem("programInfo", index)}
+                        className="text-xs font-medium text-red-600"
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+
+                    <Field
+                      label="Texto"
+                      value={item || ""}
+                      onChange={(value) =>
+                        updateTextArrayItem("programInfo", index, value)
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
+
               <Field
                 label="URL imagen de fondo"
                 value={landing.hero?.backgroundImage || ""}
@@ -209,6 +304,28 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                 value={landing.hero?.personImage || ""}
                 onChange={(value) => updateField("hero.personImage", value)}
                 />
+            </EditorSection>
+          )}
+
+          {landing.form && (
+            <EditorSection title="Formulario">
+              <Field
+                label="Script URL"
+                value={landing.form?.scriptUrl || ""}
+                onChange={(value) => updateField("form.scriptUrl", value)}
+              />
+
+              <TextareaField
+                label="Código del script del formulario"
+                value={landing.form?.scriptCode || ""}
+                onChange={(value) => updateField("form.scriptCode", value)}
+              />
+
+              <Field
+                label="Nombre del programa"
+                value={landing.form?.programName || ""}
+                onChange={(value) => updateField("form.programName", value)}
+              />
             </EditorSection>
           )}
 
@@ -474,24 +591,59 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
             </EditorSection>
           )}
 
-          {landing.form && (
-            <EditorSection title="Formulario">
-              <Field
-                label="Script URL"
-                value={landing.form?.scriptUrl || ""}
-                onChange={(value) => updateField("form.scriptUrl", value)}
-              />
+          <EditorSection title="Scripts finales">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h4 className="text-sm font-semibold text-gray-900">
+                  Scripts al final de la landing
+                </h4>
 
-              <Field
-                label="Nombre del programa"
-                value={landing.form?.programName || ""}
-                onChange={(value) => updateField("form.programName", value)}
-              />
-            </EditorSection>
-          )}
+                <button
+                  type="button"
+                  onClick={() =>
+                    addTextArrayItem("footerScripts", "<script>\n</script>")
+                  }
+                  className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                >
+                  + Agregar script
+                </button>
+              </div>
+
+              {(landing.footerScripts || []).map((script: string, index) => (
+                <div
+                  key={index}
+                  className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <p className="text-sm font-semibold text-gray-900">
+                      Script {index + 1}
+                    </p>
+
+                    <button
+                      type="button"
+                      onClick={() => removeArrayItem("footerScripts", index)}
+                      className="text-xs font-medium text-red-600"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+
+                  <TextareaField
+                    label="Código"
+                    value={script || ""}
+                    onChange={(value) =>
+                      updateTextArrayItem("footerScripts", index, value)
+                    }
+                  />
+                </div>
+              ))}
+            </div>
+          </EditorSection>
+
+          </div>
         </div>
 
-        <div className="mt-6 flex items-center gap-3">
+        <div className="flex items-center gap-3 border-t border-gray-200 bg-white p-4">
           <button
             onClick={saveLanding}
             disabled={saving}
@@ -612,16 +764,33 @@ function PreviewControl({
 function EditorSection({
   title,
   children,
+  defaultOpen = false,
 }: {
   title: string;
   children: React.ReactNode;
+  defaultOpen?: boolean;
 }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
   return (
-    <section className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
-      <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-900">
-        {title}
-      </h3>
-      <div className="space-y-4">{children}</div>
+    <section className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+      <button
+        type="button"
+        onClick={() => setIsOpen((value) => !value)}
+        className="flex w-full items-center justify-between gap-3 bg-gray-50 px-4 py-3 text-left"
+        aria-expanded={isOpen}
+      >
+        <span className="text-sm font-semibold uppercase tracking-wide text-gray-900">
+          {title}
+        </span>
+        <span className="flex h-6 w-6 items-center justify-center rounded-full border border-gray-300 text-sm text-gray-600">
+          {isOpen ? "-" : "+"}
+        </span>
+      </button>
+
+      {isOpen ? (
+        <div className="space-y-4 border-t border-gray-200 p-4">{children}</div>
+      ) : null}
     </section>
   );
 }

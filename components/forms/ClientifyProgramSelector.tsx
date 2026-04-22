@@ -20,7 +20,6 @@ export default function ClientifyProgramSelector({ programName }: Props) {
         if (match) {
           return {
             select: sel as HTMLSelectElement,
-            option: match as HTMLOptionElement,
           };
         }
       }
@@ -41,7 +40,6 @@ export default function ClientifyProgramSelector({ programName }: Props) {
 
       let chosen: {
         select: HTMLSelectElement;
-        option: HTMLOptionElement;
       } | null = null;
 
       for (const d of docs) {
@@ -54,14 +52,7 @@ export default function ClientifyProgramSelector({ programName }: Props) {
 
       if (!chosen) return false;
 
-      const { select, option } = chosen;
-
-      select.value = option.value;
-      option.selected = true;
-
-      select.dispatchEvent(new Event("input", { bubbles: true }));
-      select.dispatchEvent(new Event("change", { bubbles: true }));
-
+      const { select } = chosen;
       select.style.display = "none";
       select.setAttribute("aria-hidden", "true");
 

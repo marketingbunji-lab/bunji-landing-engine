@@ -59,6 +59,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
       template,
       status: "draft",
       updatedAt: new Date().toISOString().slice(0, 10),
+      logoMode: "dark",
       title,
       fullTitle,
       hero: {
@@ -94,8 +95,10 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
       },
       form: {
         scriptUrl: "",
+        scriptCode: "",
         programName: fullTitle
-      }
+      },
+      footerScripts: []
     };
 
     fs.writeFileSync(filePath, JSON.stringify(landingData, null, 2), "utf8");

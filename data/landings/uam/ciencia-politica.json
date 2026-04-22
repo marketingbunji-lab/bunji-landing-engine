@@ -1,0 +1,95 @@
+{
+  "slug": "ciencia-politica",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-22",
+  "title": "Ciencia Política",
+  "fullTitle": "Ciencia Política, Gobierno y Relaciones Internacionales",
+  "hero": {
+    "eyebrow": "Estudia en UAM",
+    "highlight": "Pregrado en",
+    "title": "Ciencia Política",
+    "description": "El conocimiento será la base para el futuro de nuestros estudiantes.",
+    "supportText": "",
+    "modality": "Presencial",
+    "semesterPrice": "$10.144.100",
+    "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-12/ciencia-politica-gobierno-y-relaciones-publicas.png",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Ciencia Política",
+    "159 Créditos académicos",
+    "10 Semestres de duración",
+    "SNIES 17692"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Ciencia Política, Gobierno y Relaciones Internacionales en la UAM?",
+    "description": "Fórmate para comprender el poder, la gobernanza y las relaciones internacionales desde una mirada crítica. Este programa integra ciencia política, gobierno y relaciones internacionales para aportar a los retos sociales del país y del mundo.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Comprende los desafíos globales",
+        "content": "Analiza fenómenos políticos, sociales y económicos para entender los retos del país y del mundo desde una mirada crítica y propositiva."
+      },
+      {
+        "title": "Estudia un programa consolidado",
+        "content": "Fórmate en uno de los programas más antiguos del Eje Cafetero, con una propuesta que integra gobierno, política y relaciones internacionales."
+      },
+      {
+        "title": "Integra tres áreas estratégicas",
+        "content": "Aprende ciencia política, gobierno y relaciones internacionales en un mismo plan de estudios orientado a la acción pública y social."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "En la UAM apoyamos tu carrera",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Plan de estudios integral",
+        "text": "Recorre una formación que combina ciencia política, gobierno, relaciones internacionales, investigación, idiomas y prácticas profesionales.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Experiencias internacionales",
+        "text": "Elige experiencias académicas y prácticas que fortalecen tu visión intercultural y te conectan con un mundo globalizado.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y beneficios",
+        "text": "Accede a alternativas de apoyo para cumplir tus sueños y avanzar en tu formación profesional en la UAM.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Algunos de los beneficios que tendrás con nosotros",
+    "items": [
+      {
+        "title": "Experiencias internacionales",
+        "text": "Semestre académico, prácticas profesionales, pasantías, misiones académicas, voluntariado internacional y cursos de inglés con descuentos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Becas y apoyos UAM",
+        "text": "Becas deportivas, Becas Jóvenes + PRO, Beca Fondo Patrimonial, Más Ingenieras UAM, Plan Regreso a la U, Mejor Bachiller 2.0, Si se puede Becas UAM, Plan Estudia, Puedo Estudiar y Becas UTC UAM.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Proyección profesional",
+        "text": "Formación para actuar en políticas públicas, diplomacia, gestión social, sector público y relaciones institucionales.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para transformar tu futuro?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Ciencia Política, Gobierno y Relaciones Internacionales",
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284221.js\"></script>"
+  }
+}

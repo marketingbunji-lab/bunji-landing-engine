@@ -43,9 +43,11 @@ export default async function LandingDetailPage({ params }: Props) {
             <ExportHtmlButton
               endpoint={`/api/export/${brandSlug}/${landingSlug}`}
               filename={`${brandSlug}-${landingSlug}.html`}
+              clientifyEndpoint={`/api/export-clientify/${brandSlug}/${landingSlug}`}
+              clientifyFilename={`${brandSlug}-${landingSlug}-clientify.html`}
               className="rounded-lg bg-black px-4 py-2 text-sm text-white"
             >
-              Exportar HTML
+              Exportar
             </ExportHtmlButton>
           </div>
         </div>

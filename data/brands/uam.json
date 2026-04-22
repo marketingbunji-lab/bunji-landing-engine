@@ -2,6 +2,10 @@
   "slug": "uam",
   "name": "UAM",
   "logo": "https://bunjigrowth.io/wp-content/uploads/2026/04/logo-uam-acreditacion-2025-scaled.png",
+  "logos": {
+    "light": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762951311513-logo-uam-negro-1.png",
+    "dark": "https://bunjigrowth.io/wp-content/uploads/2026/04/logo-uam-acreditacion-2025-scaled.png"
+  },
   "primaryColor": "#0069A3",
   "secondaryColor": "#F8D74A",
   "description": "Universidad Autónoma de Manizales",

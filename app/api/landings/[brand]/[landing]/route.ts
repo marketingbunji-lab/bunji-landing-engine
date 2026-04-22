@@ -30,3 +30,33 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
     );
   }
 }
+
+export async function DELETE(_: NextRequest, { params }: { params: Params }) {
+  try {
+    const { brand, landing } = await params;
+
+    const filePath = path.join(
+      process.cwd(),
+      "data",
+      "landings",
+      brand,
+      `${landing}.json`
+    );
+
+    if (!fs.existsSync(filePath)) {
+      return NextResponse.json(
+        { ok: false, error: "Landing no encontrada" },
+        { status: 404 }
+      );
+    }
+
+    fs.unlinkSync(filePath);
+
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json(
+      { ok: false, error: "No se pudo eliminar la landing" },
+      { status: 500 }
+    );
+  }
+}

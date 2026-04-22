@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { Brand } from "@/lib/data";
+import { getBrandLogo } from "@/lib/brandLogo";
+import type { Brand } from "@/lib/data";
 
 type Props = {
   brand: Brand;
@@ -8,25 +9,31 @@ type Props = {
 };
 
 export default function BrandCard({ brand, landingCount }: Props) {
+  const logo = getBrandLogo(brand, "light");
+
   return (
     <Link
       href={`/brands/${brand.slug}`}
       className="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
     >
-      <div className="flex items-center gap-4">
-        <img
-          src={brand.logo}
-          alt={brand.name}
-          className="h-14 w-auto object-contain"
-        />
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+        <div className="min-w-0">
+          <img
+            src={logo}
+            alt={brand.name}
+            className="h-14 max-w-full object-contain object-left"
+          />
+        </div>
 
-        <div>
+        <div className="max-w-28 shrink-0">
           <h2 className="text-xl font-semibold">{brand.name}</h2>
-          <p className="text-sm text-gray-500">{brand.description}</p>
+          <p className="break-words text-sm leading-5 text-gray-500">
+            {brand.description}
+          </p>
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-between">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <span className="text-sm text-gray-600">
           {landingCount} landing{landingCount === 1 ? "" : "s"}
         </span>

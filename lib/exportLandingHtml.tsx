@@ -1,4 +1,11 @@
-import type { AccordionItem, Brand, IconTextItem, Landing, LegalLink } from "./data";
+import {
+  type AccordionItem,
+  type Brand,
+  type IconTextItem,
+  type Landing,
+  type LegalLink,
+} from "./data";
+import { getBrandLogo } from "./brandLogo";
 
 function escapeHtml(value: unknown) {
   return String(value ?? "")
@@ -76,11 +83,13 @@ function renderAccordion(items: AccordionItem[]) {
   `;
 }
 
-function renderSupportItems(items: IconTextItem[]) {
+function renderSupportItems(items: IconTextItem[], useColumns = false) {
   if (!items.length) {
     return `
-      <div class="support-card rounded-4 p-4 text-secondary">
-        Esta sección aún no tiene cards configuradas.
+      <div class="${useColumns ? "col-12" : ""}">
+        <div class="support-card rounded-4 p-4 text-secondary">
+          Esta sección aún no tiene cards configuradas.
+        </div>
       </div>
     `;
   }
@@ -88,20 +97,22 @@ function renderSupportItems(items: IconTextItem[]) {
   return items
     .map(
       (item, index) => `
-        <div class="support-card rounded-4 p-4 d-flex gap-3 align-items-start">
-          <div class="support-icon">
-            ${
-              item.icon
-                ? `<img src="${escapeAttr(item.icon)}" alt="${escapeAttr(
-                    item.title || `Icono ${index + 1}`
-                  )}">`
-                : ""
-            }
+        <div class="${useColumns ? "col-12 col-md-4" : ""}">
+          <div class="support-card rounded-4 p-4 d-flex gap-3 align-items-start">
+            <div class="support-icon">
+              ${
+                item.icon
+                  ? `<img src="${escapeAttr(item.icon)}" alt="${escapeAttr(
+                      item.title || `Icono ${index + 1}`
+                    )}">`
+                  : ""
+              }
+            </div>
+            <p class="mb-0">
+              <strong>${escapeHtml(item.title || `Beneficio ${index + 1}`)}</strong><br>
+              ${escapeHtml(item.text)}
+            </p>
           </div>
-          <p class="mb-0">
-            <strong>${escapeHtml(item.title || `Beneficio ${index + 1}`)}</strong><br>
-            ${escapeHtml(item.text)}
-          </p>
         </div>
       `
     )
@@ -196,11 +207,7 @@ function renderClientifySelector(programName?: string) {
 
         if (!chosen) return;
 
-        const { select, option } = chosen;
-        select.value = option.value;
-        option.selected = true;
-        select.dispatchEvent(new Event('input', { bubbles: true }));
-        select.dispatchEvent(new Event('change', { bubbles: true }));
+        const { select } = chosen;
         select.style.display = 'none';
         select.setAttribute('aria-hidden', 'true');
       }, 4000);
@@ -227,8 +234,10 @@ export function exportLandingHtml(brand: Brand, landing: Landing) {
   const fullTitle = landing.fullTitle || title;
   const heroTitle = hero.title || title;
   const backgroundImage = hero.backgroundImage || "";
-  const logo = brand.logo || "";
+  const logo = getBrandLogo(brand, landing.logoMode || "dark");
   const legalLinks = brand.legalLinks ?? [];
+  const hasSupportVideo = Boolean(supportSection.videoUrl);
+  const footerScripts = landing.footerScripts ?? [];
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -266,8 +275,10 @@ export function exportLandingHtml(brand: Brand, landing: Landing) {
     .banner-hero {
       position: relative;
       overflow: hidden;
-      background-image: linear-gradient(90deg, rgba(0, 65, 105, 0.92), rgba(0, 105, 163, 0.62))${
-        backgroundImage ? `, url("${escapeAttr(backgroundImage)}")` : ""
+      background-image: ${
+        backgroundImage
+          ? `linear-gradient(90deg, rgba(0, 65, 105, 0), rgba(0, 105, 163, 0.62)), url("${escapeAttr(backgroundImage)}")`
+          : "linear-gradient(90deg, rgba(0, 65, 105, 0.92), rgba(0, 105, 163, 0.62))"
       };
       background-position: center;
       background-size: cover;
@@ -380,8 +391,10 @@ export function exportLandingHtml(brand: Brand, landing: Landing) {
 
     @media (max-width: 991.98px) {
       .banner-hero {
-        background-image: linear-gradient(rgba(0, 65, 105, 0.88), rgba(0, 105, 163, 0.72))${
-          backgroundImage ? `, url("${escapeAttr(backgroundImage)}")` : ""
+        background-image: ${
+          backgroundImage
+            ? `linear-gradient(90deg, rgba(0, 65, 105, 0), rgba(0, 105, 163, 0.62)), url("${escapeAttr(backgroundImage)}")`
+            : "linear-gradient(rgba(0, 65, 105, 0.88), rgba(0, 105, 163, 0.72))"
         };
       }
       .hero-title {
@@ -481,8 +494,8 @@ export function exportLandingHtml(brand: Brand, landing: Landing) {
         <div class="col-12 col-lg-4 d-flex align-items-center pt-4 form-column" id="anclaForm">
           <div class="form-shell">
             ${
-              form.scriptUrl
-                ? `<script type="text/javascript" src="${escapeAttr(form.scriptUrl)}"></script>${renderClientifySelector(
+              form.scriptCode || form.scriptUrl
+                ? `${form.scriptCode || `<script type="text/javascript" src="${escapeAttr(form.scriptUrl)}"></script>`}${renderClientifySelector(
                     form.programName
                   )}`
                 : `
@@ -539,22 +552,24 @@ export function exportLandingHtml(brand: Brand, landing: Landing) {
           : ""
       }
       <div class="row g-4 align-items-start">
-        <div class="col-12 col-lg-7">
-          <div class="ratio ratio-16x9 rounded-4 overflow-hidden bg-dark">
-            ${
-              supportSection.videoUrl
-                ? `<iframe src="${escapeAttr(
+        ${
+          hasSupportVideo
+            ? `
+              <div class="col-12 col-lg-7">
+                <div class="ratio ratio-16x9 rounded-4 overflow-hidden bg-dark">
+                  <iframe src="${escapeAttr(
                     supportSection.videoUrl
                   )}" title="${escapeAttr(
                     supportSection.title || fullTitle
-                  )}" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"></iframe>`
-                : `<div class="d-flex align-items-center justify-content-center text-secondary">Video pendiente por configurar</div>`
-            }
-          </div>
-        </div>
-        <div class="col-12 col-lg-5">
-          <div class="d-grid gap-3">
-            ${renderSupportItems(supportSection.items ?? [])}
+                  )}" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"></iframe>
+                </div>
+              </div>
+            `
+            : ""
+        }
+        <div class="${hasSupportVideo ? "col-12 col-lg-5" : "col-12"}">
+          <div class="${hasSupportVideo ? "d-grid gap-3" : "row g-3"}">
+            ${renderSupportItems(supportSection.items ?? [], !hasSupportVideo)}
           </div>
         </div>
       </div>
@@ -607,6 +622,7 @@ export function exportLandingHtml(brand: Brand, landing: Landing) {
     }
   </style>
 
+  ${footerScripts.join("\n")}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>`;

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import LandingCard from "../../../components/dashboard/LandingCard";
+import { getBrandLogo } from "../../../lib/brandLogo";
 import { getBrandBySlug, getLandingsByBrand } from "../../../lib/data";
 
 type Props = {
@@ -20,6 +21,7 @@ export default async function BrandPage({ params }: Props) {
   }
 
   const landings = getLandingsByBrand(brandSlug);
+  const headerLogo = getBrandLogo(brand, "light");
 
   return (
     <main className="min-h-screen bg-gray-50 px-6 py-10">
@@ -38,7 +40,7 @@ export default async function BrandPage({ params }: Props) {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-4">
               <img
-                src={brand.logo}
+                src={headerLogo}
                 alt={brand.name}
                 className="h-16 w-auto rounded bg-white p-2 object-contain"
               />

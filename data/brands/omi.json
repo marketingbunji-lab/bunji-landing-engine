@@ -2,6 +2,10 @@
   "slug": "omi",
   "name": "OMI",
   "logo": "https://omi.edu/wp-content/uploads/2023/03/logo.png",
+  "logos": {
+    "light": "https://omi.edu/wp-content/uploads/2023/03/logo.png",
+    "dark": "https://omi.edu/wp-content/uploads/2023/03/logo.png"
+  },
   "primaryColor": "#1D4ED8",
   "secondaryColor": "#F59E0B",
   "description": "Orlando Medical Institute"

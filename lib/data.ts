@@ -5,6 +5,10 @@ export type Brand = {
   slug: string;
   name: string;
   logo: string;
+  logos?: {
+    light?: string;
+    dark?: string;
+  };
   primaryColor: string;
   secondaryColor: string;
   description?: string;
@@ -47,6 +51,7 @@ export type Landing = {
   template: string;
   status: string;
   updatedAt: string;
+  logoMode?: "light" | "dark";
   hero?: LandingHero;
   programInfo?: string[];
   whyStudy?: {
@@ -71,8 +76,10 @@ export type Landing = {
   form?: {
     type?: string;
     scriptUrl?: string;
+    scriptCode?: string;
     programName?: string;
   };
+  footerScripts?: string[];
 };
 
 const brandsDir = path.join(process.cwd(), "data", "brands");

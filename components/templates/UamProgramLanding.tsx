@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element, @next/next/no-sync-scripts */
 import Script from "next/script";
+import { getBrandLogo } from "@/lib/brandLogo";
 import type { Brand, IconTextItem, Landing, LegalLink } from "@/lib/data";
+import ClientifyFormEmbed from "../forms/ClientifyFormEmbed";
 import ClientifyProgramSelector from "../forms/ClientifyProgramSelector";
 import Accordion from "../ui/Accordion";
 import BootstrapAccordion from "../ui/BootstrapAccordion";
@@ -40,13 +42,7 @@ function getClientifySelectorScript(programName: string) {
 
       if (!chosen) return;
 
-      const { select, option } = chosen;
-      select.value = option.value;
-      option.selected = true;
-
-      select.dispatchEvent(new Event('input', { bubbles: true }));
-      select.dispatchEvent(new Event('change', { bubbles: true }));
-
+      const { select } = chosen;
       select.style.display = "none";
       select.setAttribute("aria-hidden", "true");
     }, 4000);
@@ -68,12 +64,14 @@ export default function UamProgramLanding({
   const programInfo = landing?.programInfo ?? [];
   const whyStudyItems = whyStudy?.items ?? [];
   const supportItems = supportSection?.items ?? [];
+  const hasSupportVideo = Boolean(supportSection?.videoUrl);
   const benefitItems = benefits?.items ?? [];
   const legalLinks = brand?.legalLinks ?? [];
+  const footerScripts = landing?.footerScripts ?? [];
 
   const primaryColor = brand?.primaryColor ?? "#0069A3";
   const secondaryColor = brand?.secondaryColor ?? "#F8D74A";
-  const logo = brand?.logo ?? "";
+  const logo = brand ? getBrandLogo(brand, landing?.logoMode || "dark") : "";
   const brandName = brand?.name ?? "Brand";
 
   const title = landing?.title ?? "Programa";
@@ -180,6 +178,19 @@ export default function UamProgramLanding({
           align-items: start;
         }
 
+        .uam-support-grid-full {
+          grid-template-columns: 1fr;
+        }
+
+        .uam-support-items {
+          display: grid;
+          gap: 16px;
+        }
+
+        .uam-support-items-three {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
         .uam-benefits-grid {
           margin-top: 32px;
           display: grid;
@@ -220,6 +231,10 @@ export default function UamProgramLanding({
           .uam-form-column {
             grid-row: 2;
           }
+
+          .uam-support-items-three {
+            grid-template-columns: 1fr;
+          }
         }
 
         @container (max-width: 991.98px) {
@@ -247,6 +262,10 @@ export default function UamProgramLanding({
 
           .uam-form-column {
             grid-row: 2;
+          }
+
+          .uam-support-items-three {
+            grid-template-columns: 1fr;
           }
         }
 
@@ -305,7 +324,7 @@ export default function UamProgramLanding({
       <section
         style={{
           backgroundImage: hero?.backgroundImage
-            ? `linear-gradient(90deg, rgba(0, 65, 105, 0.92), rgba(0, 105, 163, 0.62)), url(${hero.backgroundImage})`
+            ? `linear-gradient(90deg, rgba(0, 65, 105, 0), rgba(0, 105, 163, 0.62)), url(${hero.backgroundImage})`
             : "linear-gradient(90deg, rgba(0, 65, 105, 0.92), rgba(0, 105, 163, 0.62))",
           backgroundPosition: "center",
           backgroundSize: "cover",
@@ -424,12 +443,20 @@ export default function UamProgramLanding({
             <div className="uam-form-column">
               <div
                 id="anclaForm"
-                className="uam-form-card"
+                className="uam-form-card form-shell"
               >
-                {form?.scriptUrl ? (
+                {form?.scriptCode || form?.scriptUrl ? (
                   mode === "export" ? (
                     <>
-                      <script type="text/javascript" src={form.scriptUrl} />
+                      {form?.scriptCode ? (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: form.scriptCode,
+                          }}
+                        />
+                      ) : (
+                        <script type="text/javascript" src={form.scriptUrl} />
+                      )}
                       {form?.programName ? (
                         <script
                           dangerouslySetInnerHTML={{
@@ -440,7 +467,11 @@ export default function UamProgramLanding({
                     </>
                   ) : (
                     <>
-                      <Script src={form.scriptUrl} strategy="afterInteractive" />
+                      {form?.scriptCode ? (
+                        <ClientifyFormEmbed code={form.scriptCode} />
+                      ) : (
+                        <Script src={form.scriptUrl} strategy="afterInteractive" />
+                      )}
                       {form?.programName ? (
                         <ClientifyProgramSelector programName={form.programName} />
                       ) : null}
@@ -573,19 +604,21 @@ export default function UamProgramLanding({
             ) : null}
 
             <div
-              className="uam-support-grid"
+              className={`uam-support-grid ${
+                hasSupportVideo ? "" : "uam-support-grid-full"
+              }`}
             >
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  paddingTop: "56.25%",
-                  background: "#111827",
-                  borderRadius: 20,
-                  overflow: "hidden",
-                }}
-              >
-                {supportSection?.videoUrl ? (
+              {hasSupportVideo ? (
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    paddingTop: "56.25%",
+                    background: "#111827",
+                    borderRadius: 20,
+                    overflow: "hidden",
+                  }}
+                >
                   <iframe
                     src={supportSection.videoUrl}
                     title={supportSection.title ?? fullTitle}
@@ -598,23 +631,14 @@ export default function UamProgramLanding({
                       border: 0,
                     }}
                   />
-                ) : (
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#9CA3AF",
-                    }}
-                  >
-                    Video pendiente por configurar
-                  </div>
-                )}
-              </div>
+                </div>
+              ) : null}
 
-              <div style={{ display: "grid", gap: 16 }}>
+              <div
+                className={`uam-support-items ${
+                  hasSupportVideo ? "" : "uam-support-items-three"
+                }`}
+              >
                 {supportItems.length > 0 ? (
                   supportItems.map((item: IconTextItem, i) => (
                     <div
@@ -851,6 +875,21 @@ export default function UamProgramLanding({
           )}
         </div>
       </footer>
+
+      {footerScripts.map((script, index) =>
+        mode === "export" ? (
+          <div
+            key={`footer-script-${index}`}
+            dangerouslySetInnerHTML={{ __html: script }}
+          />
+        ) : (
+          <ClientifyFormEmbed
+            key={`footer-script-${index}`}
+            code={script}
+            className="hidden"
+          />
+        )
+      )}
     </div>
   );
 }
