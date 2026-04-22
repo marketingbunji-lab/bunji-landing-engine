@@ -1,0 +1,108 @@
+{
+  "slug": "tecnologia-atencion-prehospitalaria",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-22",
+  "title": "Tecnología en Atención Prehospitalaria",
+  "fullTitle": "Tecnología en Atención Prehospitalaria",
+  "hero": {
+    "eyebrow": "Estudia en UAM",
+    "highlight": "Tecnología en",
+    "title": "Atención Prehospitalaria",
+    "description": "Prepárate para salvar vidas humanas y mejorar la respuesta ante emergencias y desastres.",
+    "supportText": "Orientamos tu camino para que contribuyas a salvar vidas humanas.",
+    "modality": "Presencial",
+    "semesterPrice": "$4.604.200",
+    "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-12/tecnologia-en-atencion-prehospitalaria.png",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Tecnología en Atención Prehospitalaria",
+    "105 Créditos académicos",
+    "7 Semestres de duración",
+    "SNIES 11773"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Tecnología en Atención Prehospitalaria en la UAM?",
+    "description": "La Tecnología en Atención Prehospitalaria de la UAM forma profesionales con bases teóricas y prácticas para salvar vidas, responder ante emergencias y participar en procesos de gestión del riesgo de desastres con sensibilidad humana y liderazgo.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Formación para salvar vidas",
+        "content": "Desarrolla competencias para brindar atención inicial de urgencias de calidad, preservar la vida y reducir complicaciones y riesgos de invalidez y muerte."
+      },
+      {
+        "title": "Enfoque en emergencias y desastres",
+        "content": "Prepárate para participar en la gestión del riesgo de desastres y contribuir al mejoramiento de la respuesta del Sistema de Emergencia Médico ante situaciones críticas."
+      },
+      {
+        "title": "Programa con impacto reconocido",
+        "content": "A nivel local, regional y nacional, el programa ha generado un impacto positivo en escenarios interinstitucionales, universitarios y comunitarios."
+      },
+      {
+        "title": "Desarrolla liderazgo humano e interinstitucional",
+        "content": "Fortalece habilidades para trabajar en equipo, tomar decisiones en situaciones de crisis y liderar respuestas articuladas con diferentes actores."
+      },
+      {
+        "title": "Proyección laboral en múltiples escenarios",
+        "content": "Podrás desempeñarte en ambulancias, líneas de emergencia, organismos de socorro, hospitales, empresas e instituciones públicas y privadas."
+      },
+      {
+        "title": "Estudia en jornada extendida nocturna",
+        "content": "Una modalidad pensada para facilitar tu formación tecnológica mientras gestionas otras responsabilidades personales o laborales."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "En la UAM impulsamos tu vocación de servicio",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Plan de estudios integral",
+        "text": "Recorre una formación en ciencias morfofisiológicas, gestión del riesgo, farmacología, trauma, rescate, atención de emergencias y práctica asistencial.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Experiencias internacionales",
+        "text": "Accede a semestre académico, prácticas profesionales, pasantías de aprendizaje e investigación, misiones académicas y cursos de inglés con descuentos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y beneficios",
+        "text": "Conoce oportunidades de apoyo para avanzar en tu formación, incluyendo becas deportivas, becas Jóvenes + PRO, Fondo Patrimonial, Plan Estudia, Puedo Estudiar y más.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Algunos de los beneficios que tendrás con nosotros",
+    "items": [
+      {
+        "title": "Proyección profesional",
+        "text": "Podrás desempeñarte como tripulante de ambulancia, rescatista, líder de atención prehospitalaria, coordinador de brigadas, gestor de riesgos e instructor de primeros auxilios.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Experiencias internacionales",
+        "text": "Fortalece tu perfil con semestre académico, prácticas, pasantías, misiones académicas, voluntariado internacional y cursos de inglés con descuentos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Becas y apoyos UAM",
+        "text": "Accede a alternativas como Becas Deportivas, Becas Jóvenes + PRO, Becas Fondo Patrimonial, Mejor Bachiller 2.0, Si se puede Becas UAM, Plan Estudia, Puedo Estudiar y Becas UTC UAM.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para prepararte para salvar vidas?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Tecnología en Atención Prehospitalaria",
+    "scriptCode": ""
+  },
+  "programType": "Tecnológico"
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "diseno-industrial",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-22",
+  "title": "Diseño Industrial",
+  "fullTitle": "Diseño Industrial",
+  "hero": {
+    "eyebrow": "Estudia en la UAM",
+    "highlight": "Pregrado en",
+    "title": "Diseño Industrial",
+    "description": "Diseña productos y experiencias que transforman realidades con creatividad, innovación y enfoque sostenible.",
+    "supportText": "Programa con reacreditación en alta calidad.",
+    "modality": "Presencial",
+    "semesterPrice": "$10.194.000",
+    "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/diseno-industrial-uam-pregrado.jpg",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Diseñador Industrial",
+    "172 Créditos académicos",
+    "10 Semestres",
+    "SNIES 1914"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Diseño Industrial en la UAM?",
+    "description": "En la UAM desarrollarás la capacidad de convertir ideas en productos viables, funcionales y atractivos. Combina creatividad, pensamiento estratégico, tecnología y sostenibilidad para responder a las necesidades de usuarios, empresas y sociedad.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Creatividad aplicada",
+        "content": "Transforma conceptos en soluciones reales con impacto tangible en distintos sectores."
+      },
+      {
+        "title": "Enfoque en usuario",
+        "content": "Diseña productos y experiencias centradas en las personas y sus necesidades."
+      },
+      {
+        "title": "Innovación constante",
+        "content": "Integra tendencias, materiales y procesos actuales para crear propuestas diferenciales."
+      },
+      {
+        "title": "Sostenibilidad",
+        "content": "Desarrolla productos responsables con el entorno y visión de futuro."
+      },
+      {
+        "title": "Proyección laboral",
+        "content": "Podrás trabajar en industria, UX/UI, mobiliario, branding, consultoría y emprendimiento."
+      },
+      {
+        "title": "Aprendizaje práctico",
+        "content": "Participa en talleres, prototipado, laboratorio y proyectos reales."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "La UAM impulsa tu talento creativo e innovador",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Plan de estudios integral",
+        "text": "Fortalece competencias en diseño, ergonomía, materiales, prototipado, innovación y gestión.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Experiencias internacionales",
+        "text": "Accede a movilidad académica, prácticas, pasantías y oportunidades globales.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y beneficios",
+        "text": "Conoce apoyos como Becas Deportivas, Jóvenes + PRO, Plan Estudia y más beneficios UAM.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Beneficios de estudiar Diseño Industrial",
+    "items": [
+      {
+        "title": "Perfil multidisciplinario",
+        "text": "Integra diseño, tecnología, investigación y estrategia empresarial.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Alta empleabilidad",
+        "text": "Aporta valor en empresas que buscan innovación de productos y servicios.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Potencial emprendedor",
+        "text": "Crea tu propia marca, estudio o línea de productos con identidad propia.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para diseñar el futuro?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Diseño Industrial",
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284311.js\"></script>"
+  },
+  "programType": "Pregrado"
+}

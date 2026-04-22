@@ -1,0 +1,108 @@
+{
+  "slug": "tecnologia-gestion-empresas-agroindustriales",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-22",
+  "title": "Tecnología en Gestión de Empresas Agroindustriales",
+  "fullTitle": "Tecnología en Gestión de Empresas Agroindustriales",
+  "hero": {
+    "eyebrow": "Estudia en UAM",
+    "highlight": "Tecnología en",
+    "title": "Gestión de Empresas Agroindustriales",
+    "description": "Impulsa el desarrollo económico de las organizaciones a través de la gestión estratégica y la innovación.",
+    "supportText": "Fusiona las tácticas empresariales y estrategias gerenciales para transformar el mundo agroindustrial.",
+    "modality": "Virtual",
+    "semesterPrice": "$2.949.500",
+    "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-11/tecnologia-en-gestion-de-empresas-agroindustriales_0.png",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Tecnología en Gestión de Empresas Agroindustriales",
+    "92 Créditos académicos",
+    "6 Semestres de duración",
+    "SNIES 12761"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Tecnología en Gestión de Empresas Agroindustriales en la UAM?",
+    "description": "La Tecnología en Gestión de Empresas Agroindustriales de la UAM te prepara para integrar recursos humanos, financieros, tecnológicos y organizacionales, impulsando la productividad, la sostenibilidad y el crecimiento del sector agroindustrial.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Conecta empresa y agroindustria",
+        "content": "Aprende a vincular tácticas empresariales con estrategias gerenciales para optimizar procesos productivos y comerciales."
+      },
+      {
+        "title": "Formación para liderar organizaciones",
+        "content": "Desarrolla competencias para tomar decisiones en niveles tácticos y operativos dentro de empresas del sector agroindustrial."
+      },
+      {
+        "title": "Alta proyección laboral",
+        "content": "Prepárate para roles en producción, calidad, comercialización, sostenibilidad, logística y emprendimiento agroindustrial."
+      },
+      {
+        "title": "Modalidad virtual flexible",
+        "content": "Estudia desde donde estés con encuentros sincrónicos y tutorías académicas acordadas con los docentes."
+      },
+      {
+        "title": "Enfoque en innovación y sostenibilidad",
+        "content": "Adquiere herramientas para generar crecimiento responsable, mejorar procesos y fortalecer la competitividad empresarial."
+      },
+      {
+        "title": "Impulsa nuevos negocios",
+        "content": "Fortalece tu perfil emprendedor para crear iniciativas innovadoras que aporten al desarrollo económico del sector."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "En la UAM impulsamos tu futuro agroindustrial",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Plan de estudios integral",
+        "text": "Avanza en áreas como mercadeo, logística, investigación de mercados, contabilidad, finanzas, derecho, talento humano y desarrollo agroindustrial.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Experiencias internacionales",
+        "text": "Accede a semestre académico, prácticas profesionales, pasantías de aprendizaje e investigación, misiones académicas y cursos de inglés con descuentos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y beneficios",
+        "text": "Conoce oportunidades de apoyo como Becas Deportivas, Jóvenes + PRO, Fondo Patrimonial, Mejor Bachiller 2.0, Plan Estudia, Puedo Estudiar y más.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Algunos de los beneficios que tendrás con nosotros",
+    "items": [
+      {
+        "title": "Proyección profesional",
+        "text": "Podrás desempeñarte como coordinador de producción agroindustrial, gestor de calidad, analista de comercialización, consultor en sostenibilidad o emprendedor del sector.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Estudia con flexibilidad",
+        "text": "Modalidad virtual con encuentros sincrónicos los miércoles y jueves, además de tutorías académicas en horarios acordados.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Becas y apoyos UAM",
+        "text": "Accede a alternativas como Becas Deportivas, Becas Jóvenes + PRO, Becas Fondo Patrimonial, Mejor Bachiller 2.0, Si se puede Becas UAM, Plan Estudia, Puedo Estudiar y Becas UTC UAM.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para transformar el sector agroindustrial?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Tecnología en Gestión de Empresas Agroindustriales",
+    "scriptCode": ""
+  },
+  "programType": "Tecnológico"
+}

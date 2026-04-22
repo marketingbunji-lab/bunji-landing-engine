@@ -14,7 +14,7 @@
     "supportText": "",
     "modality": "Presencial",
     "semesterPrice": "$10.144.100",
-    "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-12/ciencia-politica-gobierno-y-relaciones-publicas.png",
+    "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/ciencia-politica.jpg",
     "personImage": ""
   },
   "programInfo": [
@@ -91,5 +91,6 @@
     "scriptUrl": "",
     "programName": "Ciencia Política, Gobierno y Relaciones Internacionales",
     "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284221.js\"></script>"
-  }
+  },
+  "programType": "Pregrado"
 }

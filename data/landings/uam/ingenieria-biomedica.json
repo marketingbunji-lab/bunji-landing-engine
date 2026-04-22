@@ -1,0 +1,108 @@
+{
+  "slug": "ingenieria-biomedica",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-22",
+  "title": "Ingeniería Biomédica",
+  "fullTitle": "Ingeniería Biomédica",
+  "hero": {
+    "eyebrow": "Estudia en la UAM",
+    "highlight": "Pregrado en",
+    "title": "Ingeniería Biomédica",
+    "description": "Fusiona medicina y tecnología para desarrollar soluciones que mejoran la calidad de vida y transforman el cuidado de la salud.",
+    "supportText": "Programa con reacreditación de alta calidad.",
+    "modality": "Presencial",
+    "semesterPrice": "$9.104.000",
+    "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/ingenieria-biomedica-pregrado-presencial-uam.jpg",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Ingeniero Biomédico",
+    "177 Créditos académicos",
+    "10 Semestres",
+    "SNIES 20040"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Ingeniería Biomédica en la UAM?",
+    "description": "Imagina combinar el humanismo con la tecnología: circuitos, tejidos y cables en armonía. En la Universidad Autónoma de Manizales, Ingeniería Biomédica es el punto donde biología, física y electrónica crean dispositivos innovadores, equipos de monitoreo y terapias revolucionarias que mejoran vidas.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Impacto real en salud",
+        "content": "Diseña soluciones que mejoran directamente la calidad de vida de pacientes y profesionales de la salud."
+      },
+      {
+        "title": "Carrera interdisciplinaria",
+        "content": "Integra conocimientos de ingeniería, ciencias de la vida, electrónica, programación y biomecánica."
+      },
+      {
+        "title": "Innovación constante",
+        "content": "Participa en el desarrollo de tecnologías médicas, prótesis, biomateriales y sistemas inteligentes."
+      },
+      {
+        "title": "Alta demanda laboral",
+        "content": "Aplica en hospitales, clínicas, industria médica, investigación y emprendimientos tecnológicos."
+      },
+      {
+        "title": "Investigación aplicada",
+        "content": "Explora nuevas tecnologías y proyectos que responden a retos actuales del sector salud."
+      },
+      {
+        "title": "Reconocimiento académico",
+        "content": "Programa con reacreditación de alta calidad que respalda su excelencia formativa."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "La UAM impulsa tu futuro en ciencia, salud e innovación",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Plan de estudios integral",
+        "text": "Aprende sobre biomateriales, ingeniería clínica, robótica, bioinstrumentación, imágenes médicas y programación.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Experiencias internacionales",
+        "text": "Accede a semestre académico, prácticas profesionales, pasantías, misiones académicas y cursos de inglés con descuentos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y beneficios",
+        "text": "Conoce apoyos como Becas Deportivas, Jóvenes + PRO, Fondo Patrimonial, Plan Estudia, Puedo Estudiar y más beneficios UAM.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Beneficios de estudiar Ingeniería Biomédica",
+    "items": [
+      {
+        "title": "Perfil altamente especializado",
+        "text": "Conviértete en un profesional capaz de conectar tecnología y salud con visión estratégica.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Proyección internacional",
+        "text": "La tecnología médica evoluciona globalmente, abriendo oportunidades en distintos mercados.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Emprendimiento e innovación",
+        "text": "Crea soluciones, productos o startups enfocadas en mejorar el cuidado de la salud.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para transformar vidas con tecnología?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Ingeniería Biomédica",
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284293.js\"></script>"
+  },
+  "programType": "Pregrado"
+}

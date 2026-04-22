@@ -10,12 +10,33 @@ type Props = {
   landing: Landing;
 };
 
+function getModalityBadge(modality?: string) {
+  const normalized = modality?.toLowerCase() ?? "";
+
+  if (normalized.includes("presencial")) {
+    return {
+      label: "Presencial",
+      className: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+    };
+  }
+
+  if (normalized.includes("virtual")) {
+    return {
+      label: "Virtual",
+      className: "bg-sky-50 text-sky-700 ring-1 ring-sky-200",
+    };
+  }
+
+  return null;
+}
+
 export default function LandingCard({ landing }: Props) {
   const router = useRouter();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [duplicating, setDuplicating] = useState(false);
   const [error, setError] = useState("");
+  const modalityBadge = getModalityBadge(landing.hero?.modality);
 
   const duplicateLanding = async () => {
     try {
@@ -72,9 +93,19 @@ export default function LandingCard({ landing }: Props) {
           <p className="text-sm text-gray-500">{landing.fullTitle}</p>
         </div>
 
-        <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
-          {landing.status}
-        </span>
+        <div className="flex shrink-0 flex-col items-end gap-2">
+          {modalityBadge ? (
+            <span
+              className={`rounded-full px-3 py-1 text-xs font-medium ${modalityBadge.className}`}
+            >
+              {modalityBadge.label}
+            </span>
+          ) : null}
+
+          <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+            {landing.status}
+          </span>
+        </div>
       </div>
 
       <div className="mt-4 space-y-1 text-sm text-gray-600">

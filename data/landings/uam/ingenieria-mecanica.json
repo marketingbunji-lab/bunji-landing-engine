@@ -1,0 +1,108 @@
+{
+  "slug": "ingenieria-mecanica",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-22",
+  "title": "Ingeniería Mecánica",
+  "fullTitle": "Ingeniería Mecánica",
+  "hero": {
+    "eyebrow": "Estudia en la UAM",
+    "highlight": "Pregrado en",
+    "title": "Ingeniería Mecánica",
+    "description": "Transforma la industria con tecnología, innovación y diseño mecánico aplicado a los desafíos del mundo real.",
+    "supportText": "Programa con reacreditación de alta calidad.",
+    "modality": "Presencial",
+    "semesterPrice": "$10.034.000",
+    "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/ingeniera-mecanica-uam-pregrado.jpg",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Ingeniero Mecánico",
+    "180 Créditos académicos",
+    "10 Semestres",
+    "SNIES 1919"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Ingeniería Mecánica en la UAM?",
+    "description": "En la UAM desarrollarás capacidades para diseñar, analizar, fabricar y optimizar sistemas mecánicos que impulsan la industria moderna. Combina matemática, física, innovación y práctica aplicada para resolver retos reales con impacto en distintos sectores productivos.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Alta empleabilidad",
+        "content": "Desempeñate en manufactura, energía, automatización, mantenimiento, diseño y consultoría técnica."
+      },
+      {
+        "title": "Formación práctica",
+        "content": "Aprende con laboratorios, simulaciones y proyectos aplicados desde etapas tempranas."
+      },
+      {
+        "title": "Diseño e innovación",
+        "content": "Crea soluciones mecánicas eficientes para productos, procesos y sistemas industriales."
+      },
+      {
+        "title": "Perfil versátil",
+        "content": "Integra conocimientos en materiales, termodinámica, fluidos, control y producción."
+      },
+      {
+        "title": "Proyección global",
+        "content": "La ingeniería mecánica tiene demanda en industrias nacionales e internacionales."
+      },
+      {
+        "title": "Respaldo académico",
+        "content": "Programa con reacreditación de alta calidad y enfoque actualizado al mercado."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "La UAM impulsa tu futuro en ingeniería e innovación",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Plan de estudios robusto",
+        "text": "Fortalece bases en diseño mecánico, termodinámica, manufactura, mantenimiento, automatización y gestión de proyectos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Experiencias internacionales",
+        "text": "Accede a semestre académico, pasantías, prácticas profesionales, movilidad y cursos de inglés con descuentos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y beneficios",
+        "text": "Conoce opciones como Becas Deportivas, Jóvenes + PRO, Plan Estudia, Fondo Patrimonial y más apoyos UAM.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Beneficios de estudiar Ingeniería Mecánica",
+    "items": [
+      {
+        "title": "Perfil líder para la industria",
+        "text": "Prepárate para diseñar soluciones que mejoran productividad, calidad y competitividad.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Capacidad emprendedora",
+        "text": "Desarrolla proyectos, productos y servicios innovadores en sectores técnicos e industriales.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Impacto tangible",
+        "text": "Convierte ideas en maquinaria, procesos y mejoras reales para empresas y sociedad.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para construir el futuro de la ingeniería?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Ingeniería Mecánica",
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284307.js\"></script>"
+  },
+  "programType": "Pregrado"
+}

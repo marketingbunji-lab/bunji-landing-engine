@@ -48,6 +48,7 @@ export type Landing = {
   brand: string;
   title: string;
   fullTitle: string;
+  programType?: string;
   template: string;
   status: string;
   updatedAt: string;
