@@ -1,0 +1,108 @@
+{
+  "slug": "diseno-de-modas",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-23",
+  "title": "Diseño de Modas",
+  "fullTitle": "Diseño de Modas",
+  "hero": {
+    "eyebrow": "Estudia en la UAM",
+    "highlight": "Diseño de Modas",
+    "title": "",
+    "description": "Haz moda que mueve ideas, no solo tendencias. Diseña desde la creatividad, la cultura y el propósito profesional.",
+    "supportText": "Programa profesional presencial con enfoque en diseño, producción, emprendimiento e innovación en la industria de la moda.",
+    "modality": "Presencial",
+    "semesterPrice": "$5.380.000",
+    "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-12/diseno-de-modas.png",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Diseñador de Modas",
+    "170 Créditos académicos",
+    "10 Semestres",
+    "SNIES 19726"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Diseño de Modas en la UAM?",
+    "description": "Desarrolla propuestas creativas con visión estratégica para una industria dinámica. Fórmate en diseño, patronaje, textiles, producción, tendencias y gestión de marca para transformar ideas en proyectos reales.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Creatividad aplicada",
+        "content": "Convierte conceptos en colecciones con identidad propia."
+      },
+      {
+        "title": "Industria real",
+        "content": "Aprende procesos de producción y comercialización."
+      },
+      {
+        "title": "Emprendimiento",
+        "content": "Prepárate para lanzar tu marca o negocio de moda."
+      },
+      {
+        "title": "Tendencias y cultura",
+        "content": "Analiza contextos sociales para diseñar con propósito."
+      },
+      {
+        "title": "Herramientas técnicas",
+        "content": "Domina patronaje, confección, textiles e ilustración."
+      },
+      {
+        "title": "Proyección global",
+        "content": "Comprende mercados y oportunidades internacionales."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "La UAM impulsa tu crecimiento creativo",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Experiencia internacional",
+        "text": "Accede a movilidad e inspiración global para tu carrera.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Aprendizaje práctico",
+        "text": "Desarrolla proyectos, colecciones y portafolio real.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y apoyo",
+        "text": "Opciones para facilitar tu formación profesional.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Beneficios de estudiar este programa",
+    "items": [
+      {
+        "title": "Perfil competitivo",
+        "text": "Combina creatividad, técnica y visión empresarial.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Marca personal",
+        "text": "Construye identidad profesional y portafolio sólido.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Red de oportunidades",
+        "text": "Conecta con la industria creativa y empresarial.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para convertir tu talento en una carrera con estilo?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Diseño de Modas",
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284463.js\"></script>"
+  },
+  "programType": "Pregrado"
+}

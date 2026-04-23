@@ -1,0 +1,108 @@
+{
+  "slug": "negocios-internacionales",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-23",
+  "title": "Negocios Internacionales",
+  "fullTitle": "Negocios Internacionales",
+  "hero": {
+    "eyebrow": "Estudia en la UAM",
+    "highlight": "Negocios",
+    "title": "Internacionales",
+    "description": "Lidera mercados globales, impulsa exportaciones y desarrolla estrategias para empresas en un entorno internacional.",
+    "supportText": "Programa profesional presencial con visión global, comercio exterior, logística e innovación empresarial.",
+    "modality": "Presencial",
+    "semesterPrice": "$5.334.000",
+    "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-12/negocios-internacionales.png",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Profesional en Negocios Internacionales",
+    "154 Créditos académicos",
+    "9 Semestres",
+    "SNIES 55070"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Negocios Internacionales en la UAM?",
+    "description": "Prepárate para gestionar procesos de internacionalización, identificar oportunidades en mercados externos y liderar estrategias de comercio global. Desarrolla competencias en finanzas, logística, negociación y expansión empresarial.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Visión global",
+        "content": "Comprende tendencias económicas y oportunidades internacionales."
+      },
+      {
+        "title": "Alta empleabilidad",
+        "content": "Perfil demandado en empresas exportadoras y multinacionales."
+      },
+      {
+        "title": "Negociación estratégica",
+        "content": "Fortalece habilidades comerciales y relaciones internacionales."
+      },
+      {
+        "title": "Logística y supply chain",
+        "content": "Aprende a gestionar cadenas de suministro globales."
+      },
+      {
+        "title": "Emprendimiento",
+        "content": "Crea negocios con proyección internacional y crecimiento sostenible."
+      },
+      {
+        "title": "Proyección profesional",
+        "content": "Accede a cargos directivos en mercados nacionales e internacionales."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "La UAM impulsa tu perfil internacional",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Experiencia internacional",
+        "text": "Accede a movilidad académica y experiencias globales.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Conexión empresarial",
+        "text": "Desarrolla competencias alineadas con empresas reales.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y apoyo financiero",
+        "text": "Conoce opciones que facilitan el acceso a tu formación.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Beneficios de estudiar este programa",
+    "items": [
+      {
+        "title": "Perfil competitivo",
+        "text": "Prepárate para destacar en un mercado globalizado.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Competencias empresariales",
+        "text": "Integra finanzas, mercadeo, logística y estrategia.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Red de oportunidades",
+        "text": "Conecta con escenarios laborales de alto crecimiento.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para llevar tu futuro al mundo?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Negocios Internacionales",
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284459.js\"></script>"
+  },
+  "programType": "Pregrado"
+}

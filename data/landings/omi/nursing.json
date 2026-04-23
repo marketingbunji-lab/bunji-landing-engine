@@ -5,5 +5,9 @@
   "fullTitle": "Nursing Program",
   "template": "OmiProgramLanding",
   "status": "draft",
-  "updatedAt": "2026-04-21"
+  "updatedAt": "2026-04-21",
+  "hero": {
+    "eyebrow": "",
+    "highlight": ""
+  }
 }

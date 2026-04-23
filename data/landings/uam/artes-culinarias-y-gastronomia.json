@@ -1,0 +1,108 @@
+{
+  "slug": "artes-culinarias-y-gastronomia",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-23",
+  "title": "Artes Culinarias y Gastronomía",
+  "fullTitle": "Artes Culinarias y Gastronomía",
+  "hero": {
+    "eyebrow": "Estudia en la UAM",
+    "highlight": "Artes Culinarias y Gastronomía",
+    "title": "",
+    "description": "Sabor, arte y disciplina para diseñar experiencias que abren puertas en la industria culinaria.",
+    "supportText": "Programa profesional presencial con enfoque en cocina, innovación, gestión gastronómica y emprendimiento.",
+    "modality": "Presencial",
+    "semesterPrice": "$5.930.000",
+    "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-11/artes-culinarias-y-gastronomia_0.png",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Profesional en Artes Culinarias y Gastronomía",
+    "163 Créditos académicos",
+    "9 Semestres",
+    "SNIES 91350"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Artes Culinarias y Gastronomía en la UAM?",
+    "description": "Convierte tu pasión por la cocina en una carrera profesional. Fórmate en técnicas culinarias, gestión de cocina, innovación gastronómica, costos, cultura alimentaria y creación de experiencias memorables.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/chef-uam.png",
+    "items": [
+      {
+        "title": "Formación práctica",
+        "content": "Aprende haciendo en cocinas, talleres y proyectos reales."
+      },
+      {
+        "title": "Creatividad culinaria",
+        "content": "Diseña platos, conceptos y experiencias gastronómicas."
+      },
+      {
+        "title": "Gestión del negocio",
+        "content": "Domina costos, operación y administración gastronómica."
+      },
+      {
+        "title": "Tendencias e innovación",
+        "content": "Explora cocina contemporánea y nuevas propuestas."
+      },
+      {
+        "title": "Emprendimiento",
+        "content": "Prepárate para crear restaurante, marca o negocio propio."
+      },
+      {
+        "title": "Proyección internacional",
+        "content": "Conoce estándares globales de la industria culinaria."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "La UAM impulsa tu talento gastronómico",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Experiencia internacional",
+        "text": "Amplía tu visión culinaria con oportunidades globales.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Aprendizaje aplicado",
+        "text": "Fortalece habilidades en escenarios prácticos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y apoyo",
+        "text": "Opciones para impulsar tu formación profesional.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Beneficios de estudiar este programa",
+    "items": [
+      {
+        "title": "Perfil competitivo",
+        "text": "Combina cocina, creatividad y visión empresarial.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Marca profesional",
+        "text": "Construye portafolio y reputación en el sector.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Red de oportunidades",
+        "text": "Conecta con restaurantes, hoteles y negocios gastronómicos.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para convertir tu pasión por la cocina en tu profesión?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Artes Culinarias y Gastronomía",
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284464.js\"></script>"
+  },
+  "programType": "Pregrado"
+}

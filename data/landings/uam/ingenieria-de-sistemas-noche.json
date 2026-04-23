@@ -1,10 +1,10 @@
 {
-  "slug": "ingenieria-de-sistemas",
+  "slug": "ingenieria-de-sistemas-noche",
   "brand": "uam",
   "template": "UamProgramLanding",
   "status": "draft",
   "updatedAt": "2026-04-22",
-  "title": "Ingeniería de Sistemas",
+  "title": "Ingeniería de Sistemas Noche",
   "fullTitle": "Ingeniería de Sistemas",
   "hero": {
     "eyebrow": "Estudia en UAM",
@@ -102,7 +102,7 @@
   "form": {
     "scriptUrl": "",
     "programName": "Ingeniería de Sistemas",
-    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284440.js\"></script>"
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284465.js\"></script>"
   },
   "programType": "Pregrado"
 }
