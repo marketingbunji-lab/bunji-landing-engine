@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Plus } from "lucide-react";
+import { ArrowLeft, Pencil, Plus } from "lucide-react";
 import LandingCard from "../../../components/dashboard/LandingCard";
 import type { LandingCardData } from "../../../components/dashboard/LandingCard";
 import { getBrandLogo } from "../../../lib/brandLogo";
@@ -87,14 +87,24 @@ export default async function BrandPage({ params }: Props) {
               </div>
             </div>
 
-            <Link
-              href={`/brands/${brandSlug}/new`}
-              className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-black"
-              style={{ backgroundColor: brand.secondaryColor }}
-            >
-              <Plus className="h-4 w-4" />
-              Nueva landing
-            </Link>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                href={`/brands/${brandSlug}/edit`}
+                className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-5 py-3 font-semibold text-white"
+              >
+                <Pencil className="h-4 w-4" />
+                Editar marca
+              </Link>
+
+              <Link
+                href={`/brands/${brandSlug}/new`}
+                className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-black"
+                style={{ backgroundColor: brand.secondaryColor }}
+              >
+                <Plus className="h-4 w-4" />
+                Nueva landing
+              </Link>
+            </div>
           </div>
         </div>
 

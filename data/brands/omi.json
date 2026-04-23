@@ -3,10 +3,11 @@
   "name": "OMI",
   "logo": "https://omi.edu/wp-content/uploads/2023/03/logo.png",
   "logos": {
-    "light": "https://omi.edu/wp-content/uploads/2023/03/logo.png",
-    "dark": "https://omi.edu/wp-content/uploads/2023/03/logo.png"
+    "light": "https://omi.edu/wp-content/uploads/2026/03/omi-orlando-medical-institute.png",
+    "dark": "https://aquinas.a2hosted.com/omi/wp-content/uploads/2025/05/logo-OMI-gold.svg"
   },
-  "primaryColor": "#1D4ED8",
-  "secondaryColor": "#F59E0B",
-  "description": "Orlando Medical Institute"
+  "primaryColor": "#000000",
+  "secondaryColor": "#e0af5c",
+  "description": "Orlando Medical Institute",
+  "legalLinks": []
 }
