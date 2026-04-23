@@ -3,11 +3,24 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import type { Landing } from "@/lib/data";
+import { Copy, ExternalLink, FileDown, Trash2 } from "lucide-react";
 import ExportHtmlButton from "@/components/export/ExportHtmlButton";
 
 type Props = {
-  landing: Landing;
+  landing: LandingCardData;
+};
+
+export type LandingCardData = {
+  slug: string;
+  brand: string;
+  title: string;
+  fullTitle: string;
+  template: string;
+  status: string;
+  updatedAt: string;
+  hero?: {
+    modality?: string;
+  };
 };
 
 function getModalityBadge(modality?: string) {
@@ -123,8 +136,9 @@ export default function LandingCard({ landing }: Props) {
       <div className="mt-5 flex flex-wrap gap-3">
         <Link
           href={`/brands/${landing.brand}/${landing.slug}`}
-          className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white"
+          className="inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2 text-sm font-medium text-white"
         >
+          <ExternalLink className="h-4 w-4" />
           Ver detalle
         </Link>
 
@@ -133,6 +147,7 @@ export default function LandingCard({ landing }: Props) {
           filename={`${landing.brand}-${landing.slug}.html`}
           clientifyEndpoint={`/api/export-clientify/${landing.brand}/${landing.slug}`}
           clientifyFilename={`${landing.brand}-${landing.slug}-clientify.html`}
+          icon={<FileDown className="h-4 w-4" />}
         >
           Exportar
         </ExportHtmlButton>
@@ -141,8 +156,9 @@ export default function LandingCard({ landing }: Props) {
           type="button"
           onClick={duplicateLanding}
           disabled={duplicating || deleting}
-          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
+          <Copy className="h-4 w-4" />
           {duplicating ? "Duplicando..." : "Duplicar"}
         </button>
 
@@ -153,8 +169,9 @@ export default function LandingCard({ landing }: Props) {
             setShowDeleteModal(true);
           }}
           disabled={duplicating || deleting}
-          className="rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
         >
+          <Trash2 className="h-4 w-4" />
           Eliminar
         </button>
       </div>
@@ -193,8 +210,9 @@ export default function LandingCard({ landing }: Props) {
                 type="button"
                 onClick={deleteLanding}
                 disabled={deleting}
-                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
               >
+                <Trash2 className="h-4 w-4" />
                 {deleting ? "Eliminando..." : "Sí, eliminar"}
               </button>
             </div>

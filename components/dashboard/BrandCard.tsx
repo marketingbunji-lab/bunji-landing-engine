@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { ArrowRight, FolderOpen } from "lucide-react";
 import { getBrandLogo } from "@/lib/brandLogo";
 import type { Brand } from "@/lib/data";
 
@@ -39,13 +40,15 @@ export default function BrandCard({ brand, landingCount }: Props) {
         </span>
 
         <span
-          className="rounded-full px-3 py-1 text-sm font-medium"
+          className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium"
           style={{
             backgroundColor: brand.secondaryColor,
             color: "#111827",
           }}
         >
+          <FolderOpen className="h-4 w-4" />
           Ver marca
+          <ArrowRight className="h-4 w-4" />
         </span>
       </div>
     </Link>

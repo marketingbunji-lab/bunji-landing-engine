@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft, Plus } from "lucide-react";
 import LandingCard from "../../../components/dashboard/LandingCard";
+import type { LandingCardData } from "../../../components/dashboard/LandingCard";
 import { getBrandLogo } from "../../../lib/brandLogo";
 import { getBrandBySlug, getLandingsByBrand } from "../../../lib/data";
 import type { Landing } from "../../../lib/data";
@@ -29,6 +31,21 @@ function groupLandingsByProgramType(landings: Landing[]) {
   }));
 }
 
+function toLandingCardData(landing: Landing): LandingCardData {
+  return {
+    slug: landing.slug,
+    brand: landing.brand,
+    title: landing.title,
+    fullTitle: landing.fullTitle,
+    template: landing.template,
+    status: landing.status,
+    updatedAt: landing.updatedAt,
+    hero: {
+      modality: landing.hero?.modality,
+    },
+  };
+}
+
 export default async function BrandPage({ params }: Props) {
   const { brand: brandSlug } = await params;
 
@@ -47,9 +64,10 @@ export default async function BrandPage({ params }: Props) {
       <div className="mx-auto max-w-7xl">
         <Link
           href="/"
-          className="mb-6 inline-block text-sm font-medium text-gray-600 hover:text-black"
+          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-black"
         >
-          ← Volver a marcas
+          <ArrowLeft className="h-4 w-4" />
+          Volver a marcas
         </Link>
 
         <div
@@ -71,10 +89,11 @@ export default async function BrandPage({ params }: Props) {
 
             <Link
               href={`/brands/${brandSlug}/new`}
-              className="rounded-xl px-5 py-3 font-semibold text-black"
+              className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold text-black"
               style={{ backgroundColor: brand.secondaryColor }}
             >
-              + Nueva landing
+              <Plus className="h-4 w-4" />
+              Nueva landing
             </Link>
           </div>
         </div>
@@ -105,7 +124,10 @@ export default async function BrandPage({ params }: Props) {
 
                 <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                   {group.items.map((landing) => (
-                    <LandingCard key={landing.slug} landing={landing} />
+                    <LandingCard
+                      key={landing.slug}
+                      landing={toLandingCardData(landing)}
+                    />
                   ))}
                 </div>
               </section>

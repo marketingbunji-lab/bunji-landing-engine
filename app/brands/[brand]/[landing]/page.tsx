@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft, FileDown } from "lucide-react";
 import { getBrandBySlug, getLandingBySlug } from "../../../../lib/data";
 import LandingEditor from "../../../../components/editor/LandingEditor";
 import ExportHtmlButton from "../../../../components/export/ExportHtmlButton";
@@ -35,9 +36,10 @@ export default async function LandingDetailPage({ params }: Props) {
           <div className="flex items-center gap-3">
             <Link
               href={`/brands/${brandSlug}`}
-              className="rounded-lg border border-gray-300 px-4 py-2 text-sm"
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm"
             >
-              ← Volver
+              <ArrowLeft className="h-4 w-4" />
+              Volver
             </Link>
 
             <ExportHtmlButton
@@ -46,6 +48,7 @@ export default async function LandingDetailPage({ params }: Props) {
               clientifyEndpoint={`/api/export-clientify/${brandSlug}/${landingSlug}`}
               clientifyFilename={`${brandSlug}-${landingSlug}-clientify.html`}
               className="rounded-lg bg-black px-4 py-2 text-sm text-white"
+              icon={<FileDown className="h-4 w-4" />}
             >
               Exportar
             </ExportHtmlButton>

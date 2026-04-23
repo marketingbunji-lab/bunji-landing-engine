@@ -1,0 +1,108 @@
+{
+  "slug": "odontologia",
+  "brand": "uam",
+  "template": "UamProgramLanding",
+  "status": "draft",
+  "updatedAt": "2026-04-23",
+  "title": "Odontología",
+  "fullTitle": "Odontología",
+  "hero": {
+    "eyebrow": "Estudia en la UAM",
+    "highlight": "Pregrado en",
+    "title": "Odontología",
+    "description": "Transforma sonrisas y mejora la salud oral con formación clínica, científica y humana de alto nivel.",
+    "supportText": "Renovación de Alta Calidad y Acreditación Internacional ARCU-SUR.",
+    "modality": "Presencial",
+    "semesterPrice": "$14.000.000",
+    "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/odontologia-uam-pregrado-diurno.jpg",
+    "personImage": ""
+  },
+  "programInfo": [
+    "Odontólogo",
+    "183 Créditos académicos",
+    "10 Semestres",
+    "SNIES 1916"
+  ],
+  "whyStudy": {
+    "title": "¿Por qué estudiar Odontología en la UAM?",
+    "description": "En la UAM recibirás formación integral para prevenir, diagnosticar y tratar enfermedades orales con enfoque clínico, científico y social. Desarrolla habilidades prácticas desde etapas tempranas y prepárate para impactar positivamente la salud y calidad de vida de las personas.",
+    "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
+    "items": [
+      {
+        "title": "Formación clínica temprana",
+        "content": "Fortalece competencias prácticas en atención odontológica con acompañamiento académico."
+      },
+      {
+        "title": "Enfoque integral en salud",
+        "content": "Comprende al paciente desde una visión preventiva, diagnóstica y terapéutica."
+      },
+      {
+        "title": "Alta proyección laboral",
+        "content": "Desempeñate en clínicas, hospitales, consultorios, docencia e investigación."
+      },
+      {
+        "title": "Tecnología aplicada",
+        "content": "Aprende con herramientas modernas y procesos actualizados del sector salud."
+      },
+      {
+        "title": "Impacto social",
+        "content": "Contribuye al bienestar de comunidades mediante promoción y prevención."
+      },
+      {
+        "title": "Respaldo institucional",
+        "content": "Programa acreditado con reconocimiento nacional e internacional."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "La UAM impulsa tu vocación por la salud oral",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Plan de estudios sólido",
+        "text": "Integra ciencias básicas, formación clínica, salud pública, investigación y ética profesional.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
+      },
+      {
+        "title": "Experiencias internacionales",
+        "text": "Accede a movilidad académica, pasantías, intercambio y cursos de inglés con beneficios.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
+      },
+      {
+        "title": "Becas y beneficios",
+        "text": "Conoce apoyos como Plan Estudia, Becas Deportivas, Jóvenes + PRO y más opciones UAM.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Beneficios de estudiar Odontología",
+    "items": [
+      {
+        "title": "Perfil profesional integral",
+        "text": "Combina ciencia, atención clínica, comunicación y liderazgo en salud.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
+      },
+      {
+        "title": "Alta demanda laboral",
+        "text": "La salud oral requiere profesionales preparados y actualizados.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
+      },
+      {
+        "title": "Crecimiento continuo",
+        "text": "Proyéctate hacia especializaciones, docencia, investigación o emprendimiento.",
+        "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para transformar vidas con tu profesión?",
+    "button": "¡Inscríbete ahora!"
+  },
+  "form": {
+    "scriptUrl": "",
+    "programName": "Odontología",
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284402.js\"></script>"
+  },
+  "programType": "Pregrado"
+}

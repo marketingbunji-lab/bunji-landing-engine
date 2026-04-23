@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDown, Minus, Plus } from "lucide-react";
 
 type Item = {
   title: string;
@@ -30,8 +31,11 @@ export default function Accordion({ items }: { items: Item[] }) {
             >
               {item.title}
 
-              <span className="text-xl">
-                {isOpen ? "−" : "+"}
+              <span className="inline-flex items-center gap-2 text-gray-500">
+                {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                />
               </span>
             </button>
 

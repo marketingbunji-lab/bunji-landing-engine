@@ -1,6 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Laptop,
+  Plus,
+  Smartphone,
+  Tablet,
+  Trash2,
+} from "lucide-react";
 import type { AccordionItem, Brand, IconTextItem, Landing } from "@/lib/data";
 import UamProgramLanding from "../templates/UamProgramLanding";
 
@@ -154,7 +163,7 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
 
   return (
     <div className="grid gap-6 xl:grid-cols-[380px_minmax(0,1fr)]">
-      <div className="flex h-[calc(100vh-4rem)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm xl:sticky xl:top-6">
+      <div className="flex h-[calc(100vh-8rem)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm xl:sticky xl:top-6">
         <div className="border-b border-gray-200 p-6">
           <h2 className="text-xl font-semibold text-gray-900">Editar landing</h2>
           <p className="mt-1 text-sm text-gray-500">
@@ -257,9 +266,10 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                   <button
                     type="button"
                     onClick={() => addTextArrayItem("programInfo", "Nuevo dato")}
-                    className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                    className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
                   >
-                    + Agregar dato
+                    <Plus className="h-3.5 w-3.5" />
+                    Agregar dato
                   </button>
                 </div>
 
@@ -276,8 +286,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                       <button
                         type="button"
                         onClick={() => removeArrayItem("programInfo", index)}
-                        className="text-xs font-medium text-red-600"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
                       >
+                        <Trash2 className="h-3.5 w-3.5" />
                         Eliminar
                       </button>
                     </div>
@@ -363,9 +374,10 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                         content: "Nuevo contenido",
                       })
                     }
-                    className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                    className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
                   >
-                    + Agregar item
+                    <Plus className="h-3.5 w-3.5" />
+                    Agregar item
                   </button>
                 </div>
 
@@ -382,8 +394,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                       <button
                         type="button"
                         onClick={() => removeArrayItem("whyStudy.items", index)}
-                        className="text-xs font-medium text-red-600"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
                       >
+                        <Trash2 className="h-3.5 w-3.5" />
                         Eliminar
                       </button>
                     </div>
@@ -440,9 +453,10 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
               icon: "",
             })
           }
-          className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+          className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
         >
-          + Agregar item
+          <Plus className="h-3.5 w-3.5" />
+          Agregar item
         </button>
       </div>
 
@@ -459,8 +473,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                         <button
                         type="button"
                         onClick={() => removeArrayItem("supportSection.items", index)}
-                        className="text-xs font-medium text-red-600"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
                         >
+                        <Trash2 className="h-3.5 w-3.5" />
                         Eliminar
                         </button>
                     </div>
@@ -519,9 +534,10 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
               icon: "",
             })
           }
-          className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+          className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
         >
-          + Agregar item
+          <Plus className="h-3.5 w-3.5" />
+          Agregar item
         </button>
       </div>
 
@@ -538,8 +554,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                         <button
                         type="button"
                         onClick={() => removeArrayItem("benefits.items", index)}
-                        className="text-xs font-medium text-red-600"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
                         >
+                        <Trash2 className="h-3.5 w-3.5" />
                         Eliminar
                         </button>
                     </div>
@@ -603,9 +620,10 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                   onClick={() =>
                     addTextArrayItem("footerScripts", "<script>\n</script>")
                   }
-                  className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
                 >
-                  + Agregar script
+                  <Plus className="h-3.5 w-3.5" />
+                  Agregar script
                 </button>
               </div>
 
@@ -622,8 +640,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
                     <button
                       type="button"
                       onClick={() => removeArrayItem("footerScripts", index)}
-                      className="text-xs font-medium text-red-600"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
                     >
+                      <Trash2 className="h-3.5 w-3.5" />
                       Eliminar
                     </button>
                   </div>
@@ -678,8 +697,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
               setPreviewWidth(390);
               setPreviewHeight(844);
             }}
-            className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
           >
+            <Smartphone className="h-3.5 w-3.5" />
             Mobile
           </button>
           <button
@@ -688,8 +708,9 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
               setPreviewWidth(768);
               setPreviewHeight(900);
             }}
-            className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
           >
+            <Tablet className="h-3.5 w-3.5" />
             Tablet
           </button>
           <button
@@ -698,13 +719,14 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
               setPreviewWidth(1200);
               setPreviewHeight(820);
             }}
-            className="rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
           >
+            <Laptop className="h-3.5 w-3.5" />
             Desktop
           </button>
         </div>
 
-        <div className="max-h-[calc(100vh-180px)] overflow-auto bg-gray-100 p-4">
+        <div className="max-h-[calc(100vh-240px)] overflow-auto bg-gray-100 p-4">
           <div
             className="mx-auto overflow-auto bg-white shadow-sm"
             style={{
@@ -783,8 +805,8 @@ function EditorSection({
         <span className="text-sm font-semibold uppercase tracking-wide text-gray-900">
           {title}
         </span>
-        <span className="flex h-6 w-6 items-center justify-center rounded-full border border-gray-300 text-sm text-gray-600">
-          {isOpen ? "-" : "+"}
+        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 text-sm text-gray-600">
+          {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </span>
       </button>
 
