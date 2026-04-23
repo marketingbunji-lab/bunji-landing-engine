@@ -25,6 +25,7 @@ type Props = {
   filename: string;
   clientifyEndpoint?: string;
   clientifyFilename?: string;
+  payload?: unknown;
   children?: React.ReactNode;
   icon?: React.ReactNode;
   className?: string;
@@ -35,6 +36,7 @@ export default function ExportHtmlButton({
   filename,
   clientifyEndpoint,
   clientifyFilename,
+  payload,
   children = "Exportar",
   icon,
   className = "rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700",
@@ -59,7 +61,15 @@ export default function ExportHtmlButton({
       setExporting(true);
       setOpen(false);
 
-      const response = await fetch(selectedEndpoint);
+      const response = await fetch(selectedEndpoint, {
+        method: payload ? "POST" : "GET",
+        headers: payload
+          ? {
+              "Content-Type": "application/json",
+            }
+          : undefined,
+        body: payload ? JSON.stringify(payload) : undefined,
+      });
 
       if (!response.ok) {
         throw new Error("No se pudo exportar el HTML");
@@ -160,7 +170,7 @@ export default function ExportHtmlButton({
       {open ? (
         <div
           role="menu"
-          className="absolute right-0 z-20 mt-2 min-w-56 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-lg"
+          className="absolute bottom-full right-0 z-20 mb-2 min-w-56 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-lg"
         >
           {options.map((option) => (
             <button

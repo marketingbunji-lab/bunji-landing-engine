@@ -1,8 +1,6 @@
 import type { Brand, Landing } from "./data";
 import { exportLandingHtml } from "./exportLandingHtml";
-
-const bootstrapCssUrl =
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css";
+import { formatHtmlFragment } from "./formatExportHtml";
 
 function collectStyleTags(html: string) {
   return html.match(/<style\b[^>]*>[\s\S]*?<\/style>/gi) ?? [];
@@ -17,18 +15,45 @@ function getBodyContent(html: string) {
   return bodyMatch?.[1] ?? html;
 }
 
-export function exportLandingClientifyHtml(brand: Brand, landing: Landing) {
-  const html = exportLandingHtml(brand, landing);
-  const styleTags = collectStyleTags(html);
+function isGlobalDocumentStyle(styleTag: string) {
+  return /\bhtml\s*\{|\bbody\s*\{/i.test(styleTag);
+}
+
+export async function exportLandingClientifyHtml(brand: Brand, landing: Landing) {
+  const html = await exportLandingHtml(brand, landing);
+  const styleTags = collectStyleTags(html).filter(
+    (styleTag) => !isGlobalDocumentStyle(styleTag)
+  );
   const bodyContent = removeStyleTags(getBodyContent(html)).trim();
 
-  return [
+  const fragment = [
     `<style>
-@import url("${bootstrapCssUrl}");
+  body {
+    margin: 0 !important;
+  }
+
+  .uam-landing {
+    margin: 0;
+    overflow-x: hidden;
+    background: #ffffff;
+    box-sizing: border-box;
+  }
+
+  .uam-landing, .uam-landing * {
+    box-sizing: border-box;
+  }
+
+  .u_content_html {
+    padding: 0 !important;
+  }
+
+  .grecaptcha-badge {
+    bottom: 20% !important;
+  }
 </style>`,
     ...styleTags,
-    `<body>
-${bodyContent}
-</body>`,
+    bodyContent,
   ].join("\n\n");
+
+  return formatHtmlFragment(fragment);
 }

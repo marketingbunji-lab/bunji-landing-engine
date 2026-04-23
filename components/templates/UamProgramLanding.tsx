@@ -4,8 +4,7 @@ import { getBrandLogo } from "@/lib/brandLogo";
 import type { Brand, IconTextItem, Landing, LegalLink } from "@/lib/data";
 import ClientifyFormEmbed from "../forms/ClientifyFormEmbed";
 import ClientifyProgramSelector from "../forms/ClientifyProgramSelector";
-import Accordion from "../ui/Accordion";
-import BootstrapAccordion from "../ui/BootstrapAccordion";
+import LandingAccordion from "../ui/LandingAccordion";
 
 type Props = {
   brand: Brand;
@@ -78,7 +77,10 @@ export default function UamProgramLanding({
   const fullTitle = landing?.fullTitle ?? title;
 
   return (
-    <div className="uam-landing" style={{ fontFamily: "Inter, Arial, sans-serif", color: "#111827" }}>
+    <div
+      className="uam-landing"
+      style={{ fontFamily: "Inter, Arial, sans-serif", color: "#111827", margin: 0 }}
+    >
       <style>{`
         .uam-landing img,
         .uam-landing iframe {
@@ -154,13 +156,6 @@ export default function UamProgramLanding({
           z-index: 3;
         }
 
-        .uam-form-card {
-          background: #fff;
-          border-radius: 20px;
-          padding: 24px;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
-        }
-
         .uam-two-column-section {
           max-width: 1200px;
           margin: 0 auto;
@@ -196,6 +191,71 @@ export default function UamProgramLanding({
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 24px;
+        }
+
+        .uam-accordion {
+          display: grid;
+          gap: 12px;
+        }
+
+        .uam-accordion-item {
+          border: 1px solid #E5E7EB;
+          border-radius: 16px;
+          background: #fff;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .uam-accordion-input {
+          position: absolute;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .uam-accordion-summary {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          cursor: pointer;
+          padding: 18px 20px;
+          font-weight: 700;
+          color: #111827;
+        }
+
+        .uam-accordion-icons {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          min-width: 24px;
+          height: 24px;
+          color: #6B7280;
+          font-size: 18px;
+          line-height: 1;
+        }
+
+        .uam-accordion-minus {
+          display: none;
+        }
+
+        .uam-accordion-input:checked + .uam-accordion-summary .uam-accordion-plus {
+          display: none;
+        }
+
+        .uam-accordion-input:checked + .uam-accordion-summary .uam-accordion-minus {
+          display: inline;
+        }
+
+        .uam-accordion-panel {
+          display: none;
+          padding: 0 20px 18px;
+          color: #4B5563;
+          line-height: 1.6;
+        }
+
+        .uam-accordion-input:checked + .uam-accordion-summary + .uam-accordion-panel {
+          display: block;
         }
 
         @media (max-width: 1199.98px) {
@@ -346,12 +406,13 @@ export default function UamProgramLanding({
                 />
               ) : null}
 
-              <p style={{ margin: "0 0 16px 0", fontSize: 18 }}>
+              <p style={{ margin: "0 0 16px 0", fontSize: 18, color: "#fff" }}>
                 {hero?.eyebrow ?? `Estudia en ${brandName}`}
               </p>
 
               <h1
                 className="uam-hero-title"
+                style={{ color: "#fff" }}
               >
                 {hero?.highlight ? (
                   <>
@@ -366,11 +427,20 @@ export default function UamProgramLanding({
               {(hero?.description || hero?.supportText) && (
                 <>
                   {hero?.description ? (
-                    <p style={{ margin: "20px 0 0 0", fontSize: 18 }}>{hero.description}</p>
+                    <p style={{ margin: "20px 0 0 0", fontSize: 18, color: "#fff" }}>
+                      {hero.description}
+                    </p>
                   ) : null}
 
                   {hero?.supportText ? (
-                    <p style={{ margin: "4px 0 0 0", fontSize: 18, fontWeight: 700 }}>
+                    <p
+                      style={{
+                        margin: "4px 0 0 0",
+                        fontSize: 18,
+                        fontWeight: 700,
+                        color: "#fff",
+                      }}
+                    >
                       {hero.supportText}
                     </p>
                   ) : null}
@@ -383,6 +453,7 @@ export default function UamProgramLanding({
                     marginTop: 20,
                     borderLeft: `4px solid ${secondaryColor}`,
                     paddingLeft: 12,
+                    color: "#fff",
                   }}
                 >
                   <span style={{ color: secondaryColor, fontWeight: 700 }}>Modalidad</span>{" "}
@@ -443,7 +514,7 @@ export default function UamProgramLanding({
             <div className="uam-form-column">
               <div
                 id="anclaForm"
-                className="uam-form-card form-shell"
+                className="form-shell"
               >
                 {form?.scriptCode || form?.scriptUrl ? (
                   mode === "export" ? (
@@ -525,13 +596,7 @@ export default function UamProgramLanding({
               ) : null}
 
               {whyStudyItems.length > 0 ? (
-                <div style={{ display: "grid", gap: 12 }}>
-                  {mode === "export" ? (
-                    <BootstrapAccordion items={whyStudyItems} id="whyStudyAccordion" />
-                  ) : (
-                    <Accordion items={whyStudyItems} />
-                  )}
-                </div>
+                <LandingAccordion items={whyStudyItems} id="whyStudyAccordion" />
               ) : (
                 <div
                   style={{

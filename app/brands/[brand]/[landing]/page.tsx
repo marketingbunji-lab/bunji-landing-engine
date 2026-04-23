@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, FileDown } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { getBrandBySlug, getLandingBySlug } from "../../../../lib/data";
 import LandingEditor from "../../../../components/editor/LandingEditor";
-import ExportHtmlButton from "../../../../components/export/ExportHtmlButton";
 
 type Props = {
   params: Promise<{
@@ -41,21 +40,17 @@ export default async function LandingDetailPage({ params }: Props) {
               <ArrowLeft className="h-4 w-4" />
               Volver
             </Link>
-
-            <ExportHtmlButton
-              endpoint={`/api/export/${brandSlug}/${landingSlug}`}
-              filename={`${brandSlug}-${landingSlug}.html`}
-              clientifyEndpoint={`/api/export-clientify/${brandSlug}/${landingSlug}`}
-              clientifyFilename={`${brandSlug}-${landingSlug}-clientify.html`}
-              className="rounded-lg bg-black px-4 py-2 text-sm text-white"
-              icon={<FileDown className="h-4 w-4" />}
-            >
-              Exportar
-            </ExportHtmlButton>
           </div>
         </div>
 
-        <LandingEditor brand={brand} initialLanding={landing} />
+        <LandingEditor
+          brand={brand}
+          initialLanding={landing}
+          exportEndpoint={`/api/export/${brandSlug}/${landingSlug}`}
+          exportFilename={`${brandSlug}-${landingSlug}.html`}
+          exportClientifyEndpoint={`/api/export-clientify/${brandSlug}/${landingSlug}`}
+          exportClientifyFilename={`${brandSlug}-${landingSlug}-clientify.html`}
+        />
       </div>
     </main>
   );

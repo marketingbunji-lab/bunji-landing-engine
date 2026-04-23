@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   ChevronDown,
   ChevronUp,
+  FileDown,
   Laptop,
   Plus,
   Smartphone,
@@ -12,10 +13,15 @@ import {
 } from "lucide-react";
 import type { AccordionItem, Brand, IconTextItem, Landing } from "@/lib/data";
 import UamProgramLanding from "../templates/UamProgramLanding";
+import ExportHtmlButton from "../export/ExportHtmlButton";
 
 type Props = {
   brand: Brand;
   initialLanding: Landing;
+  exportEndpoint: string;
+  exportFilename: string;
+  exportClientifyEndpoint: string;
+  exportClientifyFilename: string;
 };
 
 type EditableLanding = Landing & Record<string, unknown>;
@@ -56,7 +62,14 @@ function getArrayAtPath(target: EditableRecord, path: string) {
   return parent[arrayKey] as EditableArrayItem[];
 }
 
-export default function LandingEditor({ brand, initialLanding }: Props) {
+export default function LandingEditor({
+  brand,
+  initialLanding,
+  exportEndpoint,
+  exportFilename,
+  exportClientifyEndpoint,
+  exportClientifyFilename,
+}: Props) {
   const [landing, setLanding] = useState<Landing>(initialLanding);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -670,6 +683,18 @@ export default function LandingEditor({ brand, initialLanding }: Props) {
           >
             {saving ? "Guardando..." : "Guardar cambios"}
           </button>
+
+          <ExportHtmlButton
+            endpoint={exportEndpoint}
+            filename={exportFilename}
+            clientifyEndpoint={exportClientifyEndpoint}
+            clientifyFilename={exportClientifyFilename}
+            payload={landing}
+            className="rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700"
+            icon={<FileDown className="h-4 w-4" />}
+          >
+            Exportar
+          </ExportHtmlButton>
 
           {message ? <p className="text-sm text-gray-600">{message}</p> : null}
         </div>
