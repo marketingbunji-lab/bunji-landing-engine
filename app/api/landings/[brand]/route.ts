@@ -63,6 +63,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
       title,
       fullTitle,
       programType: "",
+      schedule: "",
       hero: {
         eyebrow: `Estudia en ${brand.toUpperCase()}`,
         highlight: "",

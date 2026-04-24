@@ -72,6 +72,12 @@ export default function UamProgramLanding({
   const secondaryColor = brand?.secondaryColor ?? "#F8D74A";
   const logo = brand ? getBrandLogo(brand, landing?.logoMode || "dark") : "";
   const brandName = brand?.name ?? "Brand";
+  const manizalesImage =
+    "https://www.autonoma.edu.co/sites/default/files/styles/webp/public/2021-11/conolauam.jpg.webp";
+  const showManizalesSection =
+    landing?.programType?.trim().toLowerCase() === "pregrado" &&
+    hero?.modality?.trim().toLowerCase() === "presencial" &&
+    landing?.schedule?.trim().toLowerCase() === "diurna";
 
   const title = landing?.title ?? "Programa";
   const fullTitle = landing?.fullTitle ?? title;
@@ -855,6 +861,69 @@ export default function UamProgramLanding({
           </div>
         </section>
       )}
+
+      {showManizalesSection ? (
+        <section
+          style={{
+            padding: "64px 24px",
+            background: "#ffffff",
+          }}
+        >
+          <div className="uam-two-column-section" style={{ alignItems: "center" }}>
+            <div>
+              <h2
+                style={{
+                  margin: 0,
+                  fontSize: 36,
+                  lineHeight: 1.1,
+                  fontWeight: 800,
+                  color: "#111827",
+                }}
+              >
+                Manizales
+              </h2>
+
+              <p
+                style={{
+                  margin: "16px 0 0 0",
+                  fontSize: 22,
+                  lineHeight: 1.3,
+                  color: "#111827",
+                }}
+              >
+                <strong>Calidad de vida para tu formación universitaria</strong>
+              </p>
+
+              <p
+                style={{
+                  margin: "16px 0 0 0",
+                  fontSize: 18,
+                  lineHeight: 1.7,
+                  color: "#374151",
+                }}
+              >
+                Certificada por la UNESCO como &quot;la Ciudad del Aprendizaje&quot;,
+                ofrece un entorno tranquilo y asequible, perfecto para estudiantes
+                que buscan calidad de vida y un espacio.
+              </p>
+            </div>
+
+            <div style={{ textAlign: "center" }}>
+              <img
+                src={manizalesImage}
+                alt="Manizales"
+                style={{
+                  width: "100%",
+                  borderRadius: 24,
+                  display: "block",
+                  objectFit: "cover",
+                  minHeight: 320,
+                }}
+              />
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {(cta?.title || cta?.button) && (
         <section

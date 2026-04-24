@@ -264,6 +264,18 @@ export default function LandingEditor({
                 onChange={(value) => updateField("hero.modality", value)}
               />
 
+              <SelectField
+                label="Jornada"
+                value={landing.schedule || ""}
+                onChange={(value) => updateField("schedule", value)}
+                options={[
+                  { value: "", label: "Seleccionar jornada" },
+                  { value: "diurna", label: "Diurna" },
+                  { value: "nocturna", label: "Nocturna" },
+                  { value: "flexible", label: "Flexible" },
+                ]}
+              />
+
               <Field
                 label="Valor semestre"
                 value={landing.hero?.semesterPrice || ""}
@@ -885,6 +897,40 @@ function TextareaField({
         rows={4}
         className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-black focus:ring-2 focus:ring-black/10"
       />
+    </label>
+  );
+}
+
+function SelectField({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: Array<{
+    value: string;
+    label: string;
+  }>;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-sm font-semibold text-gray-900">
+        {label}
+      </span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-black focus:ring-2 focus:ring-black/10"
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </label>
   );
 }

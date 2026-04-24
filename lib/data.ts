@@ -49,6 +49,7 @@ export type Landing = {
   title: string;
   fullTitle: string;
   programType?: string;
+  schedule?: string;
   template: string;
   status: string;
   updatedAt: string;

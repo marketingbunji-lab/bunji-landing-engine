@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Copy, ExternalLink, FileDown, Trash2 } from "lucide-react";
+import { Copy, ExternalLink, FileDown, Moon, Sun, SunMoon, Trash2 } from "lucide-react";
 import ExportHtmlButton from "@/components/export/ExportHtmlButton";
 
 type Props = {
@@ -18,6 +18,7 @@ export type LandingCardData = {
   template: string;
   status: string;
   updatedAt: string;
+  schedule?: string;
   hero?: {
     modality?: string;
   };
@@ -43,6 +44,36 @@ function getModalityBadge(modality?: string) {
   return null;
 }
 
+function getScheduleBadge(schedule?: string) {
+  const normalized = schedule?.toLowerCase().trim() ?? "";
+
+  if (normalized === "diurna") {
+    return {
+      label: "Diurna",
+      icon: Sun,
+      className: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+    };
+  }
+
+  if (normalized === "nocturna") {
+    return {
+      label: "Nocturna",
+      icon: Moon,
+      className: "bg-violet-50 text-violet-700 ring-1 ring-violet-200",
+    };
+  }
+
+  if (normalized === "flexible") {
+    return {
+      label: "Flexible",
+      icon: SunMoon,
+      className: "bg-slate-100 text-slate-700 ring-1 ring-slate-200",
+    };
+  }
+
+  return null;
+}
+
 export default function LandingCard({ landing }: Props) {
   const router = useRouter();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -50,6 +81,7 @@ export default function LandingCard({ landing }: Props) {
   const [duplicating, setDuplicating] = useState(false);
   const [error, setError] = useState("");
   const modalityBadge = getModalityBadge(landing.hero?.modality);
+  const scheduleBadge = getScheduleBadge(landing.schedule);
 
   const duplicateLanding = async () => {
     try {
@@ -107,6 +139,15 @@ export default function LandingCard({ landing }: Props) {
         </div>
 
         <div className="flex shrink-0 flex-col items-end gap-2">
+          {scheduleBadge ? (
+            <span
+              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${scheduleBadge.className}`}
+            >
+              <scheduleBadge.icon className="h-3.5 w-3.5" />
+              {scheduleBadge.label}
+            </span>
+          ) : null}
+
           {modalityBadge ? (
             <span
               className={`rounded-full px-3 py-1 text-xs font-medium ${modalityBadge.className}`}

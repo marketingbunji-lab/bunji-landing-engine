@@ -40,6 +40,7 @@ function toLandingCardData(landing: Landing): LandingCardData {
     template: landing.template,
     status: landing.status,
     updatedAt: landing.updatedAt,
+    schedule: landing.schedule,
     hero: {
       modality: landing.hero?.modality,
     },
