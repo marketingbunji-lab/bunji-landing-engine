@@ -3,100 +3,100 @@
   "brand": "uam",
   "template": "UamProgramLanding",
   "status": "draft",
-  "updatedAt": "2026-04-23",
+  "updatedAt": "2026-04-24",
   "title": "Odontología",
   "fullTitle": "Odontología",
   "hero": {
     "eyebrow": "Estudia en la UAM",
     "highlight": "Pregrado en",
     "title": "Odontología",
-    "description": "Transforma sonrisas y mejora la salud oral con formación clínica, científica y humana de alto nivel.",
-    "supportText": "Renovación de Alta Calidad y Acreditación Internacional ARCU-SUR.",
+    "description": "Forma parte de un programa que no solo se enfoca en la salud bucal, sino en mejorar la calidad de vida de las personas mediante diagnósticos, tratamientos y prevención. Prepárate para ser un profesional comprometido con el bienestar de la comunidad.",
+    "supportText": "¡En la UAM construimos historias con pasión!",
     "modality": "Presencial",
-    "semesterPrice": "$14.000.000",
+    "semesterPrice": "$13.888.800",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/odontologia-uam-pregrado-diurno.jpg",
     "personImage": ""
   },
   "programInfo": [
-    "Odontólogo",
+    "Pregrado en Odontología",
     "183 Créditos académicos",
-    "10 Semestres",
+    "10 semestres de duración",
     "SNIES 1916"
   ],
   "whyStudy": {
     "title": "¿Por qué estudiar Odontología en la UAM?",
-    "description": "En la UAM recibirás formación integral para prevenir, diagnosticar y tratar enfermedades orales con enfoque clínico, científico y social. Desarrolla habilidades prácticas desde etapas tempranas y prepárate para impactar positivamente la salud y calidad de vida de las personas.",
+    "description": "Transforma tu futuro con el Pregrado en Odontología en la UAM",
     "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
     "items": [
       {
-        "title": "Formación clínica temprana",
-        "content": "Fortalece competencias prácticas en atención odontológica con acompañamiento académico."
+        "title": "Formación clínica integral",
+        "content": "Aprende a diagnosticar, tratar y rehabilitar enfermedades bucales, integrando conocimientos biomédicos y sociales para una atención de calidad."
       },
       {
-        "title": "Enfoque integral en salud",
-        "content": "Comprende al paciente desde una visión preventiva, diagnóstica y terapéutica."
+        "title": "Enfoque clínico y comunitario",
+        "content": "Desarrolla habilidades tanto en la atención clínica como en la implementación de programas de prevención y promoción de salud bucal en diferentes contextos."
       },
       {
-        "title": "Alta proyección laboral",
-        "content": "Desempeñate en clínicas, hospitales, consultorios, docencia e investigación."
+        "title": "Uso de tecnología y evidencia científica",
+        "content": "Tu formación incluye el uso de tecnología con un enfoque en evidencia científica, realizando prácticas actualizadas y efectivas en odontología."
       },
       {
-        "title": "Tecnología aplicada",
-        "content": "Aprende con herramientas modernas y procesos actualizados del sector salud."
+        "title": "Compromiso social y ético",
+        "content": "Prepárate para actuar con responsabilidad social, liderazgo y ética profesional, impactando positivamente la salud bucal de comunidades."
       },
       {
-        "title": "Impacto social",
-        "content": "Contribuye al bienestar de comunidades mediante promoción y prevención."
+        "title": "Manizales: Calidad de vida para tu formación universitaria",
+        "content": "Certificada por la UNESCO como \"la Ciudad del Aprendizaje\", ofrece un entorno tranquilo y asequible, perfecto para estudiantes que buscan calidad de vida y un espacio enriquecedor para su formación."
       },
       {
-        "title": "Respaldo institucional",
-        "content": "Programa acreditado con reconocimiento nacional e internacional."
+        "title": "Estudia en una institución con más de 45 años de experiencia",
+        "content": "Formación acreditada, reconocida y con alto prestigio en el sector educativo."
       }
     ]
   },
   "supportSection": {
-    "title": "La UAM impulsa tu vocación por la salud oral",
+    "title": "En la UAM apoyamos tu formación",
     "videoUrl": "",
     "items": [
       {
-        "title": "Plan de estudios sólido",
-        "text": "Integra ciencias básicas, formación clínica, salud pública, investigación y ética profesional.",
+        "title": "Financiación",
+        "text": "Múltiples opciones de financiamiento para que puedas estudiar sin preocupaciones.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
       },
       {
-        "title": "Experiencias internacionales",
-        "text": "Accede a movilidad académica, pasantías, intercambio y cursos de inglés con beneficios.",
+        "title": "Becas",
+        "text": "Programas de becas y ayudas económicas para estudiantes destacados.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
       },
       {
-        "title": "Becas y beneficios",
-        "text": "Conoce apoyos como Plan Estudia, Becas Deportivas, Jóvenes + PRO y más opciones UAM.",
+        "title": "Beneficios",
+        "text": "Acceso a recursos, plataformas digitales y red de profesionales.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
       }
     ]
   },
   "benefits": {
-    "title": "Beneficios de estudiar Odontología",
+    "title": "Algunos de los beneficios que tendrás con nosotros",
     "items": [
       {
-        "title": "Perfil profesional integral",
-        "text": "Combina ciencia, atención clínica, comunicación y liderazgo en salud.",
+        "title": "Programa de Permanencia y Graduación",
+        "text": "Acompañamiento con diferentes servicios que facilitan el desarrollo personal y académico.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
       },
       {
-        "title": "Alta demanda laboral",
-        "text": "La salud oral requiere profesionales preparados y actualizados.",
+        "title": "Desarrollo de Habilidades Especializadas",
+        "text": "Formación práctica con expertos del sector.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
       },
       {
-        "title": "Crecimiento continuo",
-        "text": "Proyéctate hacia especializaciones, docencia, investigación o emprendimiento.",
+        "title": "Networking Profesional",
+        "text": "Conexiones con profesionales y empresas líderes.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
       }
     ]
   },
   "cta": {
-    "title": "¿Listo para transformar vidas con tu profesión?",
+    "title": "¿Listo para transformar tu futuro?",
     "button": "¡Inscríbete ahora!"
   },
   "form": {
@@ -104,5 +104,8 @@
     "programName": "Odontología",
     "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284402.js\"></script>"
   },
-  "programType": "Pregrado"
+  "programType": "Pregrado",
+  "footerScripts": [
+    "<!--dataLayer-->\n    <script>\n        document.addEventListener(\"DOMContentLoaded\", function () {\n            const observer = new MutationObserver(function () {\n                const nombreInput = document.querySelector('input[placeholder=\"Nombre*\"]');\n                const apellidosInput = document.querySelector('input[placeholder=\"Apellidos*\"]');\n                const emailInput = document.querySelector('input[placeholder=\"Email*\"]');\n                const telefonoInput = document.querySelector('input[placeholder=\"321 1234567\"]');\n                const programaSelect = [...document.querySelectorAll('select')].find(select =>\n                    [...select.options].some(option => option.text.trim() === TARGET_TEXT) || select.value.trim() !== \"\"\n                );\n                const btnSubscribe = document.querySelector('.btn-subscribe');\n\n                if (\n                    nombreInput &&\n                    apellidosInput &&\n                    emailInput &&\n                    telefonoInput &&\n                    programaSelect &&\n                    btnSubscribe &&\n                    !btnSubscribe.dataset.listenerAdded\n                ) {\n                    console.log(\"Formulario Clientify detectado. Registrando listener...\");\n\n                    btnSubscribe.dataset.listenerAdded = \"true\";\n\n                    btnSubscribe.addEventListener(\"click\", function () {\n                        const nombre = nombreInput.value.trim();\n                        const apellidos = apellidosInput.value.trim();\n                        const email = emailInput.value.trim();\n                        const telefono = telefonoInput.value.trim();\n                        const selectedOption = programaSelect.options[programaSelect.selectedIndex];\n                        const programa = (selectedOption?.text || programaSelect.value || \"\").trim();\n\n                        const allFilled =\n                            nombre !== \"\" &&\n                            apellidos !== \"\" &&\n                            email !== \"\" &&\n                            telefono !== \"\" &&\n                            programa !== \"\";\n\n                        if (!allFilled) {\n                            console.log(\"Faltan campos. No se dispara dataLayer.\");\n                            return;\n                        }\n\n                        const emailValido = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);\n                        if (!emailValido) {\n                            console.log(\"Email inválido. No se dispara dataLayer.\");\n                            return;\n                        }\n\n                        window.dataLayer = window.dataLayer || [];\n                        window.dataLayer.push({\n                            event: \"form_subscribe\",\n                            form_name: \"clientify_superform\",\n                            nombre: nombre,\n                            apellidos: apellidos,\n                            email: email,\n                            telefono: telefono,\n                            programa: programa\n                        });\n\n                        console.log(\"dataLayer.push enviado\");\n                    });\n\n                    observer.disconnect();\n                }\n            });\n\n            observer.observe(document.body, { childList: true, subtree: true });\n        });\n    </script>"
+  ]
 }

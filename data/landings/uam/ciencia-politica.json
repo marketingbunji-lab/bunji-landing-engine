@@ -3,62 +3,74 @@
   "brand": "uam",
   "template": "UamProgramLanding",
   "status": "draft",
-  "updatedAt": "2026-04-22",
+  "updatedAt": "2026-04-24",
   "title": "Ciencia Política",
   "fullTitle": "Ciencia Política, Gobierno y Relaciones Internacionales",
   "hero": {
-    "eyebrow": "Estudia en UAM",
+    "eyebrow": "Estudia en la UAM",
     "highlight": "Pregrado en",
-    "title": "Ciencia Política",
-    "description": "El conocimiento será la base para el futuro de nuestros estudiantes.",
-    "supportText": "",
+    "title": "Ciencia Política, Gobierno y Relaciones Internacionales",
+    "description": "Conoce las dinámicas del poder, las políticas públicas y las relaciones internacionales para actuar como líder, analista y agente de cambio. Prepara para comprender y transformar la realidad política, tanto a nivel local como global.",
+    "supportText": "¡En la UAM construimos historias con pasión!",
     "modality": "Presencial",
     "semesterPrice": "$10.144.100",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/ciencia-politica.jpg",
     "personImage": ""
   },
   "programInfo": [
-    "Ciencia Política",
+    "Pregrado en Ciencia Política, Gobierno y Relaciones Internacionales",
     "159 Créditos académicos",
-    "10 Semestres de duración",
+    "9 semestres de duración",
     "SNIES 17692"
   ],
   "whyStudy": {
-    "title": "¿Por qué estudiar Ciencia Política, Gobierno y Relaciones Internacionales en la UAM?",
-    "description": "Fórmate para comprender el poder, la gobernanza y las relaciones internacionales desde una mirada crítica. Este programa integra ciencia política, gobierno y relaciones internacionales para aportar a los retos sociales del país y del mundo.",
+    "title": "¿Por qué estudiar carrera en Ciencia Política (Gobierno y Relaciones Internacionales) en la UAM?",
+    "description": "Transforma tu futuro con el Pregrado en Ciencia Política, Gobierno y Relaciones Internacionales en la UAM",
     "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
     "items": [
       {
-        "title": "Comprende los desafíos globales",
-        "content": "Analiza fenómenos políticos, sociales y económicos para entender los retos del país y del mundo desde una mirada crítica y propositiva."
+        "title": "Formación interdisciplinaria y global",
+        "content": "Aprende teoría política, derecho, economía y sociología, con un enfoque global que te permite analizar y actuar en diferentes contextos políticos y sociales."
       },
       {
-        "title": "Estudia un programa consolidado",
-        "content": "Fórmate en uno de los programas más antiguos del Eje Cafetero, con una propuesta que integra gobierno, política y relaciones internacionales."
+        "title": "Desarrollo de pensamiento crítico y liderazgo",
+        "content": "Prepárate para analizar situaciones complejas y liderar proyectos sociales y políticos con impacto local y global."
       },
       {
-        "title": "Integra tres áreas estratégicas",
-        "content": "Aprende ciencia política, gobierno y relaciones internacionales en un mismo plan de estudios orientado a la acción pública y social."
+        "title": "Enfoque práctico con investigación aplicada",
+        "content": "Aplica lo aprendido mediante la investigación de problemáticas reales y el análisis de casos, integrando teoría y práctica."
+      },
+      {
+        "title": "Crecimiento en diversas áreas del sector público y privado",
+        "content": "Podrás ejercer en el sector público, organizaciones internacionales, ONGs, medios de comunicación y consultorías, desarrollando proyectos políticos y sociales."
+      },
+      {
+        "title": "Oportunidades de apoyo financiero",
+        "content": "Podrás acceder a diferentes opciones de becas y planes de financiación a tu medida, que facilitarán tu camino hacia el éxito académico."
+      },
+      {
+        "title": "Estudia en una institución con más de 45 años de experiencia",
+        "content": "Formación acreditada, reconocida y con alto prestigio en el sector educativo."
       }
     ]
   },
   "supportSection": {
-    "title": "En la UAM apoyamos tu carrera",
+    "title": "En la UAM apoyamos tu formación",
     "videoUrl": "",
     "items": [
       {
-        "title": "Plan de estudios integral",
-        "text": "Recorre una formación que combina ciencia política, gobierno, relaciones internacionales, investigación, idiomas y prácticas profesionales.",
+        "title": "Financiación",
+        "text": "Múltiples opciones de financiamiento para que puedas estudiar sin preocupaciones.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
       },
       {
-        "title": "Experiencias internacionales",
-        "text": "Elige experiencias académicas y prácticas que fortalecen tu visión intercultural y te conectan con un mundo globalizado.",
+        "title": "Becas",
+        "text": "Programas de becas y ayudas económicas para estudiantes destacados.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
       },
       {
-        "title": "Becas y beneficios",
-        "text": "Accede a alternativas de apoyo para cumplir tus sueños y avanzar en tu formación profesional en la UAM.",
+        "title": "Beneficios",
+        "text": "Acceso a recursos, plataformas digitales y red de profesionales.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
       }
     ]
@@ -67,18 +79,18 @@
     "title": "Algunos de los beneficios que tendrás con nosotros",
     "items": [
       {
-        "title": "Experiencias internacionales",
-        "text": "Semestre académico, prácticas profesionales, pasantías, misiones académicas, voluntariado internacional y cursos de inglés con descuentos.",
+        "title": "Programa de Permanencia y Graduación",
+        "text": "Acompañamiento con diferentes servicios que facilitan el desarrollo personal y académico.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
       },
       {
-        "title": "Becas y apoyos UAM",
-        "text": "Becas deportivas, Becas Jóvenes + PRO, Beca Fondo Patrimonial, Más Ingenieras UAM, Plan Regreso a la U, Mejor Bachiller 2.0, Si se puede Becas UAM, Plan Estudia, Puedo Estudiar y Becas UTC UAM.",
+        "title": "Desarrollo de Habilidades Especializadas",
+        "text": "Formación práctica con expertos del sector.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
       },
       {
-        "title": "Proyección profesional",
-        "text": "Formación para actuar en políticas públicas, diplomacia, gestión social, sector público y relaciones institucionales.",
+        "title": "Networking Profesional",
+        "text": "Conexiones con profesionales y empresas líderes.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
       }
     ]
@@ -92,5 +104,8 @@
     "programName": "Ciencia Política, Gobierno y Relaciones Internacionales",
     "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284221.js\"></script>"
   },
-  "programType": "Pregrado"
+  "programType": "Pregrado",
+  "footerScripts": [
+    "<!--dataLayer-->\n    <script>\n        document.addEventListener(\"DOMContentLoaded\", function () {\n            const observer = new MutationObserver(function () {\n                const nombreInput = document.querySelector('input[placeholder=\"Nombre*\"]');\n                const apellidosInput = document.querySelector('input[placeholder=\"Apellidos*\"]');\n                const emailInput = document.querySelector('input[placeholder=\"Email*\"]');\n                const telefonoInput = document.querySelector('input[placeholder=\"321 1234567\"]');\n                const programaSelect = [...document.querySelectorAll('select')].find(select =>\n                    [...select.options].some(option => option.text.trim() === TARGET_TEXT) || select.value.trim() !== \"\"\n                );\n                const btnSubscribe = document.querySelector('.btn-subscribe');\n\n                if (\n                    nombreInput &&\n                    apellidosInput &&\n                    emailInput &&\n                    telefonoInput &&\n                    programaSelect &&\n                    btnSubscribe &&\n                    !btnSubscribe.dataset.listenerAdded\n                ) {\n                    console.log(\"Formulario Clientify detectado. Registrando listener...\");\n\n                    btnSubscribe.dataset.listenerAdded = \"true\";\n\n                    btnSubscribe.addEventListener(\"click\", function () {\n                        const nombre = nombreInput.value.trim();\n                        const apellidos = apellidosInput.value.trim();\n                        const email = emailInput.value.trim();\n                        const telefono = telefonoInput.value.trim();\n                        const selectedOption = programaSelect.options[programaSelect.selectedIndex];\n                        const programa = (selectedOption?.text || programaSelect.value || \"\").trim();\n\n                        const allFilled =\n                            nombre !== \"\" &&\n                            apellidos !== \"\" &&\n                            email !== \"\" &&\n                            telefono !== \"\" &&\n                            programa !== \"\";\n\n                        if (!allFilled) {\n                            console.log(\"Faltan campos. No se dispara dataLayer.\");\n                            return;\n                        }\n\n                        const emailValido = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);\n                        if (!emailValido) {\n                            console.log(\"Email inválido. No se dispara dataLayer.\");\n                            return;\n                        }\n\n                        window.dataLayer = window.dataLayer || [];\n                        window.dataLayer.push({\n                            event: \"form_subscribe\",\n                            form_name: \"clientify_superform\",\n                            nombre: nombre,\n                            apellidos: apellidos,\n                            email: email,\n                            telefono: telefono,\n                            programa: programa\n                        });\n\n                        console.log(\"dataLayer.push enviado\");\n                    });\n\n                    observer.disconnect();\n                }\n            });\n\n            observer.observe(document.body, { childList: true, subtree: true });\n        });\n    </script>"
+  ]
 }

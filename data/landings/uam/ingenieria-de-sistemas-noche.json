@@ -3,74 +3,74 @@
   "brand": "uam",
   "template": "UamProgramLanding",
   "status": "draft",
-  "updatedAt": "2026-04-22",
+  "updatedAt": "2026-04-24",
   "title": "Ingeniería de Sistemas Noche",
   "fullTitle": "Ingeniería de Sistemas",
   "hero": {
-    "eyebrow": "Estudia en UAM",
+    "eyebrow": "Estudia en la UAM",
     "highlight": "Pregrado en",
     "title": "Ingeniería de Sistemas",
-    "description": "Conviértete en líder tecnológico y crea soluciones innovadoras para el futuro digital.",
-    "supportText": "Programa con reacreditación de alta calidad y acreditación internacional ARCU-SUR.",
+    "description": "Forma parte de los expertos que lideran la transformación digital, diseñando soluciones de software de alto impacto, gestionando infraestructuras tecnológicas y dominando la Inteligencia Artificial sin detener tu ritmo laboral.",
+    "supportText": "¡En la UAM construimos historias con pasión!",
     "modality": "Presencial",
-    "semesterPrice": "$10.144.100",
+    "semesterPrice": "$7.608.800",
     "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-12/ingenieria-sistemas.png",
     "personImage": ""
   },
   "programInfo": [
-    "Ingeniería de Sistemas",
+    "Pregrado en Ingeniería de Sistemas",
     "175 Créditos académicos",
-    "10 Semestres de duración",
+    "12 Semestres de duración",
     "SNIES 1918"
   ],
   "whyStudy": {
-    "title": "¿Por qué estudiar Ingeniería de Sistemas en la UAM?",
-    "description": "La UAM cuenta con más de 35 años formando ingenieros de sistemas exitosos. El programa integra desarrollo de software, inteligencia artificial, datos, ciberseguridad e innovación para responder a los retos del entorno digital.",
+    "title": "¿Por qué estudiar Ingeniería en Sistemas en la UAM?",
+    "description": "Transforma tu futuro con el Pregrado en Ingeniería de Sistemas en la UAM",
     "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
     "items": [
       {
-        "title": "Trayectoria y reconocimiento",
-        "content": "Programa con reacreditación de alta calidad y acreditación internacional ARCU-SUR que respalda su excelencia académica."
+        "title": "Comodidad horaria para un equilibrio laboral",
+        "content": "Nuestra jornada nocturna está diseñada para que puedas avanzar en tu formación profesional, a la vez que te permite aplicar lo aprendido en tu trabajo de forma inmediata."
       },
       {
-        "title": "Formación en tecnologías de alto impacto",
-        "content": "Desarrolla competencias en software, inteligencia artificial, arquitectura de datos, redes, sistemas embebidos y desarrollo móvil."
+        "title": "Enfoque en Inteligencia y Ciencia de Datos",
+        "content": "Aprende a desarrollar algoritmos avanzados, gestionar grandes volúmenes de datos y crear sistemas inteligentes para la toma de decisiones."
       },
       {
-        "title": "Alta proyección profesional",
-        "content": "Prepárate para desempeñarte como desarrollador, especialista en ciberseguridad, arquitecto de datos, líder tecnológico o emprendedor digital."
+        "title": "Formación práctica en entornos reales",
+        "content": "Te formamos para resolver desafíos tecnológicos actuales, diseñando arquitecturas de software robustas y seguras bajo estándares internacionales de calidad."
       },
       {
-        "title": "Participa en investigación",
-        "content": "Desde los primeros semestres podrás integrarte a semilleros y proyectos de investigación aplicada."
+        "title": "Un perfil profesional con potencial",
+        "content": "Con el respaldo de una programa acreditado internacionalmente, destacarás con tu perfil en la industria tecnológica."
       },
       {
-        "title": "Flexibilidad de jornada",
-        "content": "El programa ofrece jornada diurna y jornada extendida nocturna para adaptarse a diferentes necesidades."
+        "title": "Preparación para el desarrollo tecnológico y la transformación digital",
+        "content": "Desarrolla competencias clave en programación, análisis de datos y tecnologías emergentes, preparándote para liderar proyectos que impulsen la transformación digital en empresas y organizaciones."
       },
       {
-        "title": "Impulsa la transformación digital",
-        "content": "Aprende a formalizar procesos, estructurar información e implementar soluciones tecnológicas para organizaciones y startups."
+        "title": "Estudia en una institución con más de 45 años de experiencia",
+        "content": "Formación acreditada, reconocida y con alto prestigio en el sector educativo."
       }
     ]
   },
   "supportSection": {
-    "title": "En la UAM impulsamos tu futuro tecnológico",
+    "title": "En la UAM apoyamos tu formación",
     "videoUrl": "",
     "items": [
       {
-        "title": "Plan de estudios integral",
-        "text": "Fórmate en programación, bases de datos, algoritmos, IA, redes, sistemas operativos, software engineering, investigación y práctica empresarial.",
+        "title": "Financiación",
+        "text": "Múltiples opciones de financiamiento para que puedas estudiar sin preocupaciones.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
       },
       {
-        "title": "Experiencias internacionales",
-        "text": "Accede a semestre académico, prácticas profesionales, pasantías, misiones académicas, voluntariado internacional y cursos de inglés con descuentos.",
+        "title": "Becas",
+        "text": "Programas de becas y ayudas económicas para estudiantes destacados.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
       },
       {
-        "title": "Becas y beneficios",
-        "text": "Conoce oportunidades de apoyo como Becas Deportivas, Jóvenes + PRO, Fondo Patrimonial, Plan Estudia, Puedo Estudiar y más.",
+        "title": "Beneficios",
+        "text": "Acceso a recursos, plataformas digitales y red de profesionales.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
       }
     ]
@@ -79,24 +79,24 @@
     "title": "Algunos de los beneficios que tendrás con nosotros",
     "items": [
       {
-        "title": "Proyección profesional",
-        "text": "Podrás desempeñarte como desarrollador de software, ingeniero en IA, especialista en ciberseguridad, arquitecto de datos, líder tecnológico o emprendedor.",
+        "title": "Programa de Permanencia y Graduación",
+        "text": "Acompañamiento con diferentes servicios que facilitan el desarrollo personal y académico.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
       },
       {
-        "title": "Perfil global e innovador",
-        "text": "Fortalece competencias en competitividad internacional, innovación organizacional y transformación digital.",
+        "title": "Desarrollo de Habilidades Especializadas",
+        "text": "Formación práctica con expertos del sector.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
       },
       {
-        "title": "Becas y apoyos UAM",
-        "text": "Accede a alternativas como Becas Deportivas, Becas Jóvenes + PRO, Becas Fondo Patrimonial, Mejor Bachiller 2.0, Plan Regreso a la U, Más Ingenieras UAM y Becas UTC UAM.",
+        "title": "Networking Profesional",
+        "text": "Conexiones con profesionales y empresas líderes.",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
       }
     ]
   },
   "cta": {
-    "title": "¿Listo para construir el futuro digital?",
+    "title": "¿Listo para transformar tu futuro?",
     "button": "¡Inscríbete ahora!"
   },
   "form": {
@@ -104,5 +104,8 @@
     "programName": "Ingeniería de Sistemas",
     "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284465.js\"></script>"
   },
-  "programType": "Pregrado"
+  "programType": "Pregrado",
+  "footerScripts": [
+    "<!--dataLayer-->\n    <script>\n        document.addEventListener(\"DOMContentLoaded\", function () {\n            const observer = new MutationObserver(function () {\n                const nombreInput = document.querySelector('input[placeholder=\"Nombre*\"]');\n                const apellidosInput = document.querySelector('input[placeholder=\"Apellidos*\"]');\n                const emailInput = document.querySelector('input[placeholder=\"Email*\"]');\n                const telefonoInput = document.querySelector('input[placeholder=\"321 1234567\"]');\n                const programaSelect = [...document.querySelectorAll('select')].find(select =>\n                    [...select.options].some(option => option.text.trim() === TARGET_TEXT) || select.value.trim() !== \"\"\n                );\n                const btnSubscribe = document.querySelector('.btn-subscribe');\n\n                if (\n                    nombreInput &&\n                    apellidosInput &&\n                    emailInput &&\n                    telefonoInput &&\n                    programaSelect &&\n                    btnSubscribe &&\n                    !btnSubscribe.dataset.listenerAdded\n                ) {\n                    console.log(\"Formulario Clientify detectado. Registrando listener...\");\n\n                    btnSubscribe.dataset.listenerAdded = \"true\";\n\n                    btnSubscribe.addEventListener(\"click\", function () {\n                        const nombre = nombreInput.value.trim();\n                        const apellidos = apellidosInput.value.trim();\n                        const email = emailInput.value.trim();\n                        const telefono = telefonoInput.value.trim();\n                        const selectedOption = programaSelect.options[programaSelect.selectedIndex];\n                        const programa = (selectedOption?.text || programaSelect.value || \"\").trim();\n\n                        const allFilled =\n                            nombre !== \"\" &&\n                            apellidos !== \"\" &&\n                            email !== \"\" &&\n                            telefono !== \"\" &&\n                            programa !== \"\";\n\n                        if (!allFilled) {\n                            console.log(\"Faltan campos. No se dispara dataLayer.\");\n                            return;\n                        }\n\n                        const emailValido = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);\n                        if (!emailValido) {\n                            console.log(\"Email inválido. No se dispara dataLayer.\");\n                            return;\n                        }\n\n                        window.dataLayer = window.dataLayer || [];\n                        window.dataLayer.push({\n                            event: \"form_subscribe\",\n                            form_name: \"clientify_superform\",\n                            nombre: nombre,\n                            apellidos: apellidos,\n                            email: email,\n                            telefono: telefono,\n                            programa: programa\n                        });\n\n                        console.log(\"dataLayer.push enviado\");\n                    });\n\n                    observer.disconnect();\n                }\n            });\n\n            observer.observe(document.body, { childList: true, subtree: true });\n        });\n    </script>"
+  ]
 }
