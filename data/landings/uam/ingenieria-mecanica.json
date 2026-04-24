@@ -15,7 +15,8 @@
     "modality": "Presencial",
     "semesterPrice": "$10.144.100",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/ingeniera-mecanica-uam-pregrado.jpg",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#034592"
   },
   "programInfo": [
     "Pregrado en Ingeniería Mecánica",

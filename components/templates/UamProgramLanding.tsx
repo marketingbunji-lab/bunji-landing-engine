@@ -68,6 +68,34 @@ function getScheduleMeta(schedule?: string) {
   return null;
 }
 
+function getOverlayColorValue(color?: string) {
+  const value = color?.trim();
+
+  if (!value) return "rgba(0, 105, 163, 0.62)";
+
+  if (value.startsWith("#")) {
+    const hex = value.slice(1);
+
+    if (hex.length === 3) {
+      const red = Number.parseInt(hex[0] + hex[0], 16);
+      const green = Number.parseInt(hex[1] + hex[1], 16);
+      const blue = Number.parseInt(hex[2] + hex[2], 16);
+
+      return `rgba(${red}, ${green}, ${blue}, 0.62)`;
+    }
+
+    if (hex.length === 6) {
+      const red = Number.parseInt(hex.slice(0, 2), 16);
+      const green = Number.parseInt(hex.slice(2, 4), 16);
+      const blue = Number.parseInt(hex.slice(4, 6), 16);
+
+      return `rgba(${red}, ${green}, ${blue}, 0.62)`;
+    }
+  }
+
+  return value;
+}
+
 function ScheduleIcon({ icon }: { icon: "sun" | "moon" }) {
   if (icon === "sun") {
     return (
@@ -134,6 +162,10 @@ export default function UamProgramLanding({
   const manizalesImage =
     "https://www.autonoma.edu.co/sites/default/files/styles/webp/public/2021-11/conolauam.jpg.webp";
   const scheduleMeta = getScheduleMeta(landing?.schedule);
+  const heroOverlayColor = getOverlayColorValue(hero?.overlayColor);
+  const heroInfoOverlayColor = hero?.overlayColor?.trim()
+    ? getOverlayColorValue(hero.overlayColor).replace("0.62)", "0.7)")
+    : "rgba(15, 121, 181, 0.7)";
   const showManizalesSection =
     landing?.programType?.trim().toLowerCase() === "pregrado" &&
     hero?.modality?.trim().toLowerCase() === "presencial" &&
@@ -452,7 +484,7 @@ export default function UamProgramLanding({
       <section
         style={{
           backgroundImage: hero?.backgroundImage
-            ? `linear-gradient(90deg, rgba(0, 65, 105, 0), rgba(0, 105, 163, 0.62)), url(${hero.backgroundImage})`
+            ? `linear-gradient(90deg, ${heroOverlayColor}, rgba(0, 65, 105, 0)), url(${hero.backgroundImage})`
             : "linear-gradient(90deg, rgba(0, 65, 105, 0.92), rgba(0, 105, 163, 0.62))",
           backgroundPosition: "center",
           backgroundSize: "cover",
@@ -589,7 +621,7 @@ export default function UamProgramLanding({
                   {programInfo.length > 0 ? (
                     <div
                       style={{
-                        background: "rgba(15, 121, 181, 0.7)",
+                        background: heroInfoOverlayColor,
                         borderLeft: `4px solid ${secondaryColor}`,
                         padding: 16,
                       }}

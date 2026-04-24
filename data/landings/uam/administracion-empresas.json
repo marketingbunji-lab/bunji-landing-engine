@@ -15,7 +15,8 @@
     "modality": "100% virtual",
     "semesterPrice": "$4.896.900",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/administracion-empresas-virtual.png",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#0d1413"
   },
   "programInfo": [
     "Administrador de Empresas",

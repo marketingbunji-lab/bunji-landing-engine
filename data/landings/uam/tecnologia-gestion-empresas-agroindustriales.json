@@ -15,7 +15,8 @@
     "modality": "Virtual",
     "semesterPrice": "$2.949.500",
     "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-11/tecnologia-en-gestion-de-empresas-agroindustriales_0.png",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#c22c8e"
   },
   "programInfo": [
     "Tecnología en Gestión de Empresas Agroindustriales",

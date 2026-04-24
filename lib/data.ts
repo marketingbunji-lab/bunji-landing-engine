@@ -43,6 +43,7 @@ export type LandingHero = {
   supportText?: string;
   modality?: string;
   semesterPrice?: string;
+  overlayColor?: string;
   backgroundImage?: string;
   personImage?: string;
 };

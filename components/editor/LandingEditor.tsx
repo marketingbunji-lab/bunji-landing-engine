@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import {
+  Droplets,
   ChevronDown,
   ChevronUp,
   FileDown,
@@ -73,6 +74,7 @@ export default function LandingEditor({
   const [landing, setLanding] = useState<Landing>(initialLanding);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [analyzingColor, setAnalyzingColor] = useState(false);
   const [previewWidth, setPreviewWidth] = useState(1200);
   const [previewHeight, setPreviewHeight] = useState(820);
 
@@ -171,6 +173,56 @@ export default function LandingEditor({
       setMessage("Ocurrió un error al guardar");
     } finally {
       setSaving(false);
+    }
+  };
+
+  const analyzeHeroImageColor = async () => {
+    if (!landing.hero?.backgroundImage) {
+      setMessage("Agrega primero una URL de imagen de fondo para analizar.");
+      return;
+    }
+
+    try {
+      setAnalyzingColor(true);
+      setMessage("");
+
+      const response = await fetch("/api/analyze-image-color", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          imageUrl: landing.hero.backgroundImage,
+        }),
+      });
+
+      const result = (await response.json()) as {
+        error?: string;
+        hex?: string;
+        rgb?: { red: number; green: number; blue: number };
+        imageUrl?: string;
+        sampleSize?: { width: number; height: number };
+      };
+
+      if (!response.ok) {
+        throw new Error(result.error || "No se pudo analizar la imagen.");
+      }
+
+      if (result.hex) {
+        updateField("hero.overlayColor", result.hex);
+      }
+
+      console.log("Hero image color analysis", result);
+      setMessage(`Color analizado y aplicado al hero: ${result.hex}`);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "No se pudo analizar el color de la imagen.";
+
+      setMessage(errorMessage);
+    } finally {
+      setAnalyzingColor(false);
     }
   };
 
@@ -333,13 +385,29 @@ export default function LandingEditor({
                 label="URL imagen de fondo"
                 value={landing.hero?.backgroundImage || ""}
                 onChange={(value) => updateField("hero.backgroundImage", value)}
-                />
+              />
 
-                <Field
+              <button
+                type="button"
+                onClick={analyzeHeroImageColor}
+                disabled={analyzingColor || !landing.hero?.backgroundImage}
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <Droplets className="h-3.5 w-3.5" />
+                {analyzingColor ? "Generando overlay..." : "Generar overlay"}
+              </button>
+
+              <Field
+                label="Color overlay del hero"
+                value={landing.hero?.overlayColor || ""}
+                onChange={(value) => updateField("hero.overlayColor", value)}
+              />
+
+              <Field
                 label="URL imagen persona/modelo"
                 value={landing.hero?.personImage || ""}
                 onChange={(value) => updateField("hero.personImage", value)}
-                />
+              />
             </EditorSection>
           )}
 
