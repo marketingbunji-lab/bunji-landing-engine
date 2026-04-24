@@ -15,7 +15,8 @@
     "modality": "Presencial",
     "semesterPrice": "$5.380.000",
     "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-12/diseno-de-modas.png",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#c32c8d"
   },
   "programInfo": [
     "Diseñador de Modas",

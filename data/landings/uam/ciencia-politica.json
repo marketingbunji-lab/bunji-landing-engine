@@ -15,7 +15,8 @@
     "modality": "Presencial",
     "semesterPrice": "$10.144.100",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/ciencia-politica.jpg",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#010d05"
   },
   "programInfo": [
     "Pregrado en Ciencia Política, Gobierno y Relaciones Internacionales",

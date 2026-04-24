@@ -15,7 +15,8 @@
     "modality": "Presencial",
     "semesterPrice": "$2.104.000",
     "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-12/tecnologia-en-mecanica-industrial.png",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#462779"
   },
   "programInfo": [
     "Tecnología en Mecánica Industrial",

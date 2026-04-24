@@ -15,7 +15,8 @@
     "modality": "Presencial",
     "semesterPrice": "$5.930.000",
     "backgroundImage": "https://www.autonoma.edu.co/sites/default/files/2025-11/artes-culinarias-y-gastronomia_0.png",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#c32c8d"
   },
   "programInfo": [
     "Profesional en Artes Culinarias y Gastronomía",
