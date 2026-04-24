@@ -176,6 +176,18 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
             value={brand.logos?.dark || ""}
             onChange={(value) => updateField("logos.dark", value)}
           />
+
+          <Field
+            label="Font family"
+            value={brand.typography?.fontFamily || ""}
+            onChange={(value) => updateField("typography.fontFamily", value)}
+          />
+
+          <Field
+            label="Google Fonts URL"
+            value={brand.typography?.googleFontHref || ""}
+            onChange={(value) => updateField("typography.googleFontHref", value)}
+          />
         </div>
 
         <div className="space-y-4">

@@ -14,6 +14,7 @@ function escapeHtml(value: unknown) {
 export async function exportLandingHtml(brand: Brand, landing: Landing) {
   const title = landing.fullTitle || landing.title || "Programa";
   const brandName = brand.name || "Brand";
+  const googleFontHref = brand.typography?.googleFontHref?.trim() || "";
   const { prelude } = await prerender(
     <UamProgramLanding brand={brand} landing={landing} mode="export" />
   );
@@ -25,9 +26,13 @@ export async function exportLandingHtml(brand: Brand, landing: Landing) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(title)} | ${escapeHtml(brandName)}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  ${
+    googleFontHref
+      ? `<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="${escapeHtml(googleFontHref)}" rel="stylesheet">`
+      : ""
+  }
   <style>
     html { scroll-behavior: smooth; }
     body {

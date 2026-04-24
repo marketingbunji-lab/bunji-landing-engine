@@ -9,6 +9,10 @@ export type Brand = {
     light?: string;
     dark?: string;
   };
+  typography?: {
+    fontFamily?: string;
+    googleFontHref?: string;
+  };
   primaryColor: string;
   secondaryColor: string;
   description?: string;

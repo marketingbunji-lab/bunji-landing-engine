@@ -48,6 +48,63 @@ function getClientifySelectorScript(programName: string) {
   `;
 }
 
+function getScheduleMeta(schedule?: string) {
+  const normalized = schedule?.trim().toLowerCase() ?? "";
+
+  if (normalized === "diurna") {
+    return {
+      label: "Diurna",
+      icon: "sun" as const,
+    };
+  }
+
+  if (normalized === "nocturna") {
+    return {
+      label: "Nocturna",
+      icon: "moon" as const,
+    };
+  }
+
+  return null;
+}
+
+function ScheduleIcon({ icon }: { icon: "sun" | "moon" }) {
+  if (icon === "sun") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M21 12.79A9 9 0 1 1 11.21 3c0 5 3.79 8.79 8.79 8.79Z" />
+    </svg>
+  );
+}
+
 export default function UamProgramLanding({
   brand,
   landing,
@@ -72,8 +129,11 @@ export default function UamProgramLanding({
   const secondaryColor = brand?.secondaryColor ?? "#F8D74A";
   const logo = brand ? getBrandLogo(brand, landing?.logoMode || "dark") : "";
   const brandName = brand?.name ?? "Brand";
+  const fontFamily = brand?.typography?.fontFamily?.trim() || "Inter, Arial, sans-serif";
+  const googleFontHref = brand?.typography?.googleFontHref?.trim() || "";
   const manizalesImage =
     "https://www.autonoma.edu.co/sites/default/files/styles/webp/public/2021-11/conolauam.jpg.webp";
+  const scheduleMeta = getScheduleMeta(landing?.schedule);
   const showManizalesSection =
     landing?.programType?.trim().toLowerCase() === "pregrado" &&
     hero?.modality?.trim().toLowerCase() === "presencial" &&
@@ -85,9 +145,11 @@ export default function UamProgramLanding({
   return (
     <div
       className="uam-landing"
-      style={{ fontFamily: "Inter, Arial, sans-serif", color: "#111827", margin: 0 }}
+      style={{ fontFamily, color: "#111827", margin: 0 }}
     >
       <style>{`
+        ${googleFontHref ? `@import url("${googleFontHref}");` : ""}
+
         .uam-landing img,
         .uam-landing iframe {
           max-width: 100%;
@@ -457,13 +519,54 @@ export default function UamProgramLanding({
                 <div
                   style={{
                     marginTop: 20,
-                    borderLeft: `4px solid ${secondaryColor}`,
-                    paddingLeft: 12,
-                    color: "#fff",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 10,
                   }}
                 >
-                  <span style={{ color: secondaryColor, fontWeight: 700 }}>Modalidad</span>{" "}
-                  {hero.modality}
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      borderRadius: 999,
+                      padding: "8px 14px",
+                      fontSize: 13,
+                      fontWeight: 700,
+                      background: "rgba(255,255,255,0.12)",
+                      color: "#fff",
+                      boxShadow: `inset 0 0 0 1px ${secondaryColor}`,
+                    }}
+                  >
+                    {hero.modality}
+                  </span>
+
+                  {scheduleMeta ? (
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                        borderRadius: 999,
+                        padding: "8px 14px",
+                        fontSize: 13,
+                        fontWeight: 700,
+                        background: "rgba(255,255,255,0.12)",
+                        color: "#fff",
+                        boxShadow: `inset 0 0 0 1px ${secondaryColor}`,
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          color: secondaryColor,
+                        }}
+                      >
+                        <ScheduleIcon icon={scheduleMeta.icon} />
+                      </span>
+                      <span>{scheduleMeta.label}</span>
+                    </span>
+                  ) : null}
                 </div>
               ) : null}
 

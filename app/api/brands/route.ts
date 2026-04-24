@@ -45,6 +45,10 @@ export async function POST(req: NextRequest) {
         light: body.logos?.light || "",
         dark: body.logos?.dark || "",
       },
+      typography: {
+        fontFamily: body.typography?.fontFamily || "",
+        googleFontHref: body.typography?.googleFontHref || "",
+      },
       primaryColor: body.primaryColor || "#111827",
       secondaryColor: body.secondaryColor || "#F8D74A",
       description: body.description || "",

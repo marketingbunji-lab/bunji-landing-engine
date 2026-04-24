@@ -34,6 +34,10 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
         light: body.logos?.light || "",
         dark: body.logos?.dark || "",
       },
+      typography: {
+        fontFamily: body.typography?.fontFamily || "",
+        googleFontHref: body.typography?.googleFontHref || "",
+      },
       primaryColor: body.primaryColor || "#111827",
       secondaryColor: body.secondaryColor || "#F8D74A",
       description: body.description || "",
