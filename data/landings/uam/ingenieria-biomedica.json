@@ -15,7 +15,8 @@
     "modality": "Presencial",
     "semesterPrice": "$10.144.100",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/ingenieria-biomedica-pregrado-presencial-uam.jpg",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#090608"
   },
   "programInfo": [
     "Pregrado en Ingeniería Biomédica",

@@ -15,7 +15,8 @@
     "modality": "Presencial",
     "semesterPrice": "$13.888.800",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/odontologia-uam-pregrado-diurno.jpg",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#758795"
   },
   "programInfo": [
     "Pregrado en Odontología",
