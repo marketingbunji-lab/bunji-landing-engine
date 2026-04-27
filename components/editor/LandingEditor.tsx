@@ -13,7 +13,7 @@ import {
   Trash2,
 } from "lucide-react";
 import type { AccordionItem, Brand, IconTextItem, Landing } from "@/lib/data";
-import UamProgramLanding from "../templates/UamProgramLanding";
+import { renderLandingTemplate } from "../templates/renderLandingTemplate";
 import ExportHtmlButton from "../export/ExportHtmlButton";
 
 type Props = {
@@ -98,7 +98,7 @@ export default function LandingEditor({
     arrayPath: string,
     index: number,
     field: string,
-    value: string
+    value: string,
   ) => {
     setLanding((prev) => {
       const next = structuredClone(prev) as EditableLanding;
@@ -121,10 +121,17 @@ export default function LandingEditor({
     });
   };
 
-  const updateTextArrayItem = (arrayPath: string, index: number, value: string) => {
+  const updateTextArrayItem = (
+    arrayPath: string,
+    index: number,
+    value: string,
+  ) => {
     setLanding((prev) => {
       const next = structuredClone(prev) as EditableLanding;
-      const current = getArrayAtPath(next, arrayPath) as unknown as EditableTextArray;
+      const current = getArrayAtPath(
+        next,
+        arrayPath,
+      ) as unknown as EditableTextArray;
 
       current[index] = value;
       return next;
@@ -134,7 +141,10 @@ export default function LandingEditor({
   const addTextArrayItem = (arrayPath: string, value = "") => {
     setLanding((prev) => {
       const next = structuredClone(prev) as EditableLanding;
-      const current = getArrayAtPath(next, arrayPath) as unknown as EditableTextArray;
+      const current = getArrayAtPath(
+        next,
+        arrayPath,
+      ) as unknown as EditableTextArray;
 
       current.push(value);
       return next;
@@ -156,13 +166,16 @@ export default function LandingEditor({
       setSaving(true);
       setMessage("");
 
-      const res = await fetch(`/api/landings/${landing.brand}/${landing.slug}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `/api/landings/${landing.brand}/${landing.slug}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(landing),
         },
-        body: JSON.stringify(landing),
-      });
+      );
 
       if (!res.ok) {
         throw new Error("No se pudo guardar la landing");
@@ -230,7 +243,9 @@ export default function LandingEditor({
     <div className="grid gap-6 xl:grid-cols-[380px_minmax(0,1fr)]">
       <div className="flex h-[calc(100vh-8rem)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm xl:sticky xl:top-6">
         <div className="border-b border-gray-200 p-6">
-          <h2 className="text-xl font-semibold text-gray-900">Editar landing</h2>
+          <h2 className="text-xl font-semibold text-gray-900">
+            Editar landing
+          </h2>
           <p className="mt-1 text-sm text-gray-500">
             Edita solo los contenidos visibles en la landing.
           </p>
@@ -238,255 +253,563 @@ export default function LandingEditor({
 
         <div className="min-h-0 flex-1 overflow-y-auto p-4">
           <div className="space-y-3">
-          <EditorSection title="Logo" defaultOpen>
-            <div>
-              <span className="mb-2 block text-sm font-semibold text-gray-900">
-                Versión del logo
-              </span>
-              <div className="inline-flex rounded-xl border border-gray-300 bg-gray-100 p-1">
-                {(["light", "dark"] as const).map((mode) => {
-                  const isSelected = (landing.logoMode || "dark") === mode;
+            <EditorSection title="Logo" defaultOpen>
+              <div>
+                <span className="mb-2 block text-sm font-semibold text-gray-900">
+                  Versión del logo
+                </span>
+                <div className="inline-flex rounded-xl border border-gray-300 bg-gray-100 p-1">
+                  {(["light", "dark"] as const).map((mode) => {
+                    const isSelected = (landing.logoMode || "dark") === mode;
 
-                  return (
-                    <button
-                      key={mode}
-                      type="button"
-                      onClick={() => updateField("logoMode", mode)}
-                      className={`rounded-lg px-4 py-2 text-sm font-medium ${
-                        isSelected
-                          ? "bg-white text-gray-950 shadow-sm"
-                          : "text-gray-600 hover:text-gray-950"
-                      }`}
-                    >
-                      {mode === "light" ? "Light" : "Dark"}
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={mode}
+                        type="button"
+                        onClick={() => updateField("logoMode", mode)}
+                        className={`rounded-lg px-4 py-2 text-sm font-medium ${
+                          isSelected
+                            ? "bg-white text-gray-950 shadow-sm"
+                            : "text-gray-600 hover:text-gray-950"
+                        }`}
+                      >
+                        {mode === "light" ? "Light" : "Dark"}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          </EditorSection>
+            </EditorSection>
 
-          {(landing.hero || landing.title || landing.fullTitle) && (
-            <EditorSection title="Hero" defaultOpen>
-              <Field
-                label="Título corto"
-                value={landing.title || ""}
-                onChange={(value) => updateField("title", value)}
-              />
+            {(landing.hero || landing.title || landing.fullTitle) && (
+              <EditorSection title="Hero" defaultOpen>
+                <Field
+                  label="Título corto"
+                  value={landing.title || ""}
+                  onChange={(value) => updateField("title", value)}
+                />
 
-              <Field
-                label="Título completo"
-                value={landing.fullTitle || ""}
-                onChange={(value) => updateField("fullTitle", value)}
-              />
+                <Field
+                  label="Título completo"
+                  value={landing.fullTitle || ""}
+                  onChange={(value) => updateField("fullTitle", value)}
+                />
 
-              <Field
-                label="Texto superior"
-                value={landing.hero?.eyebrow || ""}
-                onChange={(value) => updateField("hero.eyebrow", value)}
-              />
+                <Field
+                  label="Texto superior"
+                  value={landing.hero?.eyebrow || ""}
+                  onChange={(value) => updateField("hero.eyebrow", value)}
+                />
 
-              <Field
-                label="Texto resaltado"
-                value={landing.hero?.highlight || ""}
-                onChange={(value) => updateField("hero.highlight", value)}
-              />
+                <Field
+                  label="Texto resaltado"
+                  value={landing.hero?.highlight || ""}
+                  onChange={(value) => updateField("hero.highlight", value)}
+                />
 
-              <Field
-                label="Título principal"
-                value={landing.hero?.title || ""}
-                onChange={(value) => updateField("hero.title", value)}
-              />
+                <Field
+                  label="Título principal"
+                  value={landing.hero?.title || ""}
+                  onChange={(value) => updateField("hero.title", value)}
+                />
 
-              <Field
-                label="Descripción"
-                value={landing.hero?.description || ""}
-                onChange={(value) => updateField("hero.description", value)}
-              />
+                <Field
+                  label="Descripción"
+                  value={landing.hero?.description || ""}
+                  onChange={(value) => updateField("hero.description", value)}
+                />
 
-              <Field
-                label="Texto de apoyo"
-                value={landing.hero?.supportText || ""}
-                onChange={(value) => updateField("hero.supportText", value)}
-              />
+                <Field
+                  label="Texto de apoyo"
+                  value={landing.hero?.supportText || ""}
+                  onChange={(value) => updateField("hero.supportText", value)}
+                />
 
-              <Field
-                label="Modalidad"
-                value={landing.hero?.modality || ""}
-                onChange={(value) => updateField("hero.modality", value)}
-              />
+                <Field
+                  label="Modalidad"
+                  value={landing.hero?.modality || ""}
+                  onChange={(value) => updateField("hero.modality", value)}
+                />
 
-              <SelectField
-                label="Jornada"
-                value={landing.schedule || ""}
-                onChange={(value) => updateField("schedule", value)}
-                options={[
-                  { value: "", label: "Seleccionar jornada" },
-                  { value: "diurna", label: "Diurna" },
-                  { value: "nocturna", label: "Nocturna" },
-                  { value: "flexible", label: "Flexible" },
-                ]}
-              />
+                <SelectField
+                  label="Jornada"
+                  value={landing.schedule || ""}
+                  onChange={(value) => updateField("schedule", value)}
+                  options={[
+                    { value: "", label: "Seleccionar jornada" },
+                    { value: "diurna", label: "Diurna" },
+                    { value: "nocturna", label: "Nocturna" },
+                    { value: "flexible", label: "Flexible" },
+                  ]}
+                />
 
-              <Field
-                label="Valor semestre"
-                value={landing.hero?.semesterPrice || ""}
-                onChange={(value) => updateField("hero.semesterPrice", value)}
-              />
+                <Field
+                  label="Valor semestre"
+                  value={landing.hero?.semesterPrice || ""}
+                  onChange={(value) => updateField("hero.semesterPrice", value)}
+                />
 
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-semibold text-gray-900">
-                    Información general
-                  </h4>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-semibold text-gray-900">
+                      Información general
+                    </h4>
 
-                  <button
-                    type="button"
-                    onClick={() => addTextArrayItem("programInfo", "Nuevo dato")}
-                    className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
-                  >
-                    <Plus className="h-3.5 w-3.5" />
-                    Agregar dato
-                  </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        addTextArrayItem("programInfo", "Nuevo dato")
+                      }
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      Agregar dato
+                    </button>
+                  </div>
+
+                  {(landing.programInfo || []).map((item: string, index) => (
+                    <div
+                      key={index}
+                      className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                    >
+                      <div className="mb-3 flex items-center justify-between">
+                        <p className="text-sm font-semibold text-gray-900">
+                          Dato {index + 1}
+                        </p>
+
+                        <button
+                          type="button"
+                          onClick={() => removeArrayItem("programInfo", index)}
+                          className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
+                        >
+                          <Trash2 className="h-3.5 w-3.5" />
+                          Eliminar
+                        </button>
+                      </div>
+
+                      <Field
+                        label="Texto"
+                        value={item || ""}
+                        onChange={(value) =>
+                          updateTextArrayItem("programInfo", index, value)
+                        }
+                      />
+                    </div>
+                  ))}
                 </div>
 
-                {(landing.programInfo || []).map((item: string, index) => (
-                  <div
-                    key={index}
-                    className="rounded-xl border border-gray-200 bg-gray-50 p-4"
-                  >
-                    <div className="mb-3 flex items-center justify-between">
-                      <p className="text-sm font-semibold text-gray-900">
-                        Dato {index + 1}
-                      </p>
+                <Field
+                  label="URL imagen de fondo"
+                  value={landing.hero?.backgroundImage || ""}
+                  onChange={(value) =>
+                    updateField("hero.backgroundImage", value)
+                  }
+                />
 
-                      <button
-                        type="button"
-                        onClick={() => removeArrayItem("programInfo", index)}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
-                      >
-                        <Trash2 className="h-3.5 w-3.5" />
-                        Eliminar
-                      </button>
-                    </div>
+                <button
+                  type="button"
+                  onClick={analyzeHeroImageColor}
+                  disabled={analyzingColor || !landing.hero?.backgroundImage}
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <Droplets className="h-3.5 w-3.5" />
+                  {analyzingColor ? "Generando overlay..." : "Generar overlay"}
+                </button>
 
-                    <Field
-                      label="Texto"
-                      value={item || ""}
-                      onChange={(value) =>
-                        updateTextArrayItem("programInfo", index, value)
+                <Field
+                  label="Color overlay del hero"
+                  value={landing.hero?.overlayColor || ""}
+                  onChange={(value) => updateField("hero.overlayColor", value)}
+                />
+
+                <Field
+                  label="URL imagen persona/modelo"
+                  value={landing.hero?.personImage || ""}
+                  onChange={(value) => updateField("hero.personImage", value)}
+                />
+              </EditorSection>
+            )}
+
+            {landing.form && (
+              <EditorSection title="Formulario">
+                <Field
+                  label="Script URL"
+                  value={landing.form?.scriptUrl || ""}
+                  onChange={(value) => updateField("form.scriptUrl", value)}
+                />
+
+                <TextareaField
+                  label="Código del script del formulario"
+                  value={landing.form?.scriptCode || ""}
+                  onChange={(value) => updateField("form.scriptCode", value)}
+                />
+
+                <Field
+                  label="Nombre del programa"
+                  value={landing.form?.programName || ""}
+                  onChange={(value) => updateField("form.programName", value)}
+                />
+              </EditorSection>
+            )}
+
+            {landing.whyStudy && (
+              <EditorSection title="Sección: ¿Por qué estudiar?">
+                <Field
+                  label="Título de sección"
+                  value={landing.whyStudy?.title || ""}
+                  onChange={(value) => updateField("whyStudy.title", value)}
+                />
+
+                <TextareaField
+                  label="Descripción"
+                  value={landing.whyStudy?.description || ""}
+                  onChange={(value) =>
+                    updateField("whyStudy.description", value)
+                  }
+                />
+
+                <Field
+                  label="URL imagen de apoyo"
+                  value={landing.whyStudy?.image || ""}
+                  onChange={(value) => updateField("whyStudy.image", value)}
+                />
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-semibold text-gray-900">
+                      Items de la sección
+                    </h4>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        addArrayItem("whyStudy.items", {
+                          title: "Nuevo título",
+                          content: "Nuevo contenido",
+                        })
                       }
-                    />
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      Agregar item
+                    </button>
                   </div>
-                ))}
-              </div>
 
-              <Field
-                label="URL imagen de fondo"
-                value={landing.hero?.backgroundImage || ""}
-                onChange={(value) => updateField("hero.backgroundImage", value)}
-              />
+                  {(landing.whyStudy?.items || []).map(
+                    (item: AccordionItem, index) => (
+                      <div
+                        key={index}
+                        className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                      >
+                        <div className="mb-3 flex items-center justify-between">
+                          <p className="text-sm font-semibold text-gray-900">
+                            Item {index + 1}
+                          </p>
 
-              <button
-                type="button"
-                onClick={analyzeHeroImageColor}
-                disabled={analyzingColor || !landing.hero?.backgroundImage}
-                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                <Droplets className="h-3.5 w-3.5" />
-                {analyzingColor ? "Generando overlay..." : "Generar overlay"}
-              </button>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              removeArrayItem("whyStudy.items", index)
+                            }
+                            className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                            Eliminar
+                          </button>
+                        </div>
 
-              <Field
-                label="Color overlay del hero"
-                value={landing.hero?.overlayColor || ""}
-                onChange={(value) => updateField("hero.overlayColor", value)}
-              />
+                        <div className="space-y-3">
+                          <Field
+                            label="Título"
+                            value={item?.title || ""}
+                            onChange={(value) =>
+                              updateArrayItem(
+                                "whyStudy.items",
+                                index,
+                                "title",
+                                value,
+                              )
+                            }
+                          />
 
-              <Field
-                label="URL imagen persona/modelo"
-                value={landing.hero?.personImage || ""}
-                onChange={(value) => updateField("hero.personImage", value)}
-              />
-            </EditorSection>
-          )}
+                          <TextareaField
+                            label="Contenido"
+                            value={item?.content || ""}
+                            onChange={(value) =>
+                              updateArrayItem(
+                                "whyStudy.items",
+                                index,
+                                "content",
+                                value,
+                              )
+                            }
+                          />
+                        </div>
+                      </div>
+                    ),
+                  )}
+                </div>
+              </EditorSection>
+            )}
 
-          {landing.form && (
-            <EditorSection title="Formulario">
-              <Field
-                label="Script URL"
-                value={landing.form?.scriptUrl || ""}
-                onChange={(value) => updateField("form.scriptUrl", value)}
-              />
+            {landing.supportSection && (
+              <EditorSection title="Sección: Apoyamos tu carrera">
+                <Field
+                  label="Título de sección"
+                  value={landing.supportSection?.title || ""}
+                  onChange={(value) =>
+                    updateField("supportSection.title", value)
+                  }
+                />
 
-              <TextareaField
-                label="Código del script del formulario"
-                value={landing.form?.scriptCode || ""}
-                onChange={(value) => updateField("form.scriptCode", value)}
-              />
+                <Field
+                  label="URL del video"
+                  value={landing.supportSection?.videoUrl || ""}
+                  onChange={(value) =>
+                    updateField("supportSection.videoUrl", value)
+                  }
+                />
 
-              <Field
-                label="Nombre del programa"
-                value={landing.form?.programName || ""}
-                onChange={(value) => updateField("form.programName", value)}
-              />
-            </EditorSection>
-          )}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-semibold text-gray-900">
+                      Cards de apoyo
+                    </h4>
 
-          {landing.whyStudy && (
-            <EditorSection title="Sección: ¿Por qué estudiar?">
-              <Field
-                label="Título de sección"
-                value={landing.whyStudy?.title || ""}
-                onChange={(value) => updateField("whyStudy.title", value)}
-              />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        addArrayItem("supportSection.items", {
+                          title: "Nuevo título",
+                          text: "Nuevo contenido",
+                          icon: "",
+                        })
+                      }
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      Agregar item
+                    </button>
+                  </div>
 
-              <TextareaField
-                label="Descripción"
-                value={landing.whyStudy?.description || ""}
-                onChange={(value) => updateField("whyStudy.description", value)}
-              />
+                  {(landing.supportSection?.items || []).map(
+                    (item: IconTextItem, index) => (
+                      <div
+                        key={index}
+                        className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                      >
+                        <div className="mb-3 flex items-center justify-between">
+                          <p className="text-sm font-semibold text-gray-900">
+                            Card {index + 1}
+                          </p>
 
-              <Field
-                label="URL imagen de apoyo"
-                value={landing.whyStudy?.image || ""}
-                onChange={(value) => updateField("whyStudy.image", value)}
-              />
+                          <button
+                            type="button"
+                            onClick={() =>
+                              removeArrayItem("supportSection.items", index)
+                            }
+                            className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                            Eliminar
+                          </button>
+                        </div>
 
+                        <div className="space-y-3">
+                          <Field
+                            label="Título"
+                            value={item?.title || ""}
+                            onChange={(value) =>
+                              updateArrayItem(
+                                "supportSection.items",
+                                index,
+                                "title",
+                                value,
+                              )
+                            }
+                          />
+
+                          <TextareaField
+                            label="Contenido"
+                            value={item?.text || ""}
+                            onChange={(value) =>
+                              updateArrayItem(
+                                "supportSection.items",
+                                index,
+                                "text",
+                                value,
+                              )
+                            }
+                          />
+
+                          <Field
+                            label="URL icono"
+                            value={item?.icon || ""}
+                            onChange={(value) =>
+                              updateArrayItem(
+                                "supportSection.items",
+                                index,
+                                "icon",
+                                value,
+                              )
+                            }
+                          />
+                        </div>
+                      </div>
+                    ),
+                  )}
+                </div>
+              </EditorSection>
+            )}
+
+            {landing.benefits && (
+              <EditorSection title="Sección: Beneficios">
+                <Field
+                  label="Título de sección"
+                  value={landing.benefits?.title || ""}
+                  onChange={(value) => updateField("benefits.title", value)}
+                />
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-semibold text-gray-900">
+                      Items de beneficios
+                    </h4>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        addArrayItem("benefits.items", {
+                          title: "Nuevo beneficio",
+                          text: "Nuevo contenido",
+                          icon: "",
+                        })
+                      }
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      Agregar item
+                    </button>
+                  </div>
+
+                  {(landing.benefits?.items || []).map(
+                    (item: IconTextItem, index) => (
+                      <div
+                        key={index}
+                        className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                      >
+                        <div className="mb-3 flex items-center justify-between">
+                          <p className="text-sm font-semibold text-gray-900">
+                            Beneficio {index + 1}
+                          </p>
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              removeArrayItem("benefits.items", index)
+                            }
+                            className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                            Eliminar
+                          </button>
+                        </div>
+
+                        <div className="space-y-3">
+                          <Field
+                            label="Título"
+                            value={item?.title || ""}
+                            onChange={(value) =>
+                              updateArrayItem(
+                                "benefits.items",
+                                index,
+                                "title",
+                                value,
+                              )
+                            }
+                          />
+
+                          <TextareaField
+                            label="Contenido"
+                            value={item?.text || ""}
+                            onChange={(value) =>
+                              updateArrayItem(
+                                "benefits.items",
+                                index,
+                                "text",
+                                value,
+                              )
+                            }
+                          />
+
+                          <Field
+                            label="URL icono"
+                            value={item?.icon || ""}
+                            onChange={(value) =>
+                              updateArrayItem(
+                                "benefits.items",
+                                index,
+                                "icon",
+                                value,
+                              )
+                            }
+                          />
+                        </div>
+                      </div>
+                    ),
+                  )}
+                </div>
+              </EditorSection>
+            )}
+
+            {landing.cta && (
+              <EditorSection title="CTA final">
+                <Field
+                  label="Título CTA"
+                  value={landing.cta?.title || ""}
+                  onChange={(value) => updateField("cta.title", value)}
+                />
+
+                <Field
+                  label="Texto del botón"
+                  value={landing.cta?.button || ""}
+                  onChange={(value) => updateField("cta.button", value)}
+                />
+              </EditorSection>
+            )}
+
+            <EditorSection title="Scripts finales">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h4 className="text-sm font-semibold text-gray-900">
-                    Items de la sección
+                    Scripts al final de la landing
                   </h4>
 
                   <button
                     type="button"
                     onClick={() =>
-                      addArrayItem("whyStudy.items", {
-                        title: "Nuevo título",
-                        content: "Nuevo contenido",
-                      })
+                      addTextArrayItem("footerScripts", "<script>\n</script>")
                     }
                     className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
                   >
                     <Plus className="h-3.5 w-3.5" />
-                    Agregar item
+                    Agregar script
                   </button>
                 </div>
 
-                {(landing.whyStudy?.items || []).map((item: AccordionItem, index) => (
+                {(landing.footerScripts || []).map((script: string, index) => (
                   <div
                     key={index}
                     className="rounded-xl border border-gray-200 bg-gray-50 p-4"
                   >
                     <div className="mb-3 flex items-center justify-between">
                       <p className="text-sm font-semibold text-gray-900">
-                        Item {index + 1}
+                        Script {index + 1}
                       </p>
 
                       <button
                         type="button"
-                        onClick={() => removeArrayItem("whyStudy.items", index)}
+                        onClick={() => removeArrayItem("footerScripts", index)}
                         className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
@@ -494,264 +817,17 @@ export default function LandingEditor({
                       </button>
                     </div>
 
-                    <div className="space-y-3">
-                      <Field
-                        label="Título"
-                        value={item?.title || ""}
-                        onChange={(value) =>
-                          updateArrayItem("whyStudy.items", index, "title", value)
-                        }
-                      />
-
-                      <TextareaField
-                        label="Contenido"
-                        value={item?.content || ""}
-                        onChange={(value) =>
-                          updateArrayItem("whyStudy.items", index, "content", value)
-                        }
-                      />
-                    </div>
+                    <TextareaField
+                      label="Código"
+                      value={script || ""}
+                      onChange={(value) =>
+                        updateTextArrayItem("footerScripts", index, value)
+                      }
+                    />
                   </div>
                 ))}
               </div>
             </EditorSection>
-          )}
-
-          {landing.supportSection && (
-  <EditorSection title="Sección: Apoyamos tu carrera">
-    <Field
-      label="Título de sección"
-      value={landing.supportSection?.title || ""}
-      onChange={(value) => updateField("supportSection.title", value)}
-    />
-
-    <Field
-      label="URL del video"
-      value={landing.supportSection?.videoUrl || ""}
-      onChange={(value) => updateField("supportSection.videoUrl", value)}
-    />
-
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h4 className="text-sm font-semibold text-gray-900">
-          Cards de apoyo
-        </h4>
-
-        <button
-          type="button"
-          onClick={() =>
-            addArrayItem("supportSection.items", {
-              title: "Nuevo título",
-              text: "Nuevo contenido",
-              icon: "",
-            })
-          }
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
-        >
-          <Plus className="h-3.5 w-3.5" />
-          Agregar item
-        </button>
-      </div>
-
-      {(landing.supportSection?.items || []).map((item: IconTextItem, index) => (
-        <div
-                    key={index}
-                    className="rounded-xl border border-gray-200 bg-gray-50 p-4"
-                    >
-                    <div className="mb-3 flex items-center justify-between">
-                        <p className="text-sm font-semibold text-gray-900">
-                        Card {index + 1}
-                        </p>
-
-                        <button
-                        type="button"
-                        onClick={() => removeArrayItem("supportSection.items", index)}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
-                        >
-                        <Trash2 className="h-3.5 w-3.5" />
-                        Eliminar
-                        </button>
-                    </div>
-
-                    <div className="space-y-3">
-                        <Field
-                        label="Título"
-                        value={item?.title || ""}
-                        onChange={(value) =>
-                            updateArrayItem("supportSection.items", index, "title", value)
-                        }
-                        />
-
-                        <TextareaField
-                        label="Contenido"
-                        value={item?.text || ""}
-                        onChange={(value) =>
-                            updateArrayItem("supportSection.items", index, "text", value)
-                        }
-                        />
-
-                        <Field
-                        label="URL icono"
-                        value={item?.icon || ""}
-                        onChange={(value) =>
-                            updateArrayItem("supportSection.items", index, "icon", value)
-                        }
-                        />
-                    </div>
-                    </div>
-                ))}
-                </div>
-            </EditorSection>
-            )}
-
-          {landing.benefits && (
-  <EditorSection title="Sección: Beneficios">
-    <Field
-      label="Título de sección"
-      value={landing.benefits?.title || ""}
-      onChange={(value) => updateField("benefits.title", value)}
-    />
-
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h4 className="text-sm font-semibold text-gray-900">
-          Items de beneficios
-        </h4>
-
-        <button
-          type="button"
-          onClick={() =>
-            addArrayItem("benefits.items", {
-              title: "Nuevo beneficio",
-              text: "Nuevo contenido",
-              icon: "",
-            })
-          }
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
-        >
-          <Plus className="h-3.5 w-3.5" />
-          Agregar item
-        </button>
-      </div>
-
-      {(landing.benefits?.items || []).map((item: IconTextItem, index) => (
-                    <div
-                    key={index}
-                    className="rounded-xl border border-gray-200 bg-gray-50 p-4"
-                    >
-                    <div className="mb-3 flex items-center justify-between">
-                        <p className="text-sm font-semibold text-gray-900">
-                        Beneficio {index + 1}
-                        </p>
-
-                        <button
-                        type="button"
-                        onClick={() => removeArrayItem("benefits.items", index)}
-                        className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
-                        >
-                        <Trash2 className="h-3.5 w-3.5" />
-                        Eliminar
-                        </button>
-                    </div>
-
-                    <div className="space-y-3">
-                        <Field
-                        label="Título"
-                        value={item?.title || ""}
-                        onChange={(value) =>
-                            updateArrayItem("benefits.items", index, "title", value)
-                        }
-                        />
-
-                        <TextareaField
-                        label="Contenido"
-                        value={item?.text || ""}
-                        onChange={(value) =>
-                            updateArrayItem("benefits.items", index, "text", value)
-                        }
-                        />
-
-                        <Field
-                        label="URL icono"
-                        value={item?.icon || ""}
-                        onChange={(value) =>
-                            updateArrayItem("benefits.items", index, "icon", value)
-                        }
-                        />
-                    </div>
-                    </div>
-                ))}
-                </div>
-            </EditorSection>
-            )}
-
-          {landing.cta && (
-            <EditorSection title="CTA final">
-              <Field
-                label="Título CTA"
-                value={landing.cta?.title || ""}
-                onChange={(value) => updateField("cta.title", value)}
-              />
-
-              <Field
-                label="Texto del botón"
-                value={landing.cta?.button || ""}
-                onChange={(value) => updateField("cta.button", value)}
-              />
-            </EditorSection>
-          )}
-
-          <EditorSection title="Scripts finales">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h4 className="text-sm font-semibold text-gray-900">
-                  Scripts al final de la landing
-                </h4>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    addTextArrayItem("footerScripts", "<script>\n</script>")
-                  }
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
-                >
-                  <Plus className="h-3.5 w-3.5" />
-                  Agregar script
-                </button>
-              </div>
-
-              {(landing.footerScripts || []).map((script: string, index) => (
-                <div
-                  key={index}
-                  className="rounded-xl border border-gray-200 bg-gray-50 p-4"
-                >
-                  <div className="mb-3 flex items-center justify-between">
-                    <p className="text-sm font-semibold text-gray-900">
-                      Script {index + 1}
-                    </p>
-
-                    <button
-                      type="button"
-                      onClick={() => removeArrayItem("footerScripts", index)}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
-                    >
-                      <Trash2 className="h-3.5 w-3.5" />
-                      Eliminar
-                    </button>
-                  </div>
-
-                  <TextareaField
-                    label="Código"
-                    value={script || ""}
-                    onChange={(value) =>
-                      updateTextArrayItem("footerScripts", index, value)
-                    }
-                  />
-                </div>
-              ))}
-            </div>
-          </EditorSection>
-
           </div>
         </div>
 
@@ -840,9 +916,7 @@ export default function LandingEditor({
               maxWidth: "100%",
             }}
           >
-            {landing.template === "UamProgramLanding" && (
-              <UamProgramLanding brand={brand} landing={landing} />
-            )}
+            {renderLandingTemplate({ brand, landing })}
           </div>
         </div>
       </div>
@@ -911,7 +985,11 @@ function EditorSection({
           {title}
         </span>
         <span className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 text-sm text-gray-600">
-          {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          {isOpen ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          )}
         </span>
       </button>
 

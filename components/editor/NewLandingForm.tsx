@@ -13,7 +13,7 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
 
   const [title, setTitle] = useState("");
   const [fullTitle, setFullTitle] = useState("");
-  const [template, setTemplate] = useState("UamProgramLanding");
+  const [template, setTemplate] = useState("DefaultLanding");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -25,13 +25,13 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
       const res = await fetch(`/api/landings/${brandSlug}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title,
           fullTitle,
-          template
-        })
+          template,
+        }),
       });
 
       const data = await res.json();
@@ -79,9 +79,10 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
           </span>
           <select
             value={template}
-            onChange={(e) => setTemplate(e.target.value)}
+            onChange={(event) => setTemplate(event.target.value)}
             className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black"
           >
+            <option value="DefaultLanding">DefaultLanding</option>
             <option value="UamProgramLanding">UamProgramLanding</option>
           </select>
         </label>
@@ -89,6 +90,7 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
 
       <div className="mt-6 flex items-center gap-3">
         <button
+          type="button"
           onClick={handleCreate}
           disabled={saving}
           className="rounded-xl bg-black px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
@@ -96,9 +98,7 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
           {saving ? "Creando..." : "Crear landing"}
         </button>
 
-        {message ? (
-          <p className="text-sm text-red-600">{message}</p>
-        ) : null}
+        {message ? <p className="text-sm text-red-600">{message}</p> : null}
       </div>
     </div>
   );
@@ -108,7 +108,7 @@ function Field({
   label,
   placeholder,
   value,
-  onChange
+  onChange,
 }: {
   label: string;
   placeholder?: string;
@@ -123,7 +123,7 @@ function Field({
       <input
         value={value}
         placeholder={placeholder}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(event) => onChange(event.target.value)}
         className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black"
       />
     </label>

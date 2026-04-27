@@ -53,7 +53,11 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
     });
   };
 
-  const updateLegalLink = (index: number, field: keyof LegalLink, value: string) => {
+  const updateLegalLink = (
+    index: number,
+    field: keyof LegalLink,
+    value: string,
+  ) => {
     setBrand((prev) => {
       const next = structuredClone(prev) as EditableBrand;
 
@@ -81,7 +85,9 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
   const removeLegalLink = (index: number) => {
     setBrand((prev) => {
       const next = structuredClone(prev) as EditableBrand;
-      next.legalLinks = (next.legalLinks ?? []).filter((_, itemIndex) => itemIndex !== index);
+      next.legalLinks = (next.legalLinks ?? []).filter(
+        (_, itemIndex) => itemIndex !== index,
+      );
       return next;
     });
   };
@@ -91,7 +97,8 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
       setSaving(true);
       setMessage("");
 
-      const endpoint = mode === "create" ? "/api/brands" : `/api/brands/${initialBrand.slug}`;
+      const endpoint =
+        mode === "create" ? "/api/brands" : `/api/brands/${initialBrand.slug}`;
       const method = mode === "create" ? "POST" : "PUT";
 
       const response = await fetch(endpoint, {
@@ -116,7 +123,7 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
       setMessage("Cambios guardados correctamente");
       router.refresh();
     } catch (error: unknown) {
-      setMessage(error instanceof Error ? error.message : "OcurriÃ³ un error");
+      setMessage(error instanceof Error ? error.message : "Ocurrió un error");
     } finally {
       setSaving(false);
     }
@@ -134,7 +141,7 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
         <p className="mt-2 text-gray-600">
           {mode === "create"
             ? "Configura una marca nueva para empezar a crear landings."
-            : "Actualiza la informaciÃ³n general, logos y links legales de la marca."}
+            : "Actualiza la información general, logos y links legales de la marca."}
         </p>
       </div>
 
@@ -154,7 +161,7 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
           />
 
           <Field
-            label="DescripciÃ³n"
+            label="Descripción"
             value={brand.description || ""}
             onChange={(value) => updateField("description", value)}
           />
@@ -186,7 +193,9 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
           <Field
             label="Google Fonts URL"
             value={brand.typography?.googleFontHref || ""}
-            onChange={(value) => updateField("typography.googleFontHref", value)}
+            onChange={(value) =>
+              updateField("typography.googleFontHref", value)
+            }
           />
         </div>
 
@@ -208,7 +217,9 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
           <div className="space-y-4 rounded-2xl border border-gray-200 bg-gray-50 p-4">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-gray-900">Links legales</h2>
+                <h2 className="text-sm font-semibold text-gray-900">
+                  Links legales
+                </h2>
                 <p className="text-sm text-gray-500">
                   Estos links se muestran en el footer de las landings.
                 </p>
@@ -226,7 +237,7 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
 
             {(brand.legalLinks ?? []).length === 0 ? (
               <div className="rounded-xl border border-dashed border-gray-300 bg-white p-4 text-sm text-gray-500">
-                Esta marca todavÃ­a no tiene links legales configurados.
+                Esta marca todavía no tiene links legales configurados.
               </div>
             ) : null}
 
@@ -236,7 +247,9 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
                 className="rounded-xl border border-gray-200 bg-white p-4"
               >
                 <div className="mb-3 flex items-center justify-between">
-                  <p className="text-sm font-semibold text-gray-900">Link {index + 1}</p>
+                  <p className="text-sm font-semibold text-gray-900">
+                    Link {index + 1}
+                  </p>
 
                   <button
                     type="button"
@@ -302,7 +315,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-medium text-gray-700">{label}</span>
+      <span className="mb-1 block text-sm font-medium text-gray-700">
+        {label}
+      </span>
       <input
         value={value}
         disabled={disabled}
