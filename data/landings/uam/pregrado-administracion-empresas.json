@@ -3,74 +3,75 @@
   "brand": "uam",
   "template": "UamProgramLanding",
   "status": "draft",
-  "updatedAt": "2026-04-22",
+  "updatedAt": "2026-04-27",
   "title": "Administración de Empresas",
-  "fullTitle": "Administración de Empresas",
+  "fullTitle": "Pregrado en Administración de Empresas",
   "hero": {
-    "eyebrow": "Estudia en UAM",
+    "eyebrow": "Estudia en la UAM",
     "highlight": "Pregrado en",
     "title": "Administración de Empresas",
-    "description": "Lograrás ser Administrador de Empresas con visión estratégica, liderazgo e impacto organizacional.",
-    "supportText": "Forma capacidades para tomar decisiones y gestionar organizaciones en entornos cambiantes.",
+    "description": "Forma parte de los líderes que transforman el mundo empresarial mediante la innovación y la estrategia. Desarrolla habilidades para dirigir organizaciones sostenibles, gestionar el talento y crear modelos de negocio competitivos.",
+    "supportText": "¡En la UAM construimos historias con pasión!",
     "modality": "Presencial",
     "semesterPrice": "$10.144.100",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/administracion-empresas-presencial.jpg",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#080a05"
   },
   "programInfo": [
-    "Administración de Empresas",
+    "Pregrado en Administración de Empresas",
     "153 Créditos académicos",
-    "9 Semestres de duración",
+    "9 semestres de duración",
     "SNIES 54766"
   ],
   "whyStudy": {
     "title": "¿Por qué estudiar Administración de Empresas en la UAM?",
-    "description": "La UAM forma líderes empresariales con enfoque estratégico, capacidad analítica y visión innovadora para gestionar organizaciones, detectar oportunidades y generar valor sostenible en contextos cambiantes.",
+    "description": "Transforma tu futuro con el Pregrado en Administración de Empresas en la UAM",
     "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
     "items": [
       {
-        "title": "Enfoque empresarial aplicado",
-        "content": "Comprende cómo interactúan las diferentes áreas de la empresa para mejorar resultados y fortalecer la competitividad."
+        "title": "Enfoque sólido en emprendimiento e innovación",
+        "content": "Desarrolla tu espíritu empresarial con herramientas para escalar modelos de negocio exitosos. Convierte tus ideas en proyectos reales con el respaldo de nuestro ecosistema de emprendimiento e innovación."
       },
       {
-        "title": "Formación para liderar organizaciones",
-        "content": "Desarrolla habilidades para tomar decisiones, dirigir equipos y gestionar recursos con visión estratégica."
+        "title": "Formación integral para la toma de decisiones",
+        "content": "Domina áreas clave de la gestión de finanzas, mercadeo, talento humano y operaciones estratégicas, aplicando un enfoque integral que te permite tomar decisiones estratégicas y liderar organizaciones con visión sostenible."
       },
       {
-        "title": "Alta proyección profesional",
-        "content": "Prepárate para desempeñarte en gerencia, consultoría, logística, talento humano, finanzas, mercadeo y emprendimiento."
+        "title": "Preparación para el entorno empresarial global",
+        "content": "Desarrolla habilidades para liderar en mercados nacionales e internacionales, manejando con eficacia la negociación y gestión de empresas en contextos globalizados y en constante cambio."
       },
       {
-        "title": "Impulsa el emprendimiento",
-        "content": "Fortalece tu perfil emprendedor para crear ideas de negocio e identificar nuevas oportunidades en el mercado."
+        "title": "Aplicación práctica en casos reales",
+        "content": "Aprende mediante proyectos reales, aplicando tus conocimientos a desafíos concretos de empresas nacionales e internacionales, para fortalecer tus habilidades directivas."
       },
       {
-        "title": "Innovación y pensamiento crítico",
-        "content": "Aprende a resolver problemas organizacionales en entornos globales mediante creatividad, análisis e innovación."
+        "title": "Manizales: Calidad de vida para tu formación universitaria",
+        "content": "Certificada por la UNESCO como \"la Ciudad del Aprendizaje\", ofrece un entorno tranquilo y asequible, perfecto para estudiantes que buscan calidad de vida y un espacio enriquecedor para su formación."
       },
       {
-        "title": "Opciones presencial y virtual",
-        "content": "El programa cuenta con alternativas de formación que se adaptan a diferentes necesidades académicas y personales."
+        "title": "Estudia en una institución con más de 45 años de experiencia",
+        "content": "Formación acreditada, reconocida y con alto prestigio en el sector educativo."
       }
     ]
   },
   "supportSection": {
-    "title": "En la UAM impulsamos tu futuro empresarial",
+    "title": "En la UAM apoyamos tu formación",
     "videoUrl": "",
     "items": [
       {
-        "title": "Plan de estudios integral",
-        "text": "Fórmate en administración, finanzas, mercadeo, logística, talento humano, innovación, investigación y práctica empresarial.",
+        "title": "Financiación",
+        "text": "Múltiples opciones de financiamiento para que puedas estudiar sin preocupaciones",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-01.png"
       },
       {
-        "title": "Experiencias internacionales",
-        "text": "Accede a movilidad académica, semestre internacional, pasantías, voluntariado y cursos de inglés con descuentos.",
+        "title": "Becas",
+        "text": "Programas de becas y ayudas económicas para estudiantes destacados",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-02.png"
       },
       {
-        "title": "Becas y beneficios",
-        "text": "Conoce oportunidades de apoyo como Becas Deportivas, Jóvenes + PRO, Fondo Patrimonial, Plan Estudia, Puedo Estudiar y más.",
+        "title": "Beneficios",
+        "text": "Acceso a recursos, plataformas digitales y red de profesionales",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/icon-apoyamos-03.png"
       }
     ]
@@ -79,29 +80,29 @@
     "title": "Algunos de los beneficios que tendrás con nosotros",
     "items": [
       {
-        "title": "Proyección profesional",
-        "text": "Podrás proyectarte como gerente, asesor estratégico, consultor empresarial, líder de proyectos o emprendedor.",
+        "title": "Programa de Permanencia y Graduación",
+        "text": "Acompañamiento con diferentes servicios que facilitan el desarrollo personal y académico",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237454690-icono-investigacion-vanguardista.png"
       },
       {
-        "title": "Perfil global e innovador",
-        "text": "Fortalece competencias en competitividad, negocios internacionales, sostenibilidad y transformación organizacional.",
+        "title": "Desarrollo de Habilidades Especializadas",
+        "text": "Formación práctica con expertos del sector",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237467665-icono-desarrolllo-de-habilidades-especializadas.png"
       },
       {
-        "title": "Becas y apoyos UAM",
-        "text": "Accede a alternativas como Becas Deportivas, Becas Jóvenes + PRO, Becas Fondo Patrimonial, Mejor Bachiller 2.0, Plan Regreso a la U, Más Ingenieras UAM y Becas UTC UAM.",
+        "title": "Networking Profesional",
+        "text": "Conexiones con profesionales y empresas líderes",
         "icon": "https://bunjigrowth.io/wp-content/uploads/2026/04/1716237475627-icono-networking-profesional.png"
       }
     ]
   },
   "cta": {
-    "title": "¿Listo para liderar organizaciones y crecer profesionalmente?",
+    "title": "¿Listo para transformar tu futuro?",
     "button": "¡Inscríbete ahora!"
   },
   "form": {
     "scriptUrl": "",
-    "programName": "Administración de Empresas",
+    "programName": "Pregrado en Administración de Empresas",
     "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/284287.js\"></script>"
   },
   "programType": "Pregrado",
