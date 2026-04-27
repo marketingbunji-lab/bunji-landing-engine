@@ -10,7 +10,7 @@
     "eyebrow": "Estudia en la UAM",
     "highlight": "Pregrado en",
     "title": "Diseño Industrial",
-    "description": "Conviértete en un profesional capaz de conceptualizar, diseñar y producir productos funcionales y sostenibles, impactando positivamente la sociedad con tus creaciones y usando tecnología para resolver problemas reales.",
+    "description": "",
     "supportText": "¡En la UAM construimos historias con pasión!",
     "modality": "Presencial",
     "semesterPrice": "$10.144.100",
@@ -24,8 +24,8 @@
     "SNIES 1914"
   ],
   "whyStudy": {
-    "title": "¿Por qué estudiar Diseño Industrial en la UAM?",
-    "description": "Transforma tu futuro con el Pregrado en Diseño Industrial en la UAM",
+    "title": "Transforma tu futuro con el Pregrado en Diseño Industrial en la UAM",
+    "description": "Conviértete en un profesional capaz de conceptualizar, diseñar y producir productos funcionales y sostenibles, impactando positivamente la sociedad con tus creaciones y usando tecnología para resolver problemas reales.",
     "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
     "items": [
       {
@@ -43,10 +43,6 @@
       {
         "title": "Preparación para el emprendimiento y la industria",
         "content": "Desarrolla habilidades para emprender y liderar procesos de diseño en industrias como la manufactura, tecnología, mobiliario, y más, abriendo un mundo de oportunidades profesionales."
-      },
-      {
-        "title": "Manizales: Calidad de vida para tu formación universitaria",
-        "content": "Certificada por la UNESCO como \"la Ciudad del Aprendizaje\", ofrece un entorno tranquilo y asequible, perfecto para estudiantes que buscan calidad de vida y un espacio enriquecedor para su formación."
       },
       {
         "title": "Estudia en una institución con más de 45 años de experiencia",

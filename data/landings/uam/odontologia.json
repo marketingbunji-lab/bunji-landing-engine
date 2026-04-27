@@ -10,7 +10,7 @@
     "eyebrow": "Estudia en la UAM",
     "highlight": "Pregrado en",
     "title": "Odontología",
-    "description": "Forma parte de un programa que no solo se enfoca en la salud bucal, sino en mejorar la calidad de vida de las personas mediante diagnósticos, tratamientos y prevención. Prepárate para ser un profesional comprometido con el bienestar de la comunidad.",
+    "description": "",
     "supportText": "¡En la UAM construimos historias con pasión!",
     "modality": "Presencial",
     "semesterPrice": "$13.888.800",
@@ -25,8 +25,8 @@
     "SNIES 1916"
   ],
   "whyStudy": {
-    "title": "¿Por qué estudiar Odontología en la UAM?",
-    "description": "Transforma tu futuro con el Pregrado en Odontología en la UAM",
+    "title": "Transforma tu futuro con el Pregrado en Odontología en la UAM",
+    "description": "Forma parte de un programa que no solo se enfoca en la salud bucal, sino en mejorar la calidad de vida de las personas mediante diagnósticos, tratamientos y prevención. Prepárate para ser un profesional comprometido con el bienestar de la comunidad.",
     "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
     "items": [
       {
@@ -44,10 +44,6 @@
       {
         "title": "Compromiso social y ético",
         "content": "Prepárate para actuar con responsabilidad social, liderazgo y ética profesional, impactando positivamente la salud bucal de comunidades."
-      },
-      {
-        "title": "Manizales: Calidad de vida para tu formación universitaria",
-        "content": "Certificada por la UNESCO como \"la Ciudad del Aprendizaje\", ofrece un entorno tranquilo y asequible, perfecto para estudiantes que buscan calidad de vida y un espacio enriquecedor para su formación."
       },
       {
         "title": "Estudia en una institución con más de 45 años de experiencia",

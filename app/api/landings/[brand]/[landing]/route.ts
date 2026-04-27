@@ -47,9 +47,7 @@ function isValidLandingPayload(
     value.brand === brand &&
     value.slug === landing &&
     typeof value.title === "string" &&
-    value.title.trim().length > 0 &&
     typeof value.fullTitle === "string" &&
-    value.fullTitle.trim().length > 0 &&
     typeof value.template === "string" &&
     value.template.trim().length > 0 &&
     typeof value.status === "string" &&

@@ -10,7 +10,7 @@
     "eyebrow": "Estudia en la UAM",
     "highlight": "Pregrado en",
     "title": "Ingeniería Mecánica",
-    "description": "Únete a los profesionales que crean y transforman la tecnología que mueve al mundo. Aprende a diseñar sistemas mecánicos avanzados, implementar manufactura inteligente y desarrollar soluciones energéticas sostenibles con un enfoque innovador y técnico.",
+    "description": "",
     "supportText": "¡En la UAM construimos historias con pasión!",
     "modality": "Presencial",
     "semesterPrice": "$10.144.100",
@@ -25,8 +25,8 @@
     "SNIES 1919"
   ],
   "whyStudy": {
-    "title": "¿Por qué estudiar Ingeniería Mecánica en la UAM?",
-    "description": "Transforma tu futuro con el Pregrado en Ingeniería Mecánica en la UAM",
+    "title": "Transforma tu futuro con el Pregrado en Ingeniería Mecánica en la UAM",
+    "description": "Únete a los profesionales que crean y transforman la tecnología que mueve al mundo. Aprende a diseñar sistemas mecánicos avanzados, implementar manufactura inteligente y desarrollar soluciones energéticas sostenibles con un enfoque innovador y técnico.",
     "image": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762954045813-chica-U.png",
     "items": [
       {
@@ -44,10 +44,6 @@
       {
         "title": "Formación integral para la industria 4.0",
         "content": "Desarrolla una visión sistémica para gestionar proyectos de ingeniería que respondan a las exigencias de la transformación digital global."
-      },
-      {
-        "title": "Oportunidades de apoyo financiero",
-        "content": "Podrás acceder a diferentes opciones de becas y planes de financiación a tu medida, que facilitarán tu camino hacia el éxito académico."
       },
       {
         "title": "Estudia en una institución con más de 45 años de experiencia",
