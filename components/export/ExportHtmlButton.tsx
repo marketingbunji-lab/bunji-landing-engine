@@ -170,7 +170,7 @@ export default function ExportHtmlButton({
       {open ? (
         <div
           role="menu"
-          className="absolute bottom-full right-0 z-20 mb-2 min-w-56 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-lg"
+          className="absolute bottom-full right-0 z-20 mb-2 min-w-56 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-950"
         >
           {options.map((option) => (
             <button
@@ -178,7 +178,7 @@ export default function ExportHtmlButton({
               type="button"
               role="menuitem"
               onClick={() => handleExport(option.endpoint, option.filename)}
-              className="block w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50"
+              className="block w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 dark:text-slate-100 dark:hover:bg-slate-900"
             >
               {option.label}
             </button>

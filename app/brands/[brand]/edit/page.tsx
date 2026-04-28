@@ -19,17 +19,17 @@ export default async function EditBrandPage({ params }: Props) {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 px-6 py-8">
-      <div className="mx-auto max-w-5xl">
+    <main className="min-h-screen bg-gray-50 px-6 py-8 dark:bg-[#020617]">
+      <div className="w-full">
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
-            <p className="text-sm text-gray-500">{brand.name}</p>
-            <h1 className="text-2xl font-bold text-gray-900">Editar marca</h1>
+            <p className="text-sm text-gray-500 dark:text-slate-400">{brand.name}</p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-50">Editar marca</h1>
           </div>
 
           <Link
             href={`/brands/${brandSlug}`}
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-slate-700 dark:text-slate-100"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver

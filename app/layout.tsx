@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import DashboardShell from "@/components/dashboard/DashboardShell";
+import { getBrands, getLandingsByBrand } from "@/lib/data";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,6 +24,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const brands = getBrands();
+  const landingSummaries = brands.flatMap((brand) =>
+    getLandingsByBrand(brand.slug).map((landing) => ({
+      brandSlug: brand.slug,
+      landingSlug: landing.slug,
+      title: landing.title,
+      fullTitle: landing.fullTitle,
+    })),
+  );
+
   return (
     <html
       lang="en"
@@ -29,7 +41,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col">
-        {children}
+        <DashboardShell brands={brands} landingSummaries={landingSummaries}>
+          {children}
+        </DashboardShell>
       </body>
     </html>
   );

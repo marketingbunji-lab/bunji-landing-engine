@@ -240,13 +240,13 @@ export default function LandingEditor({
   };
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[380px_minmax(0,1fr)]">
-      <div className="flex h-[calc(100vh-8rem)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm xl:sticky xl:top-6">
+    <div className="grid gap-0 border border-gray-200 bg-white dark:border-slate-800 dark:bg-slate-950 xl:grid-cols-[380px_minmax(0,1fr)]">
+      <div className="flex h-[calc(100vh-8rem)] flex-col overflow-hidden border-r border-gray-200 bg-white dark:border-slate-800 dark:bg-slate-950 xl:sticky xl:top-[81px]">
         <div className="border-b border-gray-200 p-6">
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-50">
             Editar landing
           </h2>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">
             Edita solo los contenidos visibles en la landing.
           </p>
         </div>
@@ -255,10 +255,10 @@ export default function LandingEditor({
           <div className="space-y-3">
             <EditorSection title="Logo" defaultOpen>
               <div>
-                <span className="mb-2 block text-sm font-semibold text-gray-900">
+                <span className="mb-2 block text-sm font-semibold text-gray-900 dark:text-slate-100">
                   Versión del logo
                 </span>
-                <div className="inline-flex rounded-xl border border-gray-300 bg-gray-100 p-1">
+                <div className="inline-flex rounded-xl border border-gray-300 bg-gray-100 p-1 dark:border-slate-700 dark:bg-slate-900">
                   {(["light", "dark"] as const).map((mode) => {
                     const isSelected = (landing.logoMode || "dark") === mode;
 
@@ -267,10 +267,10 @@ export default function LandingEditor({
                         key={mode}
                         type="button"
                         onClick={() => updateField("logoMode", mode)}
-                        className={`rounded-lg px-4 py-2 text-sm font-medium ${
+                        className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
                           isSelected
-                            ? "bg-white text-gray-950 shadow-sm"
-                            : "text-gray-600 hover:text-gray-950"
+                            ? "bg-white text-gray-950 dark:bg-slate-800 dark:text-white"
+                            : "text-gray-600 hover:text-gray-950 dark:text-slate-300 dark:hover:text-white"
                         }`}
                       >
                         {mode === "light" ? "Light" : "Dark"}
@@ -351,7 +351,7 @@ export default function LandingEditor({
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-semibold text-gray-900">
+                    <h4 className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                       Información general
                     </h4>
 
@@ -360,7 +360,7 @@ export default function LandingEditor({
                       onClick={() =>
                         addTextArrayItem("programInfo", "Nuevo dato")
                       }
-                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
                     >
                       <Plus className="h-3.5 w-3.5" />
                       Agregar dato
@@ -370,10 +370,10 @@ export default function LandingEditor({
                   {(landing.programInfo || []).map((item: string, index) => (
                     <div
                       key={index}
-                      className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                      className="border border-gray-200 bg-gray-50 p-4 dark:border-slate-700 dark:bg-slate-900"
                     >
                       <div className="mb-3 flex items-center justify-between">
-                        <p className="text-sm font-semibold text-gray-900">
+                        <p className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                           Dato {index + 1}
                         </p>
 
@@ -410,7 +410,7 @@ export default function LandingEditor({
                   type="button"
                   onClick={analyzeHeroImageColor}
                   disabled={analyzingColor || !landing.hero?.backgroundImage}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
                 >
                   <Droplets className="h-3.5 w-3.5" />
                   {analyzingColor ? "Generando overlay..." : "Generar overlay"}
@@ -476,7 +476,7 @@ export default function LandingEditor({
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-semibold text-gray-900">
+                    <h4 className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                       Items de la sección
                     </h4>
 
@@ -488,7 +488,7 @@ export default function LandingEditor({
                           content: "Nuevo contenido",
                         })
                       }
-                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
                     >
                       <Plus className="h-3.5 w-3.5" />
                       Agregar item
@@ -499,10 +499,10 @@ export default function LandingEditor({
                     (item: AccordionItem, index) => (
                       <div
                         key={index}
-                        className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                        className="border border-gray-200 bg-gray-50 p-4 dark:border-slate-700 dark:bg-slate-900"
                       >
                         <div className="mb-3 flex items-center justify-between">
-                          <p className="text-sm font-semibold text-gray-900">
+                          <p className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                             Item {index + 1}
                           </p>
 
@@ -572,7 +572,7 @@ export default function LandingEditor({
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-semibold text-gray-900">
+                    <h4 className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                       Cards de apoyo
                     </h4>
 
@@ -585,7 +585,7 @@ export default function LandingEditor({
                           icon: "",
                         })
                       }
-                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
                     >
                       <Plus className="h-3.5 w-3.5" />
                       Agregar item
@@ -596,10 +596,10 @@ export default function LandingEditor({
                     (item: IconTextItem, index) => (
                       <div
                         key={index}
-                        className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                        className="border border-gray-200 bg-gray-50 p-4 dark:border-slate-700 dark:bg-slate-900"
                       >
                         <div className="mb-3 flex items-center justify-between">
-                          <p className="text-sm font-semibold text-gray-900">
+                          <p className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                             Card {index + 1}
                           </p>
 
@@ -672,7 +672,7 @@ export default function LandingEditor({
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-semibold text-gray-900">
+                    <h4 className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                       Items de beneficios
                     </h4>
 
@@ -685,7 +685,7 @@ export default function LandingEditor({
                           icon: "",
                         })
                       }
-                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
                     >
                       <Plus className="h-3.5 w-3.5" />
                       Agregar item
@@ -696,10 +696,10 @@ export default function LandingEditor({
                     (item: IconTextItem, index) => (
                       <div
                         key={index}
-                        className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                        className="border border-gray-200 bg-gray-50 p-4 dark:border-slate-700 dark:bg-slate-900"
                       >
                         <div className="mb-3 flex items-center justify-between">
-                          <p className="text-sm font-semibold text-gray-900">
+                          <p className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                             Beneficio {index + 1}
                           </p>
 
@@ -781,7 +781,7 @@ export default function LandingEditor({
             <EditorSection title="Scripts finales">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-semibold text-gray-900">
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                     Scripts al final de la landing
                   </h4>
 
@@ -790,7 +790,7 @@ export default function LandingEditor({
                     onClick={() =>
                       addTextArrayItem("footerScripts", "<script>\n</script>")
                     }
-                    className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+                      className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
                   >
                     <Plus className="h-3.5 w-3.5" />
                     Agregar script
@@ -800,10 +800,10 @@ export default function LandingEditor({
                 {(landing.footerScripts || []).map((script: string, index) => (
                   <div
                     key={index}
-                    className="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                  className="border border-gray-200 bg-gray-50 p-4 dark:border-slate-700 dark:bg-slate-900"
                   >
                     <div className="mb-3 flex items-center justify-between">
-                      <p className="text-sm font-semibold text-gray-900">
+                      <p className="text-sm font-semibold text-gray-900 dark:text-slate-100">
                         Script {index + 1}
                       </p>
 
@@ -831,11 +831,16 @@ export default function LandingEditor({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 border-t border-gray-200 bg-white p-4">
+        <div className="flex items-center gap-3 border-t border-gray-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
           <button
             onClick={saveLanding}
             disabled={saving}
-            className="rounded-xl bg-black px-4 py-3 text-sm font-medium text-white disabled:opacity-60"
+            className="bunji-button-primary rounded-xl px-4 py-3 text-sm font-medium shadow-[0_10px_30px_rgba(62,57,137,0.26)] transition hover:brightness-110 disabled:opacity-60 disabled:hover:brightness-100"
+            style={{
+              backgroundColor: "var(--bunji-primary)",
+              borderColor: "var(--bunji-primary)",
+              color: "#fff",
+            }}
           >
             {saving ? "Guardando..." : "Guardar cambios"}
           </button>
@@ -846,18 +851,18 @@ export default function LandingEditor({
             clientifyEndpoint={exportClientifyEndpoint}
             clientifyFilename={exportClientifyFilename}
             payload={landing}
-            className="rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700"
+            className="rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
             icon={<FileDown className="h-4 w-4" />}
           >
             Exportar
           </ExportHtmlButton>
 
-          {message ? <p className="text-sm text-gray-600">{message}</p> : null}
+          {message ? <p className="text-sm text-gray-600 dark:text-slate-300">{message}</p> : null}
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="flex flex-wrap items-end gap-4 border-b border-gray-200 bg-gray-50 p-4">
+      <div className="bg-white dark:bg-slate-950">
+        <div className="flex flex-wrap items-end gap-4 border-b border-gray-200 bg-gray-50 p-4 dark:border-slate-800 dark:bg-slate-900">
           <PreviewControl
             label="Ancho"
             min={360}
@@ -878,7 +883,7 @@ export default function LandingEditor({
               setPreviewWidth(390);
               setPreviewHeight(844);
             }}
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
           >
             <Smartphone className="h-3.5 w-3.5" />
             Mobile
@@ -889,7 +894,7 @@ export default function LandingEditor({
               setPreviewWidth(768);
               setPreviewHeight(900);
             }}
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
           >
             <Tablet className="h-3.5 w-3.5" />
             Tablet
@@ -900,16 +905,16 @@ export default function LandingEditor({
               setPreviewWidth(1200);
               setPreviewHeight(820);
             }}
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
           >
             <Laptop className="h-3.5 w-3.5" />
             Desktop
           </button>
         </div>
 
-        <div className="max-h-[calc(100vh-240px)] overflow-auto bg-gray-100 p-4">
+        <div className="max-h-[calc(100vh-240px)] overflow-auto border-t border-gray-200 bg-gray-100 p-4 dark:border-slate-800 dark:bg-[#020617]">
           <div
-            className="mx-auto overflow-auto bg-white shadow-sm"
+            className="mx-auto overflow-auto border border-slate-200 bg-white"
             style={{
               width: previewWidth,
               height: previewHeight,
@@ -939,7 +944,7 @@ function PreviewControl({
 }) {
   return (
     <label className="grid gap-1">
-      <span className="text-xs font-semibold text-gray-700">{label}</span>
+      <span className="text-xs font-semibold text-gray-700 dark:text-slate-200">{label}</span>
       <div className="flex items-center gap-2">
         <input
           type="range"
@@ -955,7 +960,7 @@ function PreviewControl({
           max={max}
           value={value}
           onChange={(event) => onChange(Number(event.target.value))}
-          className="w-20 rounded-lg border border-gray-300 px-2 py-1 text-xs text-gray-900"
+          className="w-20 rounded-lg border border-gray-300 px-2 py-1 text-xs text-gray-900 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100"
         />
       </div>
     </label>
@@ -974,17 +979,17 @@ function EditorSection({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <section className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+    <section className="overflow-hidden border border-gray-200 bg-white dark:border-slate-800 dark:bg-slate-950">
       <button
         type="button"
         onClick={() => setIsOpen((value) => !value)}
-        className="flex w-full items-center justify-between gap-3 bg-gray-50 px-4 py-3 text-left"
+        className="flex w-full items-center justify-between gap-3 bg-gray-50 px-4 py-3 text-left dark:bg-slate-900"
         aria-expanded={isOpen}
       >
-        <span className="text-sm font-semibold uppercase tracking-wide text-gray-900">
+        <span className="text-sm font-semibold uppercase tracking-wide text-gray-900 dark:text-slate-100">
           {title}
         </span>
-        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 text-sm text-gray-600">
+        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 text-sm text-gray-600 dark:border-slate-700 dark:text-slate-300">
           {isOpen ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
@@ -994,7 +999,7 @@ function EditorSection({
       </button>
 
       {isOpen ? (
-        <div className="space-y-4 border-t border-gray-200 p-4">{children}</div>
+        <div className="space-y-4 border-t border-gray-200 p-4 dark:border-slate-800">{children}</div>
       ) : null}
     </section>
   );
@@ -1011,13 +1016,13 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-semibold text-gray-900">
+      <span className="mb-1 block text-sm font-semibold text-gray-900 dark:text-slate-100">
         {label}
       </span>
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-black focus:ring-2 focus:ring-black/10"
+        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-black focus:ring-1 focus:ring-black/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
       />
     </label>
   );
@@ -1034,14 +1039,14 @@ function TextareaField({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-semibold text-gray-900">
+      <span className="mb-1 block text-sm font-semibold text-gray-900 dark:text-slate-100">
         {label}
       </span>
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
         rows={4}
-        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-black focus:ring-2 focus:ring-black/10"
+        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-black focus:ring-1 focus:ring-black/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
       />
     </label>
   );
@@ -1063,13 +1068,13 @@ function SelectField({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-semibold text-gray-900">
+      <span className="mb-1 block text-sm font-semibold text-gray-900 dark:text-slate-100">
         {label}
       </span>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-black focus:ring-2 focus:ring-black/10"
+        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-black focus:ring-1 focus:ring-black/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

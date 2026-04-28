@@ -130,15 +130,15 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
   };
 
   return (
-    <div className="rounded-3xl bg-white p-8 shadow-sm">
+    <div className="border border-gray-200 bg-white p-8 dark:border-slate-800 dark:bg-slate-950">
       <div className="mb-6">
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-slate-400">
           {mode === "create" ? "Nueva marca" : brand.name}
         </p>
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-slate-50">
           {mode === "create" ? "Crear marca" : "Editar marca"}
         </h1>
-        <p className="mt-2 text-gray-600">
+        <p className="mt-2 text-gray-600 dark:text-slate-300">
           {mode === "create"
             ? "Configura una marca nueva para empezar a crear landings."
             : "Actualiza la información general, logos y links legales de la marca."}
@@ -214,13 +214,13 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
             />
           </div>
 
-          <div className="space-y-4 rounded-2xl border border-gray-200 bg-gray-50 p-4">
+          <div className="space-y-4 border border-gray-200 bg-gray-50 p-4 dark:border-slate-800 dark:bg-slate-900">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-gray-900">
+                <h2 className="text-sm font-semibold text-gray-900 dark:text-slate-50">
                   Links legales
                 </h2>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 dark:text-slate-400">
                   Estos links se muestran en el footer de las landings.
                 </p>
               </div>
@@ -228,7 +228,7 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
               <button
                 type="button"
                 onClick={addLegalLink}
-                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-700"
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Agregar link
@@ -236,7 +236,7 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
             </div>
 
             {(brand.legalLinks ?? []).length === 0 ? (
-              <div className="rounded-xl border border-dashed border-gray-300 bg-white p-4 text-sm text-gray-500">
+              <div className="border border-dashed border-gray-300 bg-white p-4 text-sm text-gray-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-400">
                 Esta marca todavía no tiene links legales configurados.
               </div>
             ) : null}
@@ -244,10 +244,10 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
             {(brand.legalLinks ?? []).map((link, index) => (
               <div
                 key={index}
-                className="rounded-xl border border-gray-200 bg-white p-4"
+                className="border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-950"
               >
                 <div className="mb-3 flex items-center justify-between">
-                  <p className="text-sm font-semibold text-gray-900">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-slate-50">
                     Link {index + 1}
                   </p>
 
@@ -296,7 +296,7 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
               : "Guardar cambios"}
         </button>
 
-        {message ? <p className="text-sm text-gray-600">{message}</p> : null}
+          {message ? <p className="text-sm text-gray-600 dark:text-slate-300">{message}</p> : null}
       </div>
     </div>
   );
@@ -315,14 +315,14 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-medium text-gray-700">
+      <span className="mb-1 block text-sm font-medium text-gray-700 dark:text-slate-300">
         {label}
       </span>
       <input
         value={value}
         disabled={disabled}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black disabled:bg-gray-100 disabled:text-gray-500"
+        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black disabled:bg-gray-100 disabled:text-gray-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:disabled:bg-slate-800 dark:disabled:text-slate-500"
       />
     </label>
   );

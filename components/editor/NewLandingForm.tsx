@@ -49,11 +49,11 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
   };
 
   return (
-    <div className="rounded-3xl bg-white p-8 shadow-sm">
+    <div className="rounded-3xl bg-white p-8 shadow-sm dark:border dark:border-slate-800 dark:bg-slate-950">
       <div className="mb-6">
-        <p className="text-sm text-gray-500">{brandName}</p>
-        <h1 className="text-3xl font-bold text-gray-900">Nueva landing</h1>
-        <p className="mt-2 text-gray-600">
+        <p className="text-sm text-gray-500 dark:text-slate-400">{brandName}</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-slate-50">Nueva landing</h1>
+        <p className="mt-2 text-gray-600 dark:text-slate-300">
           Crea una nueva landing base para esta marca.
         </p>
       </div>
@@ -74,13 +74,13 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
         />
 
         <label className="block">
-          <span className="mb-1 block text-sm font-medium text-gray-700">
+          <span className="mb-1 block text-sm font-medium text-gray-700 dark:text-slate-200">
             Template
           </span>
           <select
             value={template}
             onChange={(event) => setTemplate(event.target.value)}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black"
+            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
           >
             <option value="DefaultLanding">DefaultLanding</option>
             <option value="UamProgramLanding">UamProgramLanding</option>
@@ -93,12 +93,12 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
           type="button"
           onClick={handleCreate}
           disabled={saving}
-          className="rounded-xl bg-black px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
+          className="bunji-button-primary rounded-xl px-5 py-3 text-sm font-medium disabled:opacity-60"
         >
           {saving ? "Creando..." : "Crear landing"}
         </button>
 
-        {message ? <p className="text-sm text-red-600">{message}</p> : null}
+        {message ? <p className="text-sm text-red-600 dark:text-red-300">{message}</p> : null}
       </div>
     </div>
   );
@@ -117,14 +117,14 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-medium text-gray-700">
+      <span className="mb-1 block text-sm font-medium text-gray-700 dark:text-slate-200">
         {label}
       </span>
       <input
         value={value}
         placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black"
+        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
       />
     </label>
   );

@@ -442,22 +442,22 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_420px]">
-      <section className="flex min-h-[620px] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="border-b border-gray-200 p-5">
+      <section className="flex min-h-[620px] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-950">
+        <div className="border-b border-gray-200 p-5 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-white">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-white dark:bg-[var(--bunji-primary)]">
               <Sparkles className="h-5 w-5" />
             </span>
             <div>
-              <p className="text-sm text-gray-500">{brandName}</p>
-              <h2 className="text-lg font-semibold text-gray-900">
+              <p className="text-sm text-gray-500 dark:text-slate-400">{brandName}</p>
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-slate-50">
                 Crear landing con AI
               </h2>
             </div>
           </div>
         </div>
 
-        <div className="flex-1 space-y-4 overflow-y-auto bg-gray-50 p-5">
+        <div className="flex-1 space-y-4 overflow-y-auto bg-gray-50 p-5 dark:bg-[#020617]">
           {messages.map((message) => (
             <div
               key={message.id}
@@ -466,7 +466,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
               }`}
             >
               {message.role === "assistant" ? (
-                <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-gray-700 shadow-sm">
+                <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-gray-700 shadow-sm dark:bg-slate-900 dark:text-slate-100">
                   <Bot className="h-4 w-4" />
                 </span>
               ) : null}
@@ -474,15 +474,15 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
               <div
                 className={`max-w-[78%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-6 ${
                   message.role === "user"
-                    ? "bg-black text-white"
-                    : "border border-gray-200 bg-white text-gray-700"
+                    ? "bg-black text-white dark:bg-[var(--bunji-primary)]"
+                    : "border border-gray-200 bg-white text-gray-700 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                 }`}
               >
                 {message.content}
               </div>
 
               {message.role === "user" ? (
-                <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white">
+                <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-white dark:bg-[var(--bunji-primary)]">
                   <User className="h-4 w-4" />
                 </span>
               ) : null}
@@ -491,17 +491,17 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
 
           {sending ? (
             <div className="flex gap-3">
-              <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-gray-700 shadow-sm">
+              <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-gray-700 shadow-sm dark:bg-slate-900 dark:text-slate-100">
                 <Bot className="h-4 w-4" />
               </span>
-              <div className="rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-500">
+              <div className="rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400">
                 Enviando al webhook...
               </div>
             </div>
           ) : null}
         </div>
 
-        <div className="border-t border-gray-200 p-4">
+        <div className="border-t border-gray-200 p-4 dark:border-slate-800">
           <div className="mb-3 flex flex-wrap gap-2">
             {starterPrompts.map((prompt) => (
               <button
@@ -509,7 +509,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
                 type="button"
                 onClick={() => sendMessage(prompt)}
                 disabled={sending}
-                className="rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+                className="rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-slate-900"
               >
                 {prompt}
               </button>
@@ -523,30 +523,30 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
               placeholder="Escribe el nombre del programa o pega la información que tienes..."
               rows={2}
               disabled={sending}
-              className="min-h-12 flex-1 resize-none rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none focus:border-black disabled:bg-gray-100"
+              className="min-h-12 flex-1 resize-none rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none focus:border-black disabled:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:disabled:bg-slate-800"
             />
             <button
               type="button"
               onClick={() => sendMessage()}
               disabled={!canSend}
-              className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-black text-white disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-black text-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[var(--bunji-primary)]"
               aria-label="Enviar mensaje"
             >
               <Send className="h-4 w-4" />
             </button>
           </div>
 
-          {error ? <p className="mt-3 text-sm text-red-600">{error}</p> : null}
+          {error ? <p className="mt-3 text-sm text-red-600 dark:text-red-300">{error}</p> : null}
         </div>
       </section>
 
-      <aside className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+      <aside className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-950">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+            <p className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-slate-400">
               Borrador
             </p>
-            <h3 className="mt-2 text-xl font-bold text-gray-900">
+            <h3 className="mt-2 text-xl font-bold text-gray-900 dark:text-slate-50">
               Landing generada
             </h3>
           </div>
@@ -559,7 +559,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
           ) : null}
         </div>
 
-        <p className="mt-2 text-sm text-gray-600">{assistantPreview}</p>
+        <p className="mt-2 text-sm text-gray-600 dark:text-slate-300">{assistantPreview}</p>
 
         {generatedLanding ? (
           <div className="mt-5">
@@ -585,7 +585,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
                 type="button"
                 onClick={createLanding}
                 disabled={!canCreate}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+                className="bunji-button-primary inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <FilePlus2 className="h-4 w-4" />
                 {creating
@@ -596,7 +596,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
               <button
                 type="button"
                 onClick={() => setShowJson((value) => !value)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
               >
                 <Code2 className="h-4 w-4" />
                 {showJson ? "Ocultar JSON" : "Ver JSON"}
@@ -604,7 +604,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
             </div>
           </div>
         ) : (
-          <div className="mt-6 rounded-xl bg-gray-50 p-4 text-sm text-gray-600">
+          <div className="mt-6 rounded-xl bg-gray-50 p-4 text-sm text-gray-600 dark:bg-slate-900 dark:text-slate-300">
             Cuando n8n responda con un objeto <strong>landing</strong> o{" "}
             <strong>draft</strong>, aparecerá aquí para revisarlo y crearlo.
           </div>
@@ -619,7 +619,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
         <button
           type="button"
           onClick={() => setShowDebug((value) => !value)}
-          className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700"
+          className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
         >
           <Code2 className="h-4 w-4" />
           {showDebug ? "Ocultar debug" : "Ver debug"}
@@ -633,7 +633,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
 
         <Link
           href={`/brands/${brandSlug}/new`}
-          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700"
+          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
         >
           Volver al formulario manual
           <ArrowRight className="h-4 w-4" />
@@ -646,10 +646,10 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
 function DraftField({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-slate-400">
         {label}
       </p>
-      <p className="mt-1 min-h-10 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800">
+      <p className="mt-1 min-h-10 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
         {value || "Pendiente"}
       </p>
     </div>
