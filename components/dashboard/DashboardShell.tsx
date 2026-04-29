@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   ArrowLeft,
   ChevronRight,
@@ -40,6 +40,52 @@ type NavItem = {
   icon: React.ComponentType<{ className?: string }>;
   exact?: boolean;
 };
+
+const themeChangeEvent = "bunji-theme-change";
+
+function applyTheme(theme: ThemeMode) {
+  const root = document.documentElement;
+
+  root.classList.toggle("dark", theme === "dark");
+  root.dataset.theme = theme;
+  root.style.colorScheme = theme;
+}
+
+function getPreferredTheme(): ThemeMode {
+  const storedTheme = window.localStorage.getItem("bunji-theme");
+
+  if (storedTheme === "dark" || storedTheme === "light") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function subscribeThemeChange(onStoreChange: () => void) {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(themeChangeEvent, onStoreChange);
+
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(themeChangeEvent, onStoreChange);
+  };
+}
+
+function getThemeSnapshot() {
+  return getPreferredTheme();
+}
+
+function getServerThemeSnapshot(): ThemeMode {
+  return "light";
+}
+
+function saveTheme(theme: ThemeMode) {
+  applyTheme(theme);
+  window.localStorage.setItem("bunji-theme", theme);
+  window.dispatchEvent(new Event(themeChangeEvent));
+}
 
 const primaryNav: NavItem[] = [
   {
@@ -98,21 +144,11 @@ export default function DashboardShell({
 }: Props) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [theme, setTheme] = useState<ThemeMode>(() => {
-    if (typeof window === "undefined") {
-      return "light";
-    }
-
-    const storedTheme = window.localStorage.getItem("bunji-theme");
-
-    if (storedTheme === "dark" || storedTheme === "light") {
-      return storedTheme;
-    }
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  });
+  const theme = useSyncExternalStore(
+    subscribeThemeChange,
+    getThemeSnapshot,
+    getServerThemeSnapshot,
+  );
   const activeBrand =
     brands.find((brand) => getBrandActiveState(pathname, brand.slug)) ?? null;
   const isBrandOverviewPage = Boolean(
@@ -130,13 +166,12 @@ export default function DashboardShell({
   const isLandingEditorPage = Boolean(activeBrand && activeLanding);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    window.localStorage.setItem("bunji-theme", theme);
+    applyTheme(theme);
   }, [theme]);
 
   const toggleTheme = () => {
     const nextTheme: ThemeMode = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
+    saveTheme(nextTheme);
   };
 
   const themeToggle = (
@@ -158,7 +193,11 @@ export default function DashboardShell({
   );
 
   return (
-    <div className="min-h-screen bg-[#f3f5f9] text-slate-900 dark:bg-[#020617] dark:text-slate-100">
+    <div
+      className={`min-h-screen bg-[#f3f5f9] text-slate-900 dark:bg-[#020617] dark:text-slate-100 ${
+        theme === "dark" ? "dark" : ""
+      }`}
+    >
       {mobileOpen ? (
         <button
           type="button"
@@ -197,8 +236,7 @@ export default function DashboardShell({
           <Link
             href="/brands/new"
             onClick={() => setMobileOpen(false)}
-            className="bunji-button-primary inline-flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold shadow-lg shadow-[color:rgba(62,57,137,0.28)] transition"
-            style={{ backgroundColor: "var(--bunji-primary)", color: "#fff" }}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#3e3989] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-[color:rgba(62,57,137,0.28)] transition hover:bg-[#2f2b69] dark:bg-[#3e3989] dark:hover:bg-[#2f2b69]"
           >
             <Plus className="h-4 w-4" />
             Crear marca

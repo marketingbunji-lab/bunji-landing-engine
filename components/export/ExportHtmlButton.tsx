@@ -29,6 +29,7 @@ type Props = {
   children?: React.ReactNode;
   icon?: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 };
 
 export default function ExportHtmlButton({
@@ -40,6 +41,7 @@ export default function ExportHtmlButton({
   children = "Exportar",
   icon,
   className = "rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700",
+  style,
 }: Props) {
   const [exporting, setExporting] = useState(false);
   const [open, setOpen] = useState(false);
@@ -138,6 +140,7 @@ export default function ExportHtmlButton({
         onClick={() => handleExport(endpoint, filename)}
         disabled={exporting}
         className={`${className} inline-flex items-center gap-2 disabled:cursor-not-allowed disabled:opacity-60`}
+        style={style}
       >
         {icon}
         {exporting ? "Exportando..." : children}
@@ -159,6 +162,7 @@ export default function ExportHtmlButton({
         onClick={() => setOpen((value) => !value)}
         disabled={exporting}
         className={`${className} inline-flex items-center gap-2 disabled:cursor-not-allowed disabled:opacity-60`}
+        style={style}
         aria-haspopup="menu"
         aria-expanded={open}
       >
