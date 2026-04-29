@@ -13,6 +13,16 @@ type Props = {
   initialBrand: Brand;
 };
 
+type SaveBrandResponse = {
+  ok?: boolean;
+  error?: string;
+  redirectTo?: string;
+  supabase?: {
+    ok: boolean;
+    error: string | null;
+  };
+};
+
 function isRecord(value: unknown): value is EditableRecord {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
@@ -109,14 +119,26 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
         body: JSON.stringify(brand),
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as SaveBrandResponse;
 
       if (!response.ok) {
         throw new Error(data.error || "No se pudo guardar la marca");
       }
 
       if (mode === "create") {
-        router.push(data.redirectTo);
+        if (data.supabase?.ok) {
+          window.alert("Marca creada correctamente en Supabase.");
+        } else {
+          window.alert(
+            `El JSON se creó, pero no se pudo crear la marca en Supabase: ${
+              data.supabase?.error || "No se recibió detalle del error."
+            }`,
+          );
+        }
+
+        if (data.redirectTo) {
+          router.push(data.redirectTo);
+        }
         return;
       }
 

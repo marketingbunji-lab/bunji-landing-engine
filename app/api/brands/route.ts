@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { NextRequest, NextResponse } from "next/server";
 import type { Brand } from "../../../lib/data";
+import { createAdminClient } from "../../../utils/supabase/admin";
 
 const brandsDir = path.join(process.cwd(), "data", "brands");
 
@@ -12,6 +13,53 @@ function slugify(text: string) {
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+async function createBrandInSupabase(brand: Brand) {
+  try {
+    const supabase = createAdminClient();
+
+    if (!supabase) {
+      return {
+        ok: false,
+        error:
+          "No se encontró SUPABASE_SERVICE_ROLE_KEY en el servidor. Reinicia npm run dev después de agregarla.",
+      };
+    }
+
+    const { error } = await supabase.from("brands").insert({
+      id: crypto.randomUUID(),
+      slug: brand.slug,
+      name: brand.name,
+      logo: brand.logo,
+      logos: brand.logos ?? {},
+      typography: brand.typography ?? {},
+      primary_color: brand.primaryColor,
+      secondary_color: brand.secondaryColor,
+      description: brand.description ?? "",
+      legal_links: brand.legalLinks ?? [],
+    });
+
+    if (error) {
+      return {
+        ok: false,
+        error: error.message,
+      };
+    }
+
+    return {
+      ok: true,
+      error: null,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : "No se pudo crear la marca en Supabase",
+    };
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -56,11 +104,13 @@ export async function POST(req: NextRequest) {
     };
 
     fs.writeFileSync(filePath, JSON.stringify(brandData, null, 2), "utf8");
+    const supabase = await createBrandInSupabase(brandData);
 
     return NextResponse.json({
       ok: true,
       slug,
       redirectTo: `/admin/brands/${slug}/edit`,
+      supabase,
     });
   } catch {
     return NextResponse.json(

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import {
@@ -225,13 +226,23 @@ export default function DashboardShell({
         }`}
       >
         <div className="flex items-center justify-between border-b border-slate-200 px-5 py-5 dark:border-white/10">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--bunji-primary)] dark:text-[var(--bunji-primary-muted)]">
-              Bunji
-            </p>
-            <h1 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">
-              Landing Engine
-            </h1>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/icon.png"
+              alt=""
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded-md"
+              priority
+            />
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--bunji-primary)] dark:text-[var(--bunji-primary-muted)]">
+                Bunji
+              </p>
+              <h1 className="text-base font-semibold text-slate-900 dark:text-white">
+                Landing Engine
+              </h1>
+            </div>
           </div>
 
           <button
