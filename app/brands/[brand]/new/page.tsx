@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import NewLandingForm from "../../../../components/editor/NewLandingForm";
 import { getBrandBySlug } from "../../../../lib/data";
+import { getSupabaseBrandBySlug } from "../../../../lib/supabaseBrands";
+
+export const dynamic = "force-dynamic";
 
 type Props = {
   params: Promise<{
@@ -13,7 +16,7 @@ type Props = {
 export default async function NewLandingPage({ params }: Props) {
   const { brand: brandSlug } = await params;
 
-  const brand = getBrandBySlug(brandSlug);
+  const brand = getBrandBySlug(brandSlug) ?? (await getSupabaseBrandBySlug(brandSlug));
 
   if (!brand) {
     notFound();

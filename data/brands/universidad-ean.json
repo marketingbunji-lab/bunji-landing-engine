@@ -1,0 +1,17 @@
+{
+  "slug": "universidad-ean",
+  "name": "Universidad Ean",
+  "logo": "https://universidadean.edu.co/sites/default/files/logo-horizontal-es.png",
+  "logos": {
+    "light": "https://universidadean.edu.co/sites/default/files/logo-horizontal-es.png",
+    "dark": ""
+  },
+  "typography": {
+    "fontFamily": "",
+    "googleFontHref": ""
+  },
+  "primaryColor": "#111827",
+  "secondaryColor": "#F8D74A",
+  "description": "Universidad Ean es una institución de educación superior que ofrece programas académicos con enfoque en sostenibilidad y emprendimiento.",
+  "legalLinks": []
+}

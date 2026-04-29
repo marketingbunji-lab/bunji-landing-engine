@@ -307,7 +307,7 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="rounded-xl bg-black px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
+          className="rounded-xl bg-[var(--bunji-primary)] px-5 py-3 text-sm font-medium text-white disabled:opacity-60"
         >
           {saving
             ? mode === "create"

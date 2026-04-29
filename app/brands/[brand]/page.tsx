@@ -5,6 +5,9 @@ import BrandLandingsList from "../../../components/dashboard/BrandLandingsList";
 import type { LandingCardData } from "../../../components/dashboard/LandingCard";
 import { getBrandBySlug, getLandingsByBrand } from "../../../lib/data";
 import type { Landing } from "../../../lib/data";
+import { getSupabaseBrandBySlug } from "../../../lib/supabaseBrands";
+
+export const dynamic = "force-dynamic";
 
 type Props = {
   params: Promise<{
@@ -34,7 +37,7 @@ function toLandingCardData(
 export default async function BrandPage({ params }: Props) {
   const { brand: brandSlug } = await params;
 
-  const brand = getBrandBySlug(brandSlug);
+  const brand = getBrandBySlug(brandSlug) ?? (await getSupabaseBrandBySlug(brandSlug));
 
   if (!brand) {
     notFound();

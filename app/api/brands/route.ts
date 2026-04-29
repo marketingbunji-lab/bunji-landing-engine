@@ -41,9 +41,16 @@ async function createBrandInSupabase(brand: Brand) {
     });
 
     if (error) {
+      const details = [
+        error.message,
+        error.code ? `Código: ${error.code}` : null,
+        error.details ? `Detalle: ${error.details}` : null,
+        error.hint ? `Sugerencia: ${error.hint}` : null,
+      ].filter(Boolean);
+
       return {
         ok: false,
-        error: error.message,
+        error: details.join(" | "),
       };
     }
 

@@ -1,15 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { ArrowRight, FolderOpen, Pencil } from "lucide-react";
+import DeleteBrandButton from "./DeleteBrandButton";
 import { getBrandLogo } from "@/lib/brandLogo";
 import type { Brand } from "@/lib/data";
 
 type Props = {
   brand: Brand;
   landingCount: number;
+  canDeleteJson?: boolean;
+  canDeleteSupabase?: boolean;
 };
 
-export default function BrandCard({ brand, landingCount }: Props) {
+export default function BrandCard({
+  brand,
+  landingCount,
+  canDeleteJson = true,
+  canDeleteSupabase = false,
+}: Props) {
   const lightLogo = getBrandLogo(brand, "light");
   const darkLogo = getBrandLogo(brand, "dark");
 
@@ -45,6 +53,17 @@ export default function BrandCard({ brand, landingCount }: Props) {
         </span>
 
         <div className="flex flex-wrap items-center gap-2">
+          {canDeleteJson ? (
+            <DeleteBrandButton brandName={brand.name} brandSlug={brand.slug} />
+          ) : null}
+          {canDeleteSupabase ? (
+            <DeleteBrandButton
+              brandName={brand.name}
+              brandSlug={brand.slug}
+              source="supabase"
+            />
+          ) : null}
+
           <Link
             href={`/admin/brands/${brand.slug}/edit`}
             className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-3 py-1 text-sm font-medium text-gray-700 dark:border-slate-700 dark:text-slate-100"
