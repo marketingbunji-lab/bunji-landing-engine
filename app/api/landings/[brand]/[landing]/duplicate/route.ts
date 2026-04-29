@@ -63,7 +63,7 @@ export async function POST(_: Request, { params }: { params: Params }) {
     return NextResponse.json({
       ok: true,
       slug: nextSlug,
-      redirectTo: `/brands/${brand}/${nextSlug}`,
+      redirectTo: `/admin/brands/${brand}/${nextSlug}`,
     });
   } catch {
     return NextResponse.json(

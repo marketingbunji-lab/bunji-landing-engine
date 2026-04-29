@@ -632,7 +632,7 @@ export default function AiLandingChat({ brandSlug, brandName }: Props) {
         ) : null}
 
         <Link
-          href={`/brands/${brandSlug}/new`}
+          href={`/admin/brands/${brandSlug}/new`}
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
         >
           Volver al formulario manual

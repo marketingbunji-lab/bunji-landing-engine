@@ -7,6 +7,7 @@ export async function updateSession(request: NextRequest) {
     request,
   });
   const config = getSupabaseConfig();
+  const pathname = request.nextUrl.pathname;
 
   if (!config) {
     return response;
@@ -37,7 +38,25 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (pathname.startsWith("/admin") && !user) {
+    const redirectUrl = request.nextUrl.clone();
+
+    redirectUrl.pathname = "/login";
+    redirectUrl.searchParams.set(
+      "next",
+      `${request.nextUrl.pathname}${request.nextUrl.search}`,
+    );
+
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  if (pathname === "/login" && user) {
+    return NextResponse.redirect(new URL("/admin", request.url));
+  }
 
   return response;
 }

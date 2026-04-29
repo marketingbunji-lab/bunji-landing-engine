@@ -15,7 +15,7 @@ export default function BrandCard({ brand, landingCount }: Props) {
 
   return (
     <div className="border border-gray-200 bg-white p-6 transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-900">
-      <Link href={`/brands/${brand.slug}`} className="block">
+      <Link href={`/admin/brands/${brand.slug}`} className="block">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
           <div className="min-w-0">
             <img
@@ -46,7 +46,7 @@ export default function BrandCard({ brand, landingCount }: Props) {
 
         <div className="flex flex-wrap items-center gap-2">
           <Link
-            href={`/brands/${brand.slug}/edit`}
+            href={`/admin/brands/${brand.slug}/edit`}
             className="inline-flex items-center gap-2 rounded-full border border-gray-300 px-3 py-1 text-sm font-medium text-gray-700 dark:border-slate-700 dark:text-slate-100"
           >
             <Pencil className="h-4 w-4" />
@@ -54,7 +54,7 @@ export default function BrandCard({ brand, landingCount }: Props) {
           </Link>
 
           <Link
-            href={`/brands/${brand.slug}`}
+            href={`/admin/brands/${brand.slug}`}
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium"
             style={{ backgroundColor: "var(--bunji-primary)", color: "#ffffff" }}
           >

@@ -16,6 +16,7 @@ import {
   Sun,
   X,
 } from "lucide-react";
+import AdminUserMenu from "@/components/dashboard/AdminUserMenu";
 import { getBrandLogo } from "@/lib/brandLogo";
 import type { Brand } from "@/lib/data";
 
@@ -89,20 +90,25 @@ function saveTheme(theme: ThemeMode) {
 
 const primaryNav: NavItem[] = [
   {
-    href: "/",
+    href: "/admin",
     label: "Dashboard",
     icon: LayoutDashboard,
     exact: true,
   },
   {
-    href: "/brands",
+    href: "/admin/brands",
     label: "Marcas",
     icon: FolderKanban,
   },
   {
-    href: "/brands/new",
+    href: "/admin/brands/new",
     label: "Nueva marca",
     icon: Plus,
+  },
+  {
+    href: "/admin/landings",
+    label: "Landings",
+    icon: FolderKanban,
   },
 ];
 
@@ -115,7 +121,7 @@ function isNavItemActive(pathname: string, item: NavItem) {
 }
 
 function getBrandLink(pathname: string, brand: Brand) {
-  const brandBasePath = `/brands/${brand.slug}`;
+  const brandBasePath = `/admin/brands/${brand.slug}`;
 
   if (pathname.startsWith(`${brandBasePath}/new/ai`)) {
     return `${brandBasePath}/new/ai`;
@@ -133,7 +139,7 @@ function getBrandLink(pathname: string, brand: Brand) {
 }
 
 function getBrandActiveState(pathname: string, brandSlug: string) {
-  const brandBasePath = `/brands/${brandSlug}`;
+  const brandBasePath = `/admin/brands/${brandSlug}`;
   return pathname === brandBasePath || pathname.startsWith(`${brandBasePath}/`);
 }
 
@@ -152,9 +158,11 @@ export default function DashboardShell({
   const activeBrand =
     brands.find((brand) => getBrandActiveState(pathname, brand.slug)) ?? null;
   const isBrandOverviewPage = Boolean(
-    activeBrand && pathname === `/brands/${activeBrand.slug}`,
+    activeBrand && pathname === `/admin/brands/${activeBrand.slug}`,
   );
-  const landingRouteMatch = pathname.match(/^\/brands\/([^/]+)\/([^/]+)$/);
+  const landingRouteMatch = pathname.match(
+    /^\/admin\/brands\/([^/]+)\/([^/]+)$/,
+  );
   const activeLanding =
     landingRouteMatch && activeBrand
       ? landingSummaries.find(
@@ -168,6 +176,10 @@ export default function DashboardShell({
   useEffect(() => {
     applyTheme(theme);
   }, [theme]);
+
+  if (!pathname.startsWith("/admin")) {
+    return children;
+  }
 
   const toggleTheme = () => {
     const nextTheme: ThemeMode = theme === "dark" ? "light" : "dark";
@@ -234,7 +246,7 @@ export default function DashboardShell({
 
         <div className="px-4 py-4">
           <Link
-            href="/brands/new"
+            href="/admin/brands/new"
             onClick={() => setMobileOpen(false)}
             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#3e3989] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-[color:rgba(62,57,137,0.28)] transition hover:bg-[#2f2b69] dark:bg-[#3e3989] dark:hover:bg-[#2f2b69]"
           >
@@ -331,9 +343,10 @@ export default function DashboardShell({
               </div>
 
               <div className="flex items-center gap-3">
+                <AdminUserMenu />
                 {themeToggle}
                 <Link
-                  href={`/brands/${activeBrand.slug}`}
+                  href={`/admin/brands/${activeBrand.slug}`}
                   className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                 >
                   <ArrowLeft className="h-4 w-4" />
@@ -388,9 +401,10 @@ export default function DashboardShell({
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
+                <AdminUserMenu />
                 {themeToggle}
                 <Link
-                  href={`/brands/${activeBrand.slug}/edit`}
+                  href={`/admin/brands/${activeBrand.slug}/edit`}
                   className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                 >
                   <Pencil className="h-4 w-4" />
@@ -398,7 +412,7 @@ export default function DashboardShell({
                 </Link>
 
                 <Link
-                  href={`/brands/${activeBrand.slug}/new`}
+                  href={`/admin/brands/${activeBrand.slug}/new`}
                   className="inline-flex items-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm dark:bg-[var(--bunji-primary)]"
                 >
                   <Plus className="h-4 w-4" />
@@ -431,9 +445,10 @@ export default function DashboardShell({
               </div>
 
               <div className="flex items-center gap-3">
+                <AdminUserMenu />
                 {themeToggle}
                 <Link
-                  href="/brands/new"
+                  href="/admin/brands/new"
                   className="hidden items-center gap-2 rounded-2xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white shadow-sm dark:bg-[var(--bunji-primary)] sm:inline-flex"
                 >
                   <Plus className="h-4 w-4" />

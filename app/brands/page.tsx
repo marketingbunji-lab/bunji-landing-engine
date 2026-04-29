@@ -23,7 +23,7 @@ export default function BrandsPage() {
           </div>
 
           <Link
-            href="/brands/new"
+            href="/admin/brands/new"
             className="inline-flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white dark:bg-[var(--bunji-primary)]"
           >
             <Plus className="h-4 w-4" />

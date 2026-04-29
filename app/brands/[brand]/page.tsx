@@ -47,7 +47,7 @@ export default async function BrandPage({ params }: Props) {
     <main className="min-h-screen bg-gray-50 px-6 py-10 dark:bg-[#020617]">
       <div className="w-full">
         <Link
-          href="/"
+          href="/admin/brands"
           className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-black dark:text-slate-300 dark:hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" />

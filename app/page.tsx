@@ -22,7 +22,7 @@ export default function HomePage() {
       title: "Crea y organiza tus marcas",
       description:
         "Configura la identidad de cada universidad o cliente con logos, colores, tipografías y enlaces legales desde un solo lugar.",
-      href: "/brands/new",
+      href: "/admin/brands/new",
       cta: "Crear una marca",
       icon: SwatchBook,
       featured: true,
@@ -31,7 +31,7 @@ export default function HomePage() {
       title: "Construye landings listas para editar",
       description:
         "Genera nuevas páginas, ajusta sus secciones visuales, administra formularios y exporta HTML para tus campañas.",
-      href: "/brands",
+      href: "/admin/brands",
       cta: "Explorar marcas",
       icon: FileStack,
     },
@@ -39,7 +39,7 @@ export default function HomePage() {
       title: "Acelera el flujo con AI",
       description:
         "Usa la creación asistida para cargar programas más rápido, proponer contenidos y dejar una base lista para revisión.",
-      href: "/brands",
+      href: "/admin",
       cta: "Ir al panel",
       icon: Bot,
     },
@@ -70,7 +70,7 @@ export default function HomePage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="/brands/new"
+                  href="/admin/brands/new"
                   className="inline-flex items-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white"
                 >
                   <Plus className="h-4 w-4" />
@@ -78,7 +78,7 @@ export default function HomePage() {
                 </Link>
 
                 <Link
-                  href="/brands"
+                  href="/admin/brands"
                   className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                 >
                   Ver todas las marcas
@@ -167,7 +167,7 @@ export default function HomePage() {
             </div>
 
             <Link
-              href="/brands/new"
+              href="/admin/brands/new"
               className="inline-flex items-center gap-2 rounded-2xl bg-black px-5 py-3 text-sm font-semibold text-white"
             >
               <Plus className="h-4 w-4" />

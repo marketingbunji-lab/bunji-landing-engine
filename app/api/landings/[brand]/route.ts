@@ -209,7 +209,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
     return NextResponse.json({
       ok: true,
       slug,
-      redirectTo: `/brands/${brand}/${slug}`,
+      redirectTo: `/admin/brands/${brand}/${slug}`,
     });
   } catch {
     return NextResponse.json(

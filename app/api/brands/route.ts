@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       ok: true,
       slug,
-      redirectTo: `/brands/${slug}/edit`,
+      redirectTo: `/admin/brands/${slug}/edit`,
     });
   } catch {
     return NextResponse.json(
