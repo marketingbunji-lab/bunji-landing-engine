@@ -11,8 +11,8 @@ export default async function TestUsersPage() {
         <h1>Supabase no está configurado</h1>
         <p>
           Agrega NEXT_PUBLIC_SUPABASE_URL y
-          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY en las variables de entorno de
-          Vercel.
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY o
+          NEXT_PUBLIC_SUPABASE_ANON_KEY en las variables de entorno de Vercel.
         </p>
       </main>
     );

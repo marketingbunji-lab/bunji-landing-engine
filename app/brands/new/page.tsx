@@ -5,6 +5,7 @@ import BrandEditor from "../../../components/editor/BrandEditor";
 const emptyBrand = {
   slug: "",
   name: "",
+  shortName: "",
   logo: "",
   logos: {
     light: "",

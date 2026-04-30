@@ -31,6 +31,7 @@ async function createBrandInSupabase(brand: Brand) {
       id: crypto.randomUUID(),
       slug: brand.slug,
       name: brand.name,
+      shortName: brand.shortName ?? brand.name,
       logo: brand.logo,
       logos: brand.logos ?? {},
       typography: brand.typography ?? {},
@@ -95,6 +96,7 @@ export async function POST(req: NextRequest) {
     const brandData: Brand = {
       slug,
       name,
+      shortName: (body.shortName || name).trim(),
       logo: body.logo || "",
       logos: {
         light: body.logos?.light || "",

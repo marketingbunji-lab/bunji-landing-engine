@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 
 const webhookUrl =
-  //"https://n8n.aquinas.tech/webhook-test/af6c5ae9-5053-4f13-aa8b-f40f19498966"
-  "https://n8n.crisnnino.com/webhook/af6c5ae9-5053-4f13-aa8b-f40f19498966";
+  "https://n8n.crisnnino.com/webhook/bunji-landing-engine-landing";
 
 export async function POST(request: Request) {
   try {

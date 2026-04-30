@@ -41,7 +41,7 @@ export default function BrandCard({
           <div className="max-w-28 shrink-0">
             <h2 className="text-xl font-semibold dark:text-slate-50">{brand.name}</h2>
             <p className="break-words text-sm leading-5 text-gray-500 dark:text-slate-400">
-              {brand.description}
+              {brand.shortName || brand.description || brand.name}
             </p>
           </div>
         </div>

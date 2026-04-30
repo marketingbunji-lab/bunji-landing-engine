@@ -4,6 +4,7 @@ import path from "node:path";
 export type Brand = {
   slug: string;
   name: string;
+  shortName?: string;
   logo: string;
   logos?: {
     light?: string;
@@ -92,13 +93,20 @@ export type Landing = {
 const brandsDir = path.join(process.cwd(), "data", "brands");
 const landingsDir = path.join(process.cwd(), "data", "landings");
 
+function normalizeBrand(brand: Brand): Brand {
+  return {
+    ...brand,
+    shortName: brand.shortName?.trim() || brand.name,
+  };
+}
+
 export function getBrands(): Brand[] {
   const files = fs.readdirSync(brandsDir);
 
   return files.map((file) => {
     const filePath = path.join(brandsDir, file);
     const content = fs.readFileSync(filePath, "utf8");
-    return JSON.parse(content) as Brand;
+    return normalizeBrand(JSON.parse(content) as Brand);
   });
 }
 
@@ -108,7 +116,7 @@ export function getBrandBySlug(slug: string): Brand | null {
   if (!fs.existsSync(filePath)) return null;
 
   const content = fs.readFileSync(filePath, "utf8");
-  return JSON.parse(content) as Brand;
+  return normalizeBrand(JSON.parse(content) as Brand);
 }
 
 export function getLandingsByBrand(brandSlug: string): Landing[] {

@@ -317,7 +317,7 @@ export default function DashboardShell({
                       <div className="min-w-0">
                         <p className="truncate text-sm font-medium">{brand.name}</p>
                         <p className="truncate text-xs text-slate-500 dark:text-slate-400">
-                          {brand.description || brand.slug}
+                          {brand.shortName || brand.description || brand.slug}
                         </p>
                       </div>
                     <ChevronRight className="h-4 w-4 shrink-0 text-slate-400 dark:text-slate-500" />
@@ -401,9 +401,9 @@ export default function DashboardShell({
                     </p>
                     <h2 className="text-3xl font-bold text-slate-950 dark:text-slate-50">
                       {activeBrand.name}
-                      {activeBrand.description ? (
+                      {activeBrand.shortName ? (
                         <span className="ml-3 text-xl font-medium text-slate-500 dark:text-slate-300">
-                          | {activeBrand.description}
+                          | {activeBrand.shortName}
                         </span>
                       ) : null}
                     </h2>

@@ -8,10 +8,7 @@ export const dynamic = "force-dynamic";
 
 export default async function BrandsPage() {
   const brands = getBrands();
-  const jsonBrandSlugs = new Set(brands.map((brand) => brand.slug));
-  const supabaseBrands = (await getSupabaseBrands()).filter(
-    (brand) => !jsonBrandSlugs.has(brand.slug)
-  );
+  const supabaseBrands = await getSupabaseBrands();
 
   return (
     <main className="min-h-screen bg-gray-50 px-6 py-10 dark:bg-[#020617]">
@@ -65,7 +62,7 @@ export default async function BrandsPage() {
               Marcas en Supabase
             </h2>
             <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">
-              Estas marcas están en la base de datos y todavía no tienen JSON local.
+              Estas marcas están en la base de datos. Algunas pueden existir también como JSON local.
             </p>
           </div>
 

@@ -1,0 +1,18 @@
+{
+  "slug": "universidad-nacional-abierta-y-a-distancia",
+  "name": "UMNG",
+  "shortName": "UMNG",
+  "logo": "https://umng.edu.co/wp-content/uploads/2026/03/LogoUMNGHorizontalLight.svg",
+  "logos": {
+    "light": "https://umng.edu.co/wp-content/uploads/2026/03/LogoUMNGHorizontalLight.svg",
+    "dark": ""
+  },
+  "typography": {
+    "fontFamily": "\"Poppins\", sans-serif",
+    "googleFontHref": "https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  },
+  "primaryColor": "#0056a6",
+  "secondaryColor": "#ffd200",
+  "description": "La Universidad Militar Nueva Granada (UMNG) es una institución de educación superior que ofrece formación integral y de alta calidad en diversas áreas del conocimiento.",
+  "legalLinks": []
+}

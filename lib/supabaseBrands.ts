@@ -4,6 +4,7 @@ import { createAdminClient } from "@/utils/supabase/admin";
 type SupabaseBrandRow = {
   slug: string | null;
   name: string | null;
+  shortName: string | null;
   logo: string | null;
   logos: Record<string, string> | null;
   typography: Record<string, string> | null;
@@ -17,6 +18,7 @@ function toBrand(brand: SupabaseBrandRow): Brand {
   return {
     slug: brand.slug ?? "",
     name: brand.name ?? "",
+    shortName: brand.shortName ?? brand.name ?? "",
     logo: brand.logo ?? "",
     logos: {
       light: brand.logos?.light ?? "",
@@ -43,7 +45,7 @@ export async function getSupabaseBrands(): Promise<Brand[]> {
   const { data, error } = await supabase
     .from("brands")
     .select(
-      "slug,name,logo,logos,typography,primary_color,secondary_color,description,legal_links"
+      "slug,name,shortName,logo,logos,typography,primary_color,secondary_color,description,legal_links"
     )
     .order("created_at", { ascending: false });
 
@@ -66,7 +68,7 @@ export async function getSupabaseBrandBySlug(slug: string): Promise<Brand | null
   const { data, error } = await supabase
     .from("brands")
     .select(
-      "slug,name,logo,logos,typography,primary_color,secondary_color,description,legal_links"
+      "slug,name,shortName,logo,logos,typography,primary_color,secondary_color,description,legal_links"
     )
     .eq("slug", slug)
     .maybeSingle();

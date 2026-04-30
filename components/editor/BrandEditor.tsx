@@ -183,6 +183,12 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
           />
 
           <Field
+            label="Nombre completo"
+            value={brand.shortName || ""}
+            onChange={(value) => updateField("shortName", value)}
+          />
+
+          <Field
             label="Descripción"
             value={brand.description || ""}
             onChange={(value) => updateField("description", value)}

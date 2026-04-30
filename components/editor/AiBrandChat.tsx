@@ -44,6 +44,7 @@ const starterPrompts = [
 const emptyBrand: Brand = {
   slug: "",
   name: "",
+  shortName: "",
   logo: "",
   logos: {
     light: "",
@@ -238,6 +239,7 @@ export default function AiBrandChat() {
     const normalizedBrand: Brand = {
       ...emptyBrand,
       ...nextBrand,
+      shortName: nextBrand.shortName?.trim() || nextBrand.name || "",
       logos: {
         light: nextBrand.logos?.light ?? nextBrand.logo ?? "",
         dark: nextBrand.logos?.dark ?? nextBrand.logo ?? "",
@@ -497,6 +499,10 @@ export default function AiBrandChat() {
         {generatedBrand ? (
           <div className="mt-5 space-y-4">
             <DraftField label="Nombre" value={generatedBrand.name} />
+            <DraftField
+              label="Nombre completo"
+              value={generatedBrand.shortName || generatedBrand.name}
+            />
             <DraftField label="Slug" value={generatedBrand.slug} />
             <DraftField
               label="Descripcion"

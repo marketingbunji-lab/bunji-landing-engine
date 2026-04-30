@@ -8,6 +8,12 @@ type Params = Promise<{
   brand: string;
 }>;
 
+type SyncSupabaseResponse = {
+  ok: boolean;
+  skipped?: boolean;
+  error?: string;
+};
+
 export async function PUT(req: NextRequest, { params }: { params: Params }) {
   try {
     const { brand } = await params;
@@ -15,6 +21,7 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
     const brandData: Brand = {
       slug: brand,
       name: body.name || "",
+      shortName: (body.shortName || body.name || brand).trim(),
       logo: body.logo || "",
       logos: {
         light: body.logos?.light || "",
@@ -43,7 +50,9 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
 
     fs.writeFileSync(filePath, JSON.stringify(brandData, null, 2), "utf8");
 
-    return NextResponse.json({ ok: true });
+    const supabaseResult = await syncSupabaseBrand(brand, brandData);
+
+    return NextResponse.json({ ok: true, supabase: supabaseResult });
   } catch {
     return NextResponse.json(
       { ok: false, error: "No se pudo guardar la marca" },
@@ -85,6 +94,7 @@ async function updateSupabaseBrand(brandSlug: string, brand: Brand) {
     .from("brands")
     .update({
       name: brand.name,
+      shortName: brand.shortName ?? brand.name,
       logo: brand.logo,
       logos: brand.logos ?? {},
       typography: brand.typography ?? {},
@@ -112,6 +122,48 @@ async function updateSupabaseBrand(brandSlug: string, brand: Brand) {
   }
 
   return NextResponse.json({ ok: true });
+}
+
+async function syncSupabaseBrand(
+  brandSlug: string,
+  brand: Brand,
+): Promise<SyncSupabaseResponse> {
+  const supabase = createAdminClient();
+
+  if (!supabase) {
+    return {
+      ok: false,
+      skipped: true,
+      error: "No se encontro SUPABASE_SERVICE_ROLE_KEY en el servidor.",
+    };
+  }
+
+  const { data, error } = await supabase
+    .from("brands")
+    .update({
+      name: brand.name,
+      shortName: brand.shortName ?? brand.name,
+      logo: brand.logo,
+      logos: brand.logos ?? {},
+      typography: brand.typography ?? {},
+      primary_color: brand.primaryColor,
+      secondary_color: brand.secondaryColor,
+      description: brand.description ?? "",
+      legal_links: brand.legalLinks ?? [],
+      updated_at: new Date().toISOString(),
+    })
+    .eq("slug", brandSlug)
+    .select("slug");
+
+  if (error) {
+    return { ok: false, error: formatSupabaseError(error) };
+  }
+
+  if (!data || data.length === 0) {
+    return { ok: true, skipped: true };
+  }
+
+  return { ok: true };
 }
 
 async function deleteSupabaseBrand(brand: string) {
