@@ -15,13 +15,10 @@ export default async function BrandsPage() {
       <div className="w-full">
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm font-medium uppercase tracking-wide text-gray-500 dark:text-slate-400">
-              Bunji
-            </p>
-            <h1 className="mt-2 text-4xl font-bold text-gray-900 dark:text-slate-50">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-50">
               Marcas
             </h1>
-            <p className="mt-3 max-w-2xl text-gray-600 dark:text-slate-300">
+            <p className="max-w-2xl text-gray-600 dark:text-slate-300">
               Selecciona una marca para gestionar sus landings.
             </p>
           </div>
@@ -37,7 +34,7 @@ export default async function BrandsPage() {
 
         <section>
           <div className="mb-4">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-slate-50">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-50">
               Marcas con JSON
             </h2>
             <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">
@@ -58,7 +55,7 @@ export default async function BrandsPage() {
 
         <section className="mt-12">
           <div className="mb-4">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-slate-50">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-50">
               Marcas en Supabase
             </h2>
             <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">

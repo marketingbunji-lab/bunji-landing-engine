@@ -69,7 +69,7 @@ export default function AdminUserMenu() {
   };
 
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm dark:border-slate-700 dark:bg-slate-900">
+    <div className="flex items-center gap-3 rounded-2xl px-4 py-2 text-sm">
       <UserCircle className="h-5 w-5 text-slate-500 dark:text-slate-300" />
 
       <div className="min-w-0">

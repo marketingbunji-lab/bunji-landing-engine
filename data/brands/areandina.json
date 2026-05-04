@@ -1,0 +1,18 @@
+{
+  "slug": "areandina",
+  "name": "Areandina",
+  "shortName": "Areandina",
+  "logo": "https://cms.areandina.edu.co/sites/default/files/2024-07/logo-pse.svg",
+  "logos": {
+    "light": "https://cms.areandina.edu.co/sites/default/files/2024-07/logo-pse.svg",
+    "dark": ""
+  },
+  "typography": {
+    "fontFamily": "",
+    "googleFontHref": ""
+  },
+  "primaryColor": "#111827",
+  "secondaryColor": "#F8D74A",
+  "description": "",
+  "legalLinks": []
+}

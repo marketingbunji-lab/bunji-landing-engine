@@ -54,8 +54,8 @@ const emptyBrand: Brand = {
     fontFamily: "",
     googleFontHref: "",
   },
-  primaryColor: "#111827",
-  secondaryColor: "#F8D74A",
+  primaryColor: "",
+  secondaryColor: "",
   description: "",
   legalLinks: [],
 };

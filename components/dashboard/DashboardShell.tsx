@@ -101,11 +101,11 @@ const primaryNav: NavItem[] = [
     label: "Marcas",
     icon: FolderKanban,
   },
-  {
+  /*{
     href: "/admin/brands/new",
     label: "Nueva marca",
     icon: Plus,
-  },
+  },*/
   {
     href: "/admin/landings",
     label: "Landings",
@@ -161,6 +161,15 @@ export default function DashboardShell({
   const isBrandOverviewPage = Boolean(
     activeBrand && pathname === `/admin/brands/${activeBrand.slug}`,
   );
+  const isBrandEditPage = Boolean(
+    activeBrand && pathname === `/admin/brands/${activeBrand.slug}/edit`,
+  );
+  const isNewLandingPage = Boolean(
+    activeBrand && pathname === `/admin/brands/${activeBrand.slug}/new`,
+  );
+  const isNewLandingAiPage = Boolean(
+    activeBrand && pathname === `/admin/brands/${activeBrand.slug}/new/ai`,
+  );
   const landingRouteMatch = pathname.match(
     /^\/admin\/brands\/([^/]+)\/([^/]+)$/,
   );
@@ -173,7 +182,6 @@ export default function DashboardShell({
         ) ?? null
       : null;
   const isLandingEditorPage = Boolean(activeBrand && activeLanding);
-
   useEffect(() => {
     applyTheme(theme);
   }, [theme]);
@@ -330,145 +338,158 @@ export default function DashboardShell({
       </aside>
 
       <div className="lg:pl-[286px]">
-        {isLandingEditorPage && activeBrand && activeLanding ? (
-          <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/92 backdrop-blur dark:border-slate-800 dark:bg-slate-950/92">
+        <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/92 backdrop-blur dark:border-slate-800 dark:bg-slate-950/92">
+          <div className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                aria-label="Abrir menu lateral"
+                onClick={() => setMobileOpen(true)}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 lg:hidden"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
+
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                  Panel
+                </p>
+                <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                  Gestiona marcas y landings desde un solo lugar
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              {themeToggle}
+              <AdminUserMenu />
+            </div>
+          </div>
+        </header>
+
+        {activeBrand &&
+        (isBrandOverviewPage ||
+          isBrandEditPage ||
+          isNewLandingPage ||
+          isNewLandingAiPage ||
+          isLandingEditorPage) ? (
+          <section className="border-b border-slate-200/80 bg-white/92 backdrop-blur dark:border-slate-800 dark:bg-slate-950/92">
             <div className="flex flex-wrap items-center justify-between gap-5 px-4 py-5 sm:px-6">
               <div className="flex items-center gap-4">
-                <button
-                  type="button"
-                  aria-label="Abrir menu lateral"
-                  onClick={() => setMobileOpen(true)}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 lg:hidden"
-                >
-                  <Menu className="h-5 w-5" />
-                </button>
+                <div className="flex h-16 w-28 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={getBrandLogo(activeBrand, "light")}
+                    alt={activeBrand.name}
+                    className="max-h-full w-full object-contain dark:hidden"
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={getBrandLogo(activeBrand, "dark")}
+                    alt={activeBrand.name}
+                    className="hidden max-h-full w-full object-contain dark:block"
+                  />
+                </div>
 
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
-                    {activeBrand.name}
+                    {isLandingEditorPage
+                      ? activeBrand.name
+                      : isBrandEditPage
+                        ? "Editar marca"
+                        : isNewLandingAiPage
+                          ? "Crear con AI"
+                          : isNewLandingPage
+                            ? "Nueva landing"
+                            : "Marca activa"}
                   </p>
                   <h2 className="text-3xl font-bold text-slate-950 dark:text-slate-50">
-                    {activeLanding.fullTitle || activeLanding.title}
+                    {isLandingEditorPage
+                      ? activeLanding?.fullTitle || activeLanding?.title
+                      : activeBrand.name}
+                    {!isLandingEditorPage && activeBrand.shortName ? (
+                      <span className="ml-3 text-xl font-medium text-slate-500 dark:text-slate-300">
+                        | {activeBrand.shortName}
+                      </span>
+                    ) : null}
                   </h2>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <AdminUserMenu />
-                {themeToggle}
-                <Link
-                  href={`/admin/brands/${activeBrand.slug}`}
-                  className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  Volver
-                </Link>
-              </div>
-            </div>
-          </header>
-        ) : isBrandOverviewPage && activeBrand ? (
-          <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/92 backdrop-blur dark:border-slate-800 dark:bg-slate-950/92">
-            <div className="flex flex-wrap items-center justify-between gap-5 px-4 py-5 sm:px-6">
-              <div className="flex items-center gap-4">
-                <button
-                  type="button"
-                  aria-label="Abrir menu lateral"
-                  onClick={() => setMobileOpen(true)}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 lg:hidden"
-                >
-                  <Menu className="h-5 w-5" />
-                </button>
-
-                <div className="flex items-center gap-4">
-                  <div className="flex h-16 w-28 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={getBrandLogo(activeBrand, "light")}
-                      alt={activeBrand.name}
-                      className="max-h-full w-full object-contain dark:hidden"
-                    />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={getBrandLogo(activeBrand, "dark")}
-                      alt={activeBrand.name}
-                      className="hidden max-h-full w-full object-contain dark:block"
-                    />
-                  </div>
-
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
-                      Marca activa
-                    </p>
-                    <h2 className="text-3xl font-bold text-slate-950 dark:text-slate-50">
-                      {activeBrand.name}
-                      {activeBrand.shortName ? (
-                        <span className="ml-3 text-xl font-medium text-slate-500 dark:text-slate-300">
-                          | {activeBrand.shortName}
-                        </span>
-                      ) : null}
-                    </h2>
-                  </div>
-                </div>
-              </div>
-
               <div className="flex flex-wrap items-center gap-3">
-                <AdminUserMenu />
-                {themeToggle}
-                <Link
-                  href={`/admin/brands/${activeBrand.slug}/edit`}
-                  className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
-                >
-                  <Pencil className="h-4 w-4" />
-                  Editar marca
-                </Link>
+                {isBrandOverviewPage ? (
+                  <>
+                    <Link
+                      href={`/admin/brands/${activeBrand.slug}/edit`}
+                      className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                    >
+                      <Pencil className="h-4 w-4" />
+                      Editar marca
+                    </Link>
 
-                <Link
-                  href={`/admin/brands/${activeBrand.slug}/new`}
-                  className="inline-flex items-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm dark:bg-[var(--bunji-primary)]"
-                >
-                  <Plus className="h-4 w-4" />
-                  Nueva landing
-                </Link>
+                    <Link
+                      href={`/admin/brands/${activeBrand.slug}/new`}
+                      className="inline-flex items-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm dark:bg-[var(--bunji-primary)]"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Nueva landing
+                    </Link>
+                  </>
+                ) : null}
+
+                {isBrandEditPage ? (
+                  <Link
+                    href={`/admin/brands/${activeBrand.slug}`}
+                    className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    Volver
+                  </Link>
+                ) : null}
+
+                {isNewLandingPage ? (
+                  <>
+                    <Link
+                      href={`/admin/brands/${activeBrand.slug}/new/ai`}
+                      className="inline-flex items-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm dark:bg-[var(--bunji-primary)]"
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      Crear con AI
+                    </Link>
+
+                    <Link
+                      href={`/admin/brands/${activeBrand.slug}`}
+                      className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      Volver
+                    </Link>
+                  </>
+                ) : null}
+
+                {isNewLandingAiPage ? (
+                  <Link
+                    href={`/admin/brands/${activeBrand.slug}/new`}
+                    className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    Volver
+                  </Link>
+                ) : null}
+
+                {isLandingEditorPage ? (
+                  <Link
+                    href={`/admin/brands/${activeBrand.slug}`}
+                    className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    Volver
+                  </Link>
+                ) : null}
               </div>
             </div>
-          </header>
-        ) : (
-          <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/92 backdrop-blur dark:border-slate-800 dark:bg-slate-950/92">
-            <div className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6">
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  aria-label="Abrir menu lateral"
-                  onClick={() => setMobileOpen(true)}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 lg:hidden"
-                >
-                  <Menu className="h-5 w-5" />
-                </button>
-
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
-                    Panel
-                  </p>
-                  <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
-                    Gestiona marcas y landings desde un solo lugar
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <AdminUserMenu />
-                {themeToggle}
-                <Link
-                  href="/admin/brands/new"
-                  className="hidden items-center gap-2 rounded-2xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white shadow-sm dark:bg-[var(--bunji-primary)] sm:inline-flex"
-                >
-                  <Plus className="h-4 w-4" />
-                  Nueva marca
-                </Link>
-              </div>
-            </div>
-          </header>
-        )}
+          </section>
+        ) : null}
 
         <div>{children}</div>
       </div>
