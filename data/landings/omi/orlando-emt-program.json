@@ -104,5 +104,10 @@
     "scriptCode": "",
     "programName": "Emergency Medical Technician (EMT)"
   },
-  "footerScripts": []
+  "footerScripts": [],
+  "certifications": {
+    "enabled": false,
+    "resolutionText": "",
+    "items": []
+  }
 }

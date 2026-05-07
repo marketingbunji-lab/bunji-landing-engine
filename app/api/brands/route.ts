@@ -15,6 +15,17 @@ function slugify(text: string) {
     .replace(/^-+|-+$/g, "");
 }
 
+function normalizeCertifications(brand: Brand) {
+  return (brand.certifications ?? []).map((certification) => ({
+    name: certification.name || "",
+    url: certification.url || "",
+    logos: {
+      light: certification.logos?.light || "",
+      dark: certification.logos?.dark || "",
+    },
+  }));
+}
+
 async function createBrandInSupabase(brand: Brand) {
   try {
     const supabase = createAdminClient();
@@ -39,6 +50,7 @@ async function createBrandInSupabase(brand: Brand) {
       secondary_color: brand.secondaryColor,
       description: brand.description ?? "",
       legal_links: brand.legalLinks ?? [],
+      certifications: normalizeCertifications(brand),
     });
 
     if (error) {
@@ -110,6 +122,7 @@ export async function POST(req: NextRequest) {
       secondaryColor: body.secondaryColor || "#F8D74A",
       description: body.description || "",
       legalLinks: body.legalLinks || [],
+      certifications: normalizeCertifications(body),
     };
 
     fs.writeFileSync(filePath, JSON.stringify(brandData, null, 2), "utf8");

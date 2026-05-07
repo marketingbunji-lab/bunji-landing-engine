@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
-import type { Brand, LegalLink } from "@/lib/data";
+import type { Brand, BrandCertification, LegalLink } from "@/lib/data";
 
 type EditableBrand = Brand & Record<string, unknown>;
 type EditableRecord = Record<string, unknown>;
@@ -96,6 +96,80 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
     setBrand((prev) => {
       const next = structuredClone(prev) as EditableBrand;
       next.legalLinks = (next.legalLinks ?? []).filter(
+        (_, itemIndex) => itemIndex !== index,
+      );
+      return next;
+    });
+  };
+
+  const updateCertification = (
+    index: number,
+    field: keyof BrandCertification,
+    value: string,
+  ) => {
+    setBrand((prev) => {
+      const next = structuredClone(prev) as EditableBrand;
+
+      if (!Array.isArray(next.certifications)) {
+        next.certifications = [];
+      }
+
+      if (!next.certifications[index]) {
+        next.certifications[index] = {
+          name: "",
+          url: "",
+          logos: { light: "", dark: "" },
+        };
+      }
+
+      next.certifications[index][field] = value;
+      return next;
+    });
+  };
+
+  const updateCertificationLogo = (
+    index: number,
+    mode: "light" | "dark",
+    value: string,
+  ) => {
+    setBrand((prev) => {
+      const next = structuredClone(prev) as EditableBrand;
+
+      if (!Array.isArray(next.certifications)) {
+        next.certifications = [];
+      }
+
+      if (!next.certifications[index]) {
+        next.certifications[index] = {
+          name: "",
+          url: "",
+          logos: { light: "", dark: "" },
+        };
+      }
+
+      next.certifications[index].logos = {
+        ...(next.certifications[index].logos ?? {}),
+        [mode]: value,
+      };
+      return next;
+    });
+  };
+
+  const addCertification = () => {
+    setBrand((prev) => {
+      const next = structuredClone(prev) as EditableBrand;
+      next.certifications = [
+        ...(next.certifications ?? []),
+        { name: "", url: "", logos: { light: "", dark: "" } },
+      ];
+      return next;
+    });
+  };
+
+  const removeCertification = (index: number) => {
+    setBrand((prev) => {
+      const next = structuredClone(prev) as EditableBrand;
+      next.certifications = (next.certifications ?? []).filter(
         (_, itemIndex) => itemIndex !== index,
       );
       return next;
@@ -300,6 +374,90 @@ export default function BrandEditor({ mode, initialBrand }: Props) {
                     label="URL"
                     value={link.url}
                     onChange={(value) => updateLegalLink(index, "url", value)}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-4 border border-gray-200 bg-gray-50 p-4 dark:border-slate-800 dark:bg-slate-900">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <h2 className="text-sm font-semibold text-gray-900 dark:text-slate-50">
+                  Certificaciones
+                </h2>
+                <p className="text-sm text-gray-500 dark:text-slate-400">
+                  Agrega acreditaciones o certificaciones de la institucion.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={addCertification}
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                Agregar certificacion
+              </button>
+            </div>
+
+            {(brand.certifications ?? []).length === 0 ? (
+              <div className="border border-dashed border-gray-300 bg-white p-4 text-sm text-gray-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-400">
+                Esta marca todavia no tiene certificaciones configuradas.
+              </div>
+            ) : null}
+
+            {(brand.certifications ?? []).map((certification, index) => (
+              <div
+                key={index}
+                className="border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-950"
+              >
+                <div className="mb-3 flex items-center justify-between">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-slate-50">
+                    Certificacion {index + 1}
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => removeCertification(index)}
+                    className="inline-flex items-center gap-1 text-xs font-medium text-red-600"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                    Eliminar
+                  </button>
+                </div>
+
+                <div className="space-y-3">
+                  <Field
+                    label="Nombre de la acreditacion"
+                    value={certification.name}
+                    onChange={(value) =>
+                      updateCertification(index, "name", value)
+                    }
+                  />
+
+                  <Field
+                    label="URL de la entidad acreditadora"
+                    value={certification.url}
+                    onChange={(value) =>
+                      updateCertification(index, "url", value)
+                    }
+                  />
+
+                  <Field
+                    label="Logo light"
+                    value={certification.logos?.light || ""}
+                    onChange={(value) =>
+                      updateCertificationLogo(index, "light", value)
+                    }
+                  />
+
+                  <Field
+                    label="Logo dark"
+                    value={certification.logos?.dark || ""}
+                    onChange={(value) =>
+                      updateCertificationLogo(index, "dark", value)
+                    }
                   />
                 </div>
               </div>

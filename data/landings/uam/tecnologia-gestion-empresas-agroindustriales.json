@@ -107,5 +107,10 @@
   },
   "programType": "Tecnológico",
   "footerScripts": [],
-  "schedule": "virtual"
+  "schedule": "virtual",
+  "certifications": {
+    "enabled": false,
+    "resolutionText": "",
+    "items": []
+  }
 }

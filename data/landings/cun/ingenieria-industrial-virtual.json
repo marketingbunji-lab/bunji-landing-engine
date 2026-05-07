@@ -99,5 +99,10 @@
     "scriptCode": "",
     "programName": "Ingeniería Industrial - Modalidad Virtual"
   },
-  "footerScripts": []
+  "footerScripts": [],
+  "certifications": {
+    "enabled": false,
+    "resolutionText": "",
+    "items": []
+  }
 }

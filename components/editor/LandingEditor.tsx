@@ -12,7 +12,13 @@ import {
   Tablet,
   Trash2,
 } from "lucide-react";
-import type { AccordionItem, Brand, IconTextItem, Landing } from "@/lib/data";
+import type {
+  AccordionItem,
+  Brand,
+  BrandCertification,
+  IconTextItem,
+  Landing,
+} from "@/lib/data";
 import { renderLandingTemplate } from "../templates/renderLandingTemplate";
 import ExportHtmlButton from "../export/ExportHtmlButton";
 
@@ -29,6 +35,12 @@ type EditableLanding = Landing & Record<string, unknown>;
 type EditableRecord = Record<string, unknown>;
 type EditableArrayItem = Record<string, string>;
 type EditableTextArray = string[];
+type EditableCertificationItem = {
+  name: string;
+  url?: string;
+  enabled?: boolean;
+  resolutionText?: string;
+};
 
 function isRecord(value: unknown): value is EditableRecord {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -63,6 +75,45 @@ function getArrayAtPath(target: EditableRecord, path: string) {
   return parent[arrayKey] as EditableArrayItem[];
 }
 
+function getCertificationKey(certification: BrandCertification) {
+  return `${certification.name || ""}|${certification.url || ""}`;
+}
+
+function getLandingCertificationItem(
+  landing: Landing,
+  certification: BrandCertification,
+  index: number,
+) {
+  const items = landing.certifications?.items ?? [];
+  const certificationKey = getCertificationKey(certification);
+  const matchedItem = items.find(
+    (item) => `${item.name || ""}|${item.url || ""}` === certificationKey,
+  );
+
+  return matchedItem ?? items[index] ?? null;
+}
+
+function getLandingCertificationResolution(
+  landing: Landing,
+  certification: BrandCertification,
+  index: number,
+) {
+  return (
+    getLandingCertificationItem(landing, certification, index)
+      ?.resolutionText ?? ""
+  );
+}
+
+function getLandingCertificationEnabled(
+  landing: Landing,
+  certification: BrandCertification,
+  index: number,
+) {
+  return Boolean(
+    getLandingCertificationItem(landing, certification, index)?.enabled,
+  );
+}
+
 export default function LandingEditor({
   brand,
   initialLanding,
@@ -77,8 +128,11 @@ export default function LandingEditor({
   const [analyzingColor, setAnalyzingColor] = useState(false);
   const [previewWidth, setPreviewWidth] = useState(1200);
   const [previewHeight, setPreviewHeight] = useState(820);
+  const brandCertifications = brand.certifications ?? [];
+  const hasBrandCertifications = brandCertifications.length > 0;
+  const certificationsEnabled = Boolean(landing.certifications?.enabled);
 
-  const updateField = (path: string, value: string) => {
+  const updateValueAtPath = (path: string, value: string | boolean) => {
     setLanding((prev) => {
       const next = structuredClone(prev) as EditableLanding;
       const keys = path.split(".");
@@ -92,6 +146,72 @@ export default function LandingEditor({
       current[fieldKey] = value;
       return next;
     });
+  };
+
+  const updateField = (path: string, value: string) => {
+    updateValueAtPath(path, value);
+  };
+
+  const updateBooleanField = (path: string, value: boolean) => {
+    updateValueAtPath(path, value);
+  };
+
+  const updateCertificationItem = (
+    certification: BrandCertification,
+    index: number,
+    patch: Partial<EditableCertificationItem>,
+  ) => {
+    setLanding((prev) => {
+      const next = structuredClone(prev) as EditableLanding;
+
+      if (!isRecord(next.certifications)) {
+        next.certifications = {};
+      }
+
+      const certifications = next.certifications as EditableRecord;
+
+      if (!Array.isArray(certifications.items)) {
+        certifications.items = [];
+      }
+
+      const items = certifications.items as EditableCertificationItem[];
+      const certificationKey = getCertificationKey(certification);
+      let itemIndex = items.findIndex(
+        (item) => `${item.name || ""}|${item.url || ""}` === certificationKey,
+      );
+
+      if (itemIndex === -1) {
+        itemIndex = index;
+      }
+
+      const currentItem = items[itemIndex] ?? {};
+      items[itemIndex] = {
+        ...currentItem,
+        name: certification.name || `Certificación ${index + 1}`,
+        url: certification.url || "",
+        enabled: currentItem.enabled ?? false,
+        resolutionText: currentItem.resolutionText ?? "",
+        ...patch,
+      };
+
+      return next;
+    });
+  };
+
+  const updateCertificationEnabled = (
+    certification: BrandCertification,
+    index: number,
+    enabled: boolean,
+  ) => {
+    updateCertificationItem(certification, index, { enabled });
+  };
+
+  const updateCertificationResolution = (
+    certification: BrandCertification,
+    index: number,
+    value: string,
+  ) => {
+    updateCertificationItem(certification, index, { resolutionText: value });
   };
 
   const updateArrayItem = (
@@ -278,6 +398,108 @@ export default function LandingEditor({
                     );
                   })}
                 </div>
+              </div>
+            </EditorSection>
+
+            <EditorSection title="Certificaciones">
+              <div className="space-y-4">
+                <div className="flex items-start justify-between gap-4 rounded-xl border border-gray-200 bg-gray-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-slate-100">
+                      Mostrar certificaciones de la marca
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-gray-500 dark:text-slate-400">
+                      Trae las certificaciones configuradas en la marca y las
+                      muestra en esta landing.
+                    </p>
+                  </div>
+
+                  <SwitchField
+                    checked={certificationsEnabled}
+                    disabled={!hasBrandCertifications}
+                    onChange={(checked) =>
+                      updateBooleanField("certifications.enabled", checked)
+                    }
+                    label="Mostrar certificaciones"
+                  />
+                </div>
+
+                {hasBrandCertifications ? (
+                  <div className="space-y-3">
+                    {brandCertifications.map((certification, index) => {
+                      const certificationEnabled =
+                        getLandingCertificationEnabled(
+                          landing,
+                          certification,
+                          index,
+                        );
+
+                      return (
+                        <div
+                          key={`${certification.name}-${index}`}
+                          className="rounded-xl border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-950"
+                        >
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <p className="text-sm font-semibold text-gray-900 dark:text-slate-100">
+                                {certification.name ||
+                                  `Certificación ${index + 1}`}
+                              </p>
+                              {certification.url ? (
+                                <p className="mt-1 break-all text-xs text-gray-500 dark:text-slate-400">
+                                  {certification.url}
+                                </p>
+                              ) : null}
+                            </div>
+
+                            {certificationsEnabled ? (
+                              <SwitchField
+                                checked={certificationEnabled}
+                                onChange={(checked) =>
+                                  updateCertificationEnabled(
+                                    certification,
+                                    index,
+                                    checked,
+                                  )
+                                }
+                                label={`Mostrar ${
+                                  certification.name ||
+                                  `certificación ${index + 1}`
+                                }`}
+                              />
+                            ) : null}
+                          </div>
+
+                          {certificationsEnabled && certificationEnabled ? (
+                            <div className="mt-4">
+                              <TextareaField
+                                label="Resolución"
+                                value={getLandingCertificationResolution(
+                                  landing,
+                                  certification,
+                                  index,
+                                )}
+                                onChange={(value) =>
+                                  updateCertificationResolution(
+                                    certification,
+                                    index,
+                                    value,
+                                  )
+                                }
+                              />
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="rounded-xl border border-dashed border-gray-300 p-4 text-sm text-gray-500 dark:border-slate-700 dark:text-slate-400">
+                    Esta marca todavía no tiene certificaciones configuradas.
+                    Agrégalas primero en el editor de marca.
+                  </div>
+                )}
+
               </div>
             </EditorSection>
 
@@ -1002,6 +1224,44 @@ function EditorSection({
         <div className="space-y-4 border-t border-gray-200 p-4 dark:border-slate-800">{children}</div>
       ) : null}
     </section>
+  );
+}
+
+function SwitchField({
+  checked,
+  disabled = false,
+  label,
+  onChange,
+}: {
+  checked: boolean;
+  disabled?: boolean;
+  label: string;
+  onChange: (checked: boolean) => void;
+}) {
+  return (
+    <label className="inline-flex shrink-0 cursor-pointer items-center">
+      <span className="sr-only">{label}</span>
+      <input
+        type="checkbox"
+        checked={checked}
+        disabled={disabled}
+        onChange={(event) => onChange(event.target.checked)}
+        className="sr-only"
+      />
+      <span
+        className={`relative h-7 w-12 rounded-full transition ${
+          checked
+            ? "bg-[var(--bunji-primary)]"
+            : "bg-gray-300 dark:bg-slate-700"
+        } ${disabled ? "cursor-not-allowed opacity-50" : ""}`}
+      >
+        <span
+          className={`absolute left-1 top-1 h-5 w-5 rounded-full bg-white shadow-sm transition ${
+            checked ? "translate-x-5" : ""
+          }`}
+        />
+      </span>
+    </label>
   );
 }
 

@@ -35,5 +35,23 @@
       "label": "Transparencia de la Información",
       "url": "https://www.autonoma.edu.co/conoce-la-uam/transparencia-de-la-informacion"
     }
+  ],
+  "certifications": [
+    {
+      "name": "Acreditación de alta Calidad",
+      "url": "",
+      "logos": {
+        "light": "https://raw.githubusercontent.com/marketingbunji-lab/public-resources/refs/heads/main/uam-alta-calidad-light.svg",
+        "dark": "https://raw.githubusercontent.com/marketingbunji-lab/public-resources/refs/heads/main/uam-alta-calidad-dark.svg"
+      }
+    },
+    {
+      "name": "Acreditación Internacional ARCU-SUR",
+      "url": "",
+      "logos": {
+        "light": "",
+        "dark": "https://raw.githubusercontent.com/marketingbunji-lab/public-resources/refs/heads/main/arcu-sut-dark.svg"
+      }
+    }
   ]
 }

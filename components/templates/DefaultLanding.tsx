@@ -1,7 +1,13 @@
 /* eslint-disable @next/next/no-img-element, @next/next/no-sync-scripts */
 import Script from "next/script";
 import { getBrandLogo } from "@/lib/brandLogo";
-import type { Brand, IconTextItem, Landing, LegalLink } from "@/lib/data";
+import type {
+  Brand,
+  BrandCertification,
+  IconTextItem,
+  Landing,
+  LegalLink,
+} from "@/lib/data";
 import ClientifyFormEmbed from "../forms/ClientifyFormEmbed";
 
 type Props = {
@@ -37,6 +43,31 @@ function getSoftBackground(hexColor: string) {
   return `${hexColor}14`;
 }
 
+function getCertificationLogo(
+  certification: BrandCertification,
+  mode?: "light" | "dark",
+) {
+  if (mode === "dark") {
+    return certification.logos?.dark || certification.logos?.light || "";
+  }
+
+  return certification.logos?.light || certification.logos?.dark || "";
+}
+
+function getCertificationResolution(
+  landing: Landing,
+  certification: BrandCertification,
+  index: number,
+) {
+  const items = landing.certifications?.items ?? [];
+  const certificationKey = `${certification.name || ""}|${certification.url || ""}`;
+  const matchedItem = items.find(
+    (item) => `${item.name || ""}|${item.url || ""}` === certificationKey,
+  );
+
+  return matchedItem?.resolutionText ?? items[index]?.resolutionText ?? "";
+}
+
 export default function DefaultLanding({
   brand,
   landing,
@@ -63,6 +94,28 @@ export default function DefaultLanding({
   const benefitItems = benefits.items ?? [];
   const legalLinks = brand.legalLinks ?? [];
   const footerScripts = landing.footerScripts ?? [];
+  const certificationSettings = landing.certifications ?? {};
+  const brandCertifications = brand.certifications ?? [];
+  const activeCertifications = brandCertifications
+    .map((certification, index) => {
+      const items = landing.certifications?.items ?? [];
+      const certificationKey = `${certification.name || ""}|${certification.url || ""}`;
+      const landingItem =
+        items.find(
+          (item) =>
+            `${item.name || ""}|${item.url || ""}` === certificationKey,
+        ) ?? items[index];
+
+      return {
+        certification,
+        index,
+        enabled: Boolean(landingItem?.enabled),
+      };
+    })
+    .filter((item) => item.enabled);
+  const hasCertifications = Boolean(
+    certificationSettings.enabled && activeCertifications.length,
+  );
   const title = landing.title || landing.fullTitle || "";
   const fullTitle = landing.fullTitle || title;
   const heroTitle = hero.title || fullTitle;
@@ -302,6 +355,42 @@ export default function DefaultLanding({
           gap: 18px;
         }
 
+        .default-certification-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+          align-items: stretch;
+        }
+
+        .default-certification-heading {
+          min-height: 160px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 24px 0;
+        }
+
+        .default-certification-card {
+          min-height: 160px;
+          border-radius: 18px;
+          background: #ffffff;
+          padding: 24px;
+          box-shadow: 0 12px 36px rgba(17,24,39,0.08);
+          border: 1px solid #EEF2F7;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .default-certification-card img {
+          width: auto;
+          max-width: 180px;
+          max-height: 64px;
+          object-fit: contain;
+          object-position: left center;
+          margin-bottom: 16px;
+        }
+
         .default-card {
           min-height: 190px;
           border-radius: 18px;
@@ -413,7 +502,8 @@ export default function DefaultLanding({
           }
 
           .default-meta-grid,
-          .default-card-grid {
+          .default-card-grid,
+          .default-certification-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
 
@@ -437,7 +527,8 @@ export default function DefaultLanding({
           }
 
           .default-meta-grid,
-          .default-card-grid {
+          .default-card-grid,
+          .default-certification-grid {
             grid-template-columns: 1fr;
           }
 
@@ -655,6 +746,70 @@ export default function DefaultLanding({
                 ))}
               </div>
             ) : null}
+          </div>
+        </section>
+      ) : null}
+
+      {hasCertifications ? (
+        <section className="default-section default-section-soft">
+          <div className="default-container">
+            <div className="default-certification-grid">
+              <div className="default-certification-heading">
+                <p className="default-section-kicker">{brandName}</p>
+                <h2 className="default-section-title">Acreditaciones</h2>
+              </div>
+
+              {activeCertifications.map(({ certification, index }) => {
+                const certificationLogo = getCertificationLogo(
+                  certification,
+                  landing.logoMode,
+                );
+                const certificationResolution = getCertificationResolution(
+                  landing,
+                  certification,
+                  index,
+                );
+
+                return (
+                  <article className="default-certification-card" key={index}>
+                    {certificationLogo ? (
+                      <img
+                        src={certificationLogo}
+                        alt={certification.name}
+                      />
+                    ) : null}
+                    {certification.url ? (
+                      <a
+                        href={certification.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          color: primaryColor,
+                          fontWeight: 800,
+                          textDecoration: "none",
+                        }}
+                      >
+                        {certification.name}
+                      </a>
+                    ) : (
+                      <strong>{certification.name}</strong>
+                    )}
+                    {certificationResolution ? (
+                      <p
+                        style={{
+                          margin: "8px 0 0 0",
+                          color: "#4B5563",
+                          fontSize: 14,
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {certificationResolution}
+                      </p>
+                    ) : null}
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </section>
       ) : null}

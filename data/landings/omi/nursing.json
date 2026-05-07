@@ -9,5 +9,10 @@
   "hero": {
     "eyebrow": "",
     "highlight": ""
+  },
+  "certifications": {
+    "enabled": false,
+    "resolutionText": "",
+    "items": []
   }
 }

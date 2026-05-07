@@ -14,6 +14,17 @@ type SyncSupabaseResponse = {
   error?: string;
 };
 
+function normalizeCertifications(brand: Brand) {
+  return (brand.certifications ?? []).map((certification) => ({
+    name: certification.name || "",
+    url: certification.url || "",
+    logos: {
+      light: certification.logos?.light || "",
+      dark: certification.logos?.dark || "",
+    },
+  }));
+}
+
 export async function PUT(req: NextRequest, { params }: { params: Params }) {
   try {
     const { brand } = await params;
@@ -35,6 +46,7 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
       secondaryColor: body.secondaryColor || "#F8D74A",
       description: body.description || "",
       legalLinks: body.legalLinks || [],
+      certifications: normalizeCertifications(body),
     };
 
     const filePath = path.join(
@@ -102,6 +114,7 @@ async function updateSupabaseBrand(brandSlug: string, brand: Brand) {
       secondary_color: brand.secondaryColor,
       description: brand.description ?? "",
       legal_links: brand.legalLinks ?? [],
+      certifications: normalizeCertifications(brand),
       updated_at: new Date().toISOString(),
     })
     .eq("slug", brandSlug)
@@ -150,6 +163,7 @@ async function syncSupabaseBrand(
       secondary_color: brand.secondaryColor,
       description: brand.description ?? "",
       legal_links: brand.legalLinks ?? [],
+      certifications: normalizeCertifications(brand),
       updated_at: new Date().toISOString(),
     })
     .eq("slug", brandSlug)

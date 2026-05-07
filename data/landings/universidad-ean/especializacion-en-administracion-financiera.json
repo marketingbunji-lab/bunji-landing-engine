@@ -101,5 +101,10 @@
     "scriptCode": "",
     "programName": "Especialización en Administración Financiera"
   },
-  "footerScripts": []
+  "footerScripts": [],
+  "certifications": {
+    "enabled": false,
+    "resolutionText": "",
+    "items": []
+  }
 }

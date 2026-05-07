@@ -99,5 +99,10 @@
     "scriptCode": "",
     "programName": "Técnico Profesional en Operación de Sistemas de Información"
   },
-  "footerScripts": []
+  "footerScripts": [],
+  "certifications": {
+    "enabled": false,
+    "resolutionText": "",
+    "items": []
+  }
 }

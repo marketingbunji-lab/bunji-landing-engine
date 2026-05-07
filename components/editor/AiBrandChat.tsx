@@ -58,7 +58,19 @@ const emptyBrand: Brand = {
   secondaryColor: "",
   description: "",
   legalLinks: [],
+  certifications: [],
 };
+
+function normalizeCertifications(brand: Brand) {
+  return (brand.certifications ?? []).map((certification) => ({
+    name: certification.name || "",
+    url: certification.url || "",
+    logos: {
+      light: certification.logos?.light || "",
+      dark: certification.logos?.dark || "",
+    },
+  }));
+}
 
 function normalizeWebhookResponse(value: unknown): WebhookResponse | null {
   const firstValue = Array.isArray(value) ? value[0] : value;
@@ -251,6 +263,7 @@ export default function AiBrandChat() {
       primaryColor: nextBrand.primaryColor || "#111827",
       secondaryColor: nextBrand.secondaryColor || "#F8D74A",
       legalLinks: nextBrand.legalLinks ?? [],
+      certifications: normalizeCertifications(nextBrand),
     };
 
     setGeneratedBrand(normalizedBrand);
@@ -519,6 +532,10 @@ export default function AiBrandChat() {
             <DraftField
               label="Font family"
               value={generatedBrand.typography?.fontFamily || ""}
+            />
+            <DraftField
+              label="Certificaciones"
+              value={`${generatedBrand.certifications?.length ?? 0}`}
             />
           </div>
         ) : (

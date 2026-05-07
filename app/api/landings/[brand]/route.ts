@@ -62,6 +62,11 @@ function createBaseLanding(
     status: "draft",
     updatedAt: new Date().toISOString().slice(0, 10),
     logoMode: "dark",
+    certifications: {
+      enabled: false,
+      resolutionText: "",
+      items: [],
+    },
     title,
     fullTitle,
     programType: "",

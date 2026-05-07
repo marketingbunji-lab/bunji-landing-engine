@@ -18,11 +18,21 @@ export type Brand = {
   secondaryColor: string;
   description?: string;
   legalLinks?: LegalLink[];
+  certifications?: BrandCertification[];
 };
 
 export type LegalLink = {
   label: string;
   url: string;
+};
+
+export type BrandCertification = {
+  name: string;
+  url: string;
+  logos?: {
+    light?: string;
+    dark?: string;
+  };
 };
 
 export type AccordionItem = {
@@ -34,6 +44,19 @@ export type IconTextItem = {
   title: string;
   text: string;
   icon?: string;
+};
+
+export type LandingCertificationSettings = {
+  enabled?: boolean;
+  resolutionText?: string;
+  items?: LandingCertificationItem[];
+};
+
+export type LandingCertificationItem = {
+  name: string;
+  url?: string;
+  enabled?: boolean;
+  resolutionText?: string;
 };
 
 export type LandingHero = {
@@ -60,6 +83,7 @@ export type Landing = {
   status: string;
   updatedAt: string;
   logoMode?: "light" | "dark";
+  certifications?: LandingCertificationSettings;
   hero?: LandingHero;
   programInfo?: string[];
   whyStudy?: {
@@ -97,6 +121,13 @@ function normalizeBrand(brand: Brand): Brand {
   return {
     ...brand,
     shortName: brand.shortName?.trim() || brand.name,
+    certifications: (brand.certifications ?? []).map((certification) => ({
+      ...certification,
+      logos: {
+        light: certification.logos?.light ?? "",
+        dark: certification.logos?.dark ?? "",
+      },
+    })),
   };
 }
 

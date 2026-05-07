@@ -99,5 +99,10 @@
     "scriptCode": "",
     "programName": "Pregrado en Administración de Riesgos, Seguridad y Salud en el Trabajo (a Distancia)"
   },
-  "footerScripts": []
+  "footerScripts": [],
+  "certifications": {
+    "enabled": false,
+    "resolutionText": "",
+    "items": []
+  }
 }

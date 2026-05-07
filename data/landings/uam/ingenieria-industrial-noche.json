@@ -15,7 +15,8 @@
     "modality": "Presencial",
     "semesterPrice": "$7.608.800",
     "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/ingenieria-industrial-noche.jpg",
-    "personImage": ""
+    "personImage": "",
+    "overlayColor": "#100906"
   },
   "programInfo": [
     "Pregrado en Ingeniería Industrial",
@@ -45,8 +46,8 @@
         "content": "Conviértete en un líder capaz de desempeñarte en múltiples industrias, desde manufactura y logística hasta consultoría y el sector público, gracias a la versatilidad de tu formación."
       },
       {
-        "title": "Preparación integral para emprendedores e innovadores",
-        "content": "Desarrolla una mentalidad empresarial y creativa, que te permitirá identificar oportunidades de innovación, mejorar procesos y generar soluciones para los retos del entorno industrial y empresarial."
+        "title": "Acreditación ARCU-SUR: Calidad avalada a nivel latinoamericano",
+        "content": "Certificación que avala la calidad académica del programa bajo estándares rigurosos del Mercosur, facilitando el reconocimiento del título en Argentina, Brasil, Chile, Paraguay, Uruguay y Bolivia."
       },
       {
         "title": "Estudia en una institución con más de 45 años de experiencia",
@@ -108,5 +109,23 @@
   "footerScripts": [
     "<!--dataLayer-->\n    <script>\n        document.addEventListener(\"DOMContentLoaded\", function () {\n            const observer = new MutationObserver(function () {\n                const nombreInput = document.querySelector('input[placeholder=\"Nombre*\"]');\n                const apellidosInput = document.querySelector('input[placeholder=\"Apellidos*\"]');\n                const emailInput = document.querySelector('input[placeholder=\"Email*\"]');\n                const telefonoInput = document.querySelector('input[placeholder=\"321 1234567\"]');\n                const programaSelect = [...document.querySelectorAll('select')].find(select =>\n                    [...select.options].some(option => option.text.trim() === TARGET_TEXT) || select.value.trim() !== \"\"\n                );\n                const btnSubscribe = document.querySelector('.btn-subscribe');\n\n                if (\n                    nombreInput &&\n                    apellidosInput &&\n                    emailInput &&\n                    telefonoInput &&\n                    programaSelect &&\n                    btnSubscribe &&\n                    !btnSubscribe.dataset.listenerAdded\n                ) {\n                    console.log(\"Formulario Clientify detectado. Registrando listener...\");\n\n                    btnSubscribe.dataset.listenerAdded = \"true\";\n\n                    btnSubscribe.addEventListener(\"click\", function () {\n                        const nombre = nombreInput.value.trim();\n                        const apellidos = apellidosInput.value.trim();\n                        const email = emailInput.value.trim();\n                        const telefono = telefonoInput.value.trim();\n                        const selectedOption = programaSelect.options[programaSelect.selectedIndex];\n                        const programa = (selectedOption?.text || programaSelect.value || \"\").trim();\n\n                        const allFilled =\n                            nombre !== \"\" &&\n                            apellidos !== \"\" &&\n                            email !== \"\" &&\n                            telefono !== \"\" &&\n                            programa !== \"\";\n\n                        if (!allFilled) {\n                            console.log(\"Faltan campos. No se dispara dataLayer.\");\n                            return;\n                        }\n\n                        const emailValido = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);\n                        if (!emailValido) {\n                            console.log(\"Email inválido. No se dispara dataLayer.\");\n                            return;\n                        }\n\n                        window.dataLayer = window.dataLayer || [];\n                        window.dataLayer.push({\n                            event: \"form_subscribe\",\n                            form_name: \"clientify_superform\",\n                            nombre: nombre,\n                            apellidos: apellidos,\n                            email: email,\n                            telefono: telefono,\n                            programa: programa\n                        });\n\n                        console.log(\"dataLayer.push enviado\");\n                    });\n\n                    observer.disconnect();\n                }\n            });\n\n            observer.observe(document.body, { childList: true, subtree: true });\n        });\n    </script>"
   ],
-  "schedule": "nocturna"
+  "schedule": "nocturna",
+  "certifications": {
+    "enabled": true,
+    "resolutionText": "",
+    "items": [
+      {
+        "name": "Acreditación de alta Calidad",
+        "url": "",
+        "enabled": true,
+        "resolutionText": "Resolución 015160 - agosto 02 de 2022 - 6 años"
+      },
+      {
+        "name": "Acreditación Internacional ARCU-SUR",
+        "url": "",
+        "enabled": true,
+        "resolutionText": "Acuerdo 031 - junio 15 de 2022 - 6 años"
+      }
+    ]
+  }
 }

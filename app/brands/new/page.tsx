@@ -11,10 +11,15 @@ const emptyBrand = {
     light: "",
     dark: "",
   },
+  typography: {
+    fontFamily: "",
+    googleFontHref: "",
+  },
   primaryColor: "#111827",
   secondaryColor: "#F8D74A",
   description: "",
   legalLinks: [],
+  certifications: [],
 };
 
 export default function NewBrandPage() {

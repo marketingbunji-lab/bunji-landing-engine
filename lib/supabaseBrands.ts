@@ -1,4 +1,4 @@
-import type { Brand, LegalLink } from "./data";
+import type { Brand, BrandCertification, LegalLink } from "./data";
 import { createAdminClient } from "@/utils/supabase/admin";
 
 type SupabaseBrandRow = {
@@ -12,6 +12,7 @@ type SupabaseBrandRow = {
   secondary_color: string | null;
   description: string | null;
   legal_links: LegalLink[] | null;
+  certifications: BrandCertification[] | null;
 };
 
 function toBrand(brand: SupabaseBrandRow): Brand {
@@ -32,6 +33,14 @@ function toBrand(brand: SupabaseBrandRow): Brand {
     secondaryColor: brand.secondary_color ?? "#F8D74A",
     description: brand.description ?? "",
     legalLinks: brand.legal_links ?? [],
+    certifications: (brand.certifications ?? []).map((certification) => ({
+      name: certification.name || "",
+      url: certification.url || "",
+      logos: {
+        light: certification.logos?.light || "",
+        dark: certification.logos?.dark || "",
+      },
+    })),
   };
 }
 
@@ -45,7 +54,7 @@ export async function getSupabaseBrands(): Promise<Brand[]> {
   const { data, error } = await supabase
     .from("brands")
     .select(
-      "slug,name,shortName,logo,logos,typography,primary_color,secondary_color,description,legal_links"
+      "slug,name,shortName,logo,logos,typography,primary_color,secondary_color,description,legal_links,certifications"
     )
     .order("created_at", { ascending: false });
 
@@ -68,7 +77,7 @@ export async function getSupabaseBrandBySlug(slug: string): Promise<Brand | null
   const { data, error } = await supabase
     .from("brands")
     .select(
-      "slug,name,shortName,logo,logos,typography,primary_color,secondary_color,description,legal_links"
+      "slug,name,shortName,logo,logos,typography,primary_color,secondary_color,description,legal_links,certifications"
     )
     .eq("slug", slug)
     .maybeSingle();

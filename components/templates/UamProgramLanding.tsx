@@ -1,7 +1,13 @@
 /* eslint-disable @next/next/no-img-element, @next/next/no-sync-scripts */
 import Script from "next/script";
 import { getBrandLogo } from "@/lib/brandLogo";
-import type { Brand, IconTextItem, Landing, LegalLink } from "@/lib/data";
+import type {
+  Brand,
+  BrandCertification,
+  IconTextItem,
+  Landing,
+  LegalLink,
+} from "@/lib/data";
 import ClientifyFormEmbed from "../forms/ClientifyFormEmbed";
 import ClientifyProgramSelector from "../forms/ClientifyProgramSelector";
 import LandingAccordion from "../ui/LandingAccordion";
@@ -96,6 +102,31 @@ function getOverlayColorValue(color?: string) {
   return value;
 }
 
+function getCertificationLogo(
+  certification: BrandCertification,
+  mode?: "light" | "dark",
+) {
+  if (mode === "dark") {
+    return certification.logos?.dark || certification.logos?.light || "";
+  }
+
+  return certification.logos?.light || certification.logos?.dark || "";
+}
+
+function getCertificationResolution(
+  landing: Landing,
+  certification: BrandCertification,
+  index: number,
+) {
+  const items = landing.certifications?.items ?? [];
+  const certificationKey = `${certification.name || ""}|${certification.url || ""}`;
+  const matchedItem = items.find(
+    (item) => `${item.name || ""}|${item.url || ""}` === certificationKey,
+  );
+
+  return matchedItem?.resolutionText ?? items[index]?.resolutionText ?? "";
+}
+
 function ScheduleIcon({ icon }: { icon: "sun" | "moon" }) {
   if (icon === "sun") {
     return (
@@ -152,6 +183,28 @@ export default function UamProgramLanding({
   const benefitItems = benefits?.items ?? [];
   const legalLinks = brand?.legalLinks ?? [];
   const footerScripts = landing?.footerScripts ?? [];
+  const certificationSettings = landing?.certifications ?? {};
+  const brandCertifications = brand?.certifications ?? [];
+  const activeCertifications = brandCertifications
+    .map((certification, index) => {
+      const items = landing?.certifications?.items ?? [];
+      const certificationKey = `${certification.name || ""}|${certification.url || ""}`;
+      const landingItem =
+        items.find(
+          (item) =>
+            `${item.name || ""}|${item.url || ""}` === certificationKey,
+        ) ?? items[index];
+
+      return {
+        certification,
+        index,
+        enabled: Boolean(landingItem?.enabled),
+      };
+    })
+    .filter((item) => item.enabled);
+  const hasCertifications = Boolean(
+    certificationSettings.enabled && activeCertifications.length,
+  );
 
   const primaryColor = brand?.primaryColor ?? "#0069A3";
   const secondaryColor = brand?.secondaryColor ?? "#F8D74A";
@@ -293,6 +346,42 @@ export default function UamProgramLanding({
           gap: 24px;
         }
 
+        .uam-certifications-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 24px;
+          align-items: stretch;
+        }
+
+        .uam-certifications-heading {
+          min-height: 160px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 24px 0;
+        }
+
+        .uam-certification-card {
+          border-radius: 18px;
+          background: #fff;
+          min-height: 160px;
+          padding: 24px;
+          border: 1px solid #E5E7EB;
+          box-shadow: 0 12px 36px rgba(17,24,39,0.08);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .uam-certification-card img {
+          width: auto;
+          max-width: 180px;
+          max-height: 64px;
+          object-fit: contain;
+          object-position: left center;
+          margin-bottom: 16px;
+        }
+
         .uam-accordion {
           display: grid;
           gap: 12px;
@@ -430,7 +519,8 @@ export default function UamProgramLanding({
         }
 
         @container (max-width: 767.98px) {
-          .uam-benefits-grid {
+          .uam-benefits-grid,
+          .uam-certifications-grid {
             grid-template-columns: 1fr;
           }
         }
@@ -456,7 +546,8 @@ export default function UamProgramLanding({
         }
 
         @media (max-width: 767.98px) {
-          .uam-benefits-grid {
+          .uam-benefits-grid,
+          .uam-certifications-grid {
             grid-template-columns: 1fr;
           }
         }
@@ -710,6 +801,84 @@ export default function UamProgramLanding({
         </div>
       </section>
 
+      {hasCertifications ? (
+        <section
+          style={{
+            background: "#F8F8FF",
+            padding: "64px 24px",
+          }}
+        >
+          <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+            <div className="uam-certifications-grid">
+              <div className="uam-certifications-heading">
+                <h2
+                  style={{
+                    margin: 0,
+                    fontSize: 36,
+                    lineHeight: 1.1,
+                    fontWeight: 800,
+                    color: "#111827",
+                  }}
+                >
+                  Acreditaciones
+                </h2>
+              </div>
+
+              {activeCertifications.map(({ certification, index }) => {
+                const certificationLogo = getCertificationLogo(
+                  certification,
+                  landing?.logoMode,
+                );
+                const certificationResolution = getCertificationResolution(
+                  landing,
+                  certification,
+                  index,
+                );
+
+                return (
+                  <article className="uam-certification-card" key={index}>
+                    {certificationLogo ? (
+                      <img
+                        src={certificationLogo}
+                        alt={certification.name}
+                      />
+                    ) : null}
+                    {certification.url ? (
+                      <a
+                        href={certification.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          color: primaryColor,
+                          fontWeight: 800,
+                          textDecoration: "none",
+                        }}
+                      >
+                        {certification.name}
+                      </a>
+                    ) : (
+                      <strong>{certification.name}</strong>
+                    )}
+                    {certificationResolution ? (
+                      <p
+                        style={{
+                          margin: "8px 0 0 0",
+                          color: "#4B5563",
+                          fontSize: 14,
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {certificationResolution}
+                      </p>
+                    ) : null}
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {(whyStudy?.title || whyStudy?.description || whyStudyItems.length > 0) && (
         <section style={{ padding: "64px 24px" }}>
           <div
@@ -827,9 +996,9 @@ export default function UamProgramLanding({
                   color: "#374151",
                 }}
               >
-                Certificada por la UNESCO como &quot;la Ciudad del Aprendizaje&quot;,
-                ofrece un entorno tranquilo y asequible, perfecto para estudiantes
-                que buscan calidad de vida y un espacio.
+                Reconocida por la UNESCO como &quot;Ciudad del Aprendizaje&quot; y por ONU-Hábitat
+                como referente en sostenibilidad y calidad de vida, Manizales ofrece un entorno
+                tranquilo, asequible y enriquecedor para tu formación académica.
               </p>
             </div>
 
