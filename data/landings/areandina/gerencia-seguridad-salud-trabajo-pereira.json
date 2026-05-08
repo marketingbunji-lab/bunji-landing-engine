@@ -1,0 +1,108 @@
+{
+  "slug": "gerencia-seguridad-salud-trabajo-pereira",
+  "brand": "areandina",
+  "template": "renderLandingTemplate",
+  "status": "draft",
+  "updatedAt": "2026-05-08",
+  "logoMode": "dark",
+  "certifications": {
+    "enabled": false,
+    "resolutionText": "",
+    "items": []
+  },
+  "title": "Gerencia en Seguridad y Salud en el Trabajo",
+  "fullTitle": "Especialización en Gerencia en Seguridad y Salud en el Trabajo - Pereira",
+  "programType": "Especialización",
+  "schedule": "flexible",
+  "hero": {
+    "eyebrow": "Facultad de Ciencias de la Salud y del Deporte",
+    "highlight": "Inicia tu proceso de inscripción sin costo",
+    "title": "Especialización en Gerencia en Seguridad y Salud en el Trabajo",
+    "description": "Formación presencial dirigida a profesionales interesados en gestión de riesgos laborales, prevención de accidentes y protección del entorno laboral. Jornada cada 15 días para compatibilizar vida profesional y académica.",
+    "supportText": "Resolución No. 12974 del 19 de Julio de 2021 - Vigencia 7 años",
+    "modality": "Presenciales",
+    "semesterPrice": "",
+    "backgroundImage": "",
+    "personImage": "",
+    "overlayColor": ""
+  },
+  "programInfo": [],
+  "whyStudy": {
+    "title": "¿Por qué estudiar esta especialización?",
+    "description": "Programa con trayectoria regional que actualiza permanentemente su plan de estudios para formar profesionales capaces de gestionar la seguridad y salud en el trabajo desde un enfoque gerencial y preventivo.",
+    "image": "",
+    "items": [
+      {
+        "title": "Cumplimiento normativo",
+        "content": "Capacidad para asegurar que las organizaciones cumplen con la normatividad en seguridad y salud en el trabajo."
+      },
+      {
+        "title": "Prevención de accidentes",
+        "content": "Habilidades para identificar y prevenir riesgos que puedan causar accidentes laborales."
+      },
+      {
+        "title": "Desarrollo de estrategias gerenciales",
+        "content": "Competencia para diseñar y ejecutar estrategias efectivas en seguridad y salud ocupacional."
+      },
+      {
+        "title": "Práctica empresarial",
+        "content": "Oportunidad de aplicar conocimientos en entidades de salud mediante práctica empresarial."
+      },
+      {
+        "title": "Conciliación profesional y familiar",
+        "content": "Jornada cada 15 días que permite compatibilizar la vida laboral y familiar con la formación."
+      }
+    ]
+  },
+  "supportSection": {
+    "title": "Soporte e información",
+    "videoUrl": "",
+    "items": [
+      {
+        "title": "Proceso de admisión",
+        "text": "Diligencia el formulario de inscripción, carga documentos y genera tu recibo para pago por PSE o bancos aliados.",
+        "icon": "admission"
+      },
+      {
+        "title": "Financiación y descuentos",
+        "text": "Consulta las opciones de financiación y convenios de descuentos disponibles en la institución.",
+        "icon": "finance"
+      },
+      {
+        "title": "Canales de atención",
+        "text": "Información de contacto y atención por sedes, líneas telefónicas y WhatsApp para resolver solicitudes y consultas.",
+        "icon": "support"
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Beneficios del programa",
+    "items": [
+      {
+        "title": "Plan de estudios actualizado",
+        "text": "Contenidos en sintonía con las demandas profesionales y revisados periódicamente para mantener pertinencia.",
+        "icon": "curriculum"
+      },
+      {
+        "title": "Equipos y laboratorios",
+        "text": "Acceso a equipos de medición para factores ambientales como ruido, iluminación y temperatura.",
+        "icon": "lab"
+      },
+      {
+        "title": "Docentes calificados",
+        "text": "Profesores con alta cualificación académica, profesional y reconocimiento regional y nacional.",
+        "icon": "faculty"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Inicia tu proceso de inscripción sin costo",
+    "button": "Hazlo ahora"
+  },
+  "form": {
+    "scriptUrl": "",
+    "scriptCode": "",
+    "programName": "Especialización en Gerencia en Seguridad y Salud en el Trabajo - Pereira"
+  },
+  "footerScripts": []
+}
