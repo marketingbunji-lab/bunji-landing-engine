@@ -2,18 +2,26 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import type { LandingTemplateOption } from "@/lib/landingTemplates";
 
 type Props = {
   brandSlug: string;
   brandName: string;
+  availableTemplates: LandingTemplateOption[];
 };
 
-export default function NewLandingForm({ brandSlug, brandName }: Props) {
+export default function NewLandingForm({
+  brandSlug,
+  brandName,
+  availableTemplates,
+}: Props) {
   const router = useRouter();
 
   const [title, setTitle] = useState("");
   const [fullTitle, setFullTitle] = useState("");
-  const [template, setTemplate] = useState("DefaultLanding");
+  const [template, setTemplate] = useState(
+    availableTemplates[0]?.value || "DefaultLanding",
+  );
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -82,8 +90,11 @@ export default function NewLandingForm({ brandSlug, brandName }: Props) {
             onChange={(event) => setTemplate(event.target.value)}
             className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
           >
-            <option value="DefaultLanding">DefaultLanding</option>
-            <option value="UamProgramLanding">UamProgramLanding</option>
+            {availableTemplates.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </label>
       </div>

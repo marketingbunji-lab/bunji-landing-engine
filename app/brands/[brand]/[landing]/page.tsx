@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getBrandBySlug, getLandingBySlug } from "../../../../lib/data";
+import { getLandingTemplateOptions } from "../../../../lib/landingTemplates";
 import LandingEditor from "../../../../components/editor/LandingEditor";
 
 type Props = {
@@ -14,6 +15,7 @@ export default async function LandingDetailPage({ params }: Props) {
 
   const brand = getBrandBySlug(brandSlug);
   const landing = getLandingBySlug(brandSlug, landingSlug);
+  const availableTemplates = getLandingTemplateOptions();
 
   if (!brand || !landing) {
     notFound();
@@ -29,6 +31,7 @@ export default async function LandingDetailPage({ params }: Props) {
           exportFilename={`${brandSlug}-${landingSlug}.html`}
           exportClientifyEndpoint={`/api/export-clientify/${brandSlug}/${landingSlug}`}
           exportClientifyFilename={`${brandSlug}-${landingSlug}-clientify.html`}
+          availableTemplates={availableTemplates}
         />
       </div>
     </main>

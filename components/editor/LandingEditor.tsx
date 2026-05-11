@@ -19,6 +19,7 @@ import type {
   IconTextItem,
   Landing,
 } from "@/lib/data";
+import type { LandingTemplateOption } from "@/lib/landingTemplates";
 import { renderLandingTemplate } from "../templates/renderLandingTemplate";
 import ExportHtmlButton from "../export/ExportHtmlButton";
 
@@ -29,6 +30,7 @@ type Props = {
   exportFilename: string;
   exportClientifyEndpoint: string;
   exportClientifyFilename: string;
+  availableTemplates: LandingTemplateOption[];
 };
 
 type EditableLanding = Landing & Record<string, unknown>;
@@ -121,6 +123,7 @@ export default function LandingEditor({
   exportFilename,
   exportClientifyEndpoint,
   exportClientifyFilename,
+  availableTemplates,
 }: Props) {
   const [landing, setLanding] = useState<Landing>(initialLanding);
   const [saving, setSaving] = useState(false);
@@ -131,6 +134,17 @@ export default function LandingEditor({
   const brandCertifications = brand.certifications ?? [];
   const hasBrandCertifications = brandCertifications.length > 0;
   const certificationsEnabled = Boolean(landing.certifications?.enabled);
+  const templateOptions = availableTemplates.some(
+    (template) => template.value === landing.template,
+  )
+    ? availableTemplates
+    : [
+        {
+          value: landing.template,
+          label: `${landing.template} (actual)`,
+        },
+        ...availableTemplates,
+      ];
 
   const updateValueAtPath = (path: string, value: string | boolean) => {
     setLanding((prev) => {
@@ -399,6 +413,19 @@ export default function LandingEditor({
                   })}
                 </div>
               </div>
+            </EditorSection>
+
+            <EditorSection title="Template">
+              <SelectField
+                label="Template de la landing"
+                value={landing.template || ""}
+                onChange={(value) => updateField("template", value)}
+                options={templateOptions}
+              />
+              <p className="text-xs leading-5 text-gray-500 dark:text-slate-400">
+                Al cambiar el template se actualiza la vista previa y se guarda
+                en el JSON de esta landing.
+              </p>
             </EditorSection>
 
             <EditorSection title="Certificaciones">
