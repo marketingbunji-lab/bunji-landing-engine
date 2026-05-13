@@ -14,8 +14,9 @@
     "supportText": "¡En la UAM construimos historias con pasión!",
     "modality": "100% virtual",
     "semesterPrice": "$7.784.500",
-    "backgroundImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762877136666-Rectangle-1.jpg",
-    "personImage": "https://bunjigrowth.io/wp-content/uploads/2026/04/1762891126219-Generated-Image-November-11_-2025-9_43AM-02.png"
+    "backgroundImage": "https://raw.githubusercontent.com/marketingbunji-lab/bunji-landing-engine/refs/heads/main/public/uam/background-gerencia-finanzas-100.jpg",
+    "personImage": "",
+    "overlayColor": "#fcd21a"
   },
   "programInfo": [
     "Especialista en Gerencia de Marketing",
@@ -102,7 +103,7 @@
   "form": {
     "scriptUrl": "",
     "programName": "Especialización en Gerencia del Marketing - Virtual",
-    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/264965.js\"></script>"
+    "scriptCode": "<script type=\"text/javascript\" src=\"https://api.clientify.net/web-marketing/superforms/script/286901.js\"></script>"
   },
   "programType": "Especialización",
   "footerScripts": [
@@ -113,5 +114,6 @@
     "enabled": false,
     "resolutionText": "",
     "items": []
-  }
+  },
+  "logoMode": "dark"
 }
